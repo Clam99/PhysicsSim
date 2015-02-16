@@ -6,5 +6,7 @@ import javax.swing.*;
  */
 
 public class Canvas extends JPanel {
-    public
+    public void showChooseScreen() {
+
+    }
 }

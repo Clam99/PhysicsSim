@@ -1,7 +1,7 @@
 /**
  * Created by smurphy on 2/10/15.
  */
-public class PhysicsObjectLogic {
+public abstract class PhysicsObjectLogic {
     private float vel;//velocity
     private float dir;//direction of travel in degrees counterclockwise from the horizontal
     private float mass;//mass of object

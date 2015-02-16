@@ -6,7 +6,13 @@ import javax.swing.*;
  */
 
 public class Canvas extends JPanel {
-    public void showChooseScreen() {
+
+    public void showChooseScreen() {//Show the screen to choose the specific simulator
+        showMessage("");
+    }
+
+    public void showMessage(String str) {//show onscreen message
 
     }
+
 }

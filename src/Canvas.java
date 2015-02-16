@@ -12,11 +12,11 @@ public class Canvas extends JPanel {
         JLabel label = new JLabel("test");
         label.setPreferredSize(new Dimension(300, 100));
         this.add(label);
-
     }
 
     public void showChooseScreen() {//Show the screen to choose the specific simulator
-        showMessage("");
+        showMessage("Spring");
+        showMessage("Pendulum");
     }
 
     public void showMessage(String str) {//show onscreen message

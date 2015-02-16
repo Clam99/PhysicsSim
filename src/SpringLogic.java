@@ -1,5 +1,5 @@
 /**
- * Created by smurphy on 2/16/15.
+ * Created by Sam Noyes and Lucas Webb on 2/16/15.
  */
 public class SpringLogic {
     private float stiffness;

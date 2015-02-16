@@ -1,149 +1,21 @@
-2/14/15
-Lucas Webb and Sam Noyes CSC 420 Final Project Proposal
-//We can type this up in google docs if we want to; might be easier
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Lucas Webb, Sam Noyes
+2/16/15
+CSC420
+
+PhysicsSim
+
+    Our project will be a physics simulator. The simulator will consist of a collection of smaller “mini-simulations” such
+as ball on ramp, pendulum, and spring.  Each object will have a list of attributes, such as potential energy, kinetic
+energy, speed, direction, etc. that the user can access.  Ramps may be given different kinetic and static friction
+coefficients for example.  If we have time, we will make different attributes of the objects can be graphed against each
+other or against time.  Collisions will be head-on only. Our data type will be a linked list that stores all the
+objects in the simulator. We chose a linked list because it is efficient for removing objects, if a user wants to get
+rid of something they created, and it is just as fast as an array for adding objects. We will most likely never need to
+search the list - all we need to do is iterate through all the elements every tick and add their current velocity to
+their current position and update their other attributes.
+
+Our timeline is:
+By the end of this week, we would like to have the creation of the ‘physics’ object classes completed with logic.
+Over the weekend, we will implement the GUI.
+Next week, we will add functions to graph data collected from the objects in the simulation.
+Thursday, we will be doing final testing and hand it in.

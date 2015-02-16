@@ -15,10 +15,9 @@ public class Driver extends JFrame {
         d.setPreferredSize(new Dimension(600,400));
         Canvas c = new Canvas();
 
-        JLabel label = new JLabel("test", SwingConstants.CENTER);
-        label.setPreferredSize(new Dimension(300, 100));
+        //JLabel label = new JLabel("test", SwingConstants.CENTER);
+        //label.setPreferredSize(new Dimension(300, 100));
 
-        //c.add(label);
         d.getContentPane().add(c);
         d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         d.setLocationRelativeTo(null);

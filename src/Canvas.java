@@ -10,7 +10,7 @@ public class Canvas extends JPanel {
 
     public Canvas() {
         JLabel label = new JLabel("test");
-        label.setPreferredSize(new Dimension(300, 100));
+        label.setPreferredSize(new Dimension(600, 400));
         this.add(label);
     }
 

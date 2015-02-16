@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Sam Noyes on 2/10/15.
@@ -6,6 +7,13 @@ import javax.swing.*;
  */
 
 public class Canvas extends JPanel {
+
+    public Canvas() {
+        JLabel label = new JLabel("test");
+        label.setPreferredSize(new Dimension(300, 100));
+        this.add(label);
+
+    }
 
     public void showChooseScreen() {//Show the screen to choose the specific simulator
         showMessage("");

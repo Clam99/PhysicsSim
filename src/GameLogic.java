@@ -4,5 +4,4 @@
  */
 public class GameLogic {
     float g;//gravitational field
-    BinaryHeap<PhysicsObject> bh = new BinaryHeap<PhysicsObject>();
 }

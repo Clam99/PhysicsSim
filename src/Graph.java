@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Graph extends JPanel {
-    private ArrayList<int[]> points;
+   /* private ArrayList<int[]> points;
     int x;
     int y;
 
@@ -17,7 +17,7 @@ public class Graph extends JPanel {
         showAxes(p);
     }
 
-    private void showAxes(Paint p){
+    //private void showAxes(Paint p){
         p.drawRect(0,0,10,100);
     }
 
@@ -44,5 +44,5 @@ public class Graph extends JPanel {
         reGraph();
     }
 
-
+*/
 }

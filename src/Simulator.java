@@ -16,6 +16,9 @@ public class Simulator extends JPanel {
     boolean recording = false;
     ArrayList<int[]> data;
     public Simulator(){
+        super();
+        //this.setSize(500,500);
+        record = new JButton();
         record.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -2,9 +2,11 @@
  * Created by smurphy on 2/10/15.
  */
 public class BallLogic extends PhysicsObjectLogic {
-    private float rebound;//Rebound percentage
+    private double rebound;//Percentage of energy conversion on rebound from zero to one
+    private double radius;
 
-
-    public BallLogic(float v, float d, float m, float x, float y) { super(v,d,m,x,y); }
-
+    public BallLogic(double v, double d, double m, double x, double y, double r, double rb) { super(v,d,m,x,y); radius = r; rebound = rb; }
+    public BallLogic(double r, double rb) { super(); radius = r; rebound = rb; }
+    public double getRadius() { return radius; }
+    public double getRebound() { return rebound; }
 }

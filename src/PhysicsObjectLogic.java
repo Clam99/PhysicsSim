@@ -3,30 +3,35 @@
  */
 
 public abstract class PhysicsObjectLogic {
-    private float vel;//velocity
-    private float dir;//direction of travel in degrees counterclockwise from the horizontal
-    private float mass;//mass of object
-    private float x;//x coordinate in Cartesian
-    private float y;//y coordinate
+    private double vel;//velocity
+    private double dir;//direction of travel in degrees counterclockwise from the horizontal
+    private double mass;//mass of object
+    private double x;//x coordinate in Cartesian
+    private double y;//y coordinate
 
-    public PhysicsObjectLogic(float v, float d, float m, float xPos, float yPos) {
+    public PhysicsObjectLogic() {
+        super();
+        vel = 0; dir = 0; mass = 0; x = 0; y = 0;
+    }
+
+    public PhysicsObjectLogic(double v, double d, double m, double xPos, double yPos) {
         super();
         vel = v; dir = d; mass = m; x = xPos; y = yPos;
     }
 
-    public void setV(float v) { vel = v; }
-    public float getV() { return vel; }
-    public void setDir(float d) { dir = d; }
-    public float getDir() { return dir; }
-    public void setMass(float m) { mass = m; }
-    public float getMass() { return mass; }
-    public void setX(float x) { this.x = x; }
-    public float getX() { return x; }
-    public float getY() { return y; }
-    public void setY(float y) { this.y = y; }
+    public void setV(double v) { vel = v; }
+    public double getV() { return vel; }
+    public void setDir(double d) { dir = d; }
+    public double getDir() { return dir; }
+    public void setMass(double m) { mass = m; }
+    public double getMass() { return mass; }
+    public void setX(double x) { this.x = x; }
+    public double getX() { return x; }
+    public double getY() { return y; }
+    public void setY(double y) { this.y = y; }
     public void updatePos() {
-        setX((float) (getX()+getV()*Math.cos(getDir())));
-        setY((float) (getY()+getV()*Math.sin(getDir())));
+        setX((double) (getX()+getV()*Math.cos(getDir())));
+        setY((double) (getY()+getV()*Math.sin(getDir())));
     }
 
 }

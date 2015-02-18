@@ -16,7 +16,7 @@ public class Canvas extends JPanel{
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator
-        showMessage("Spring",300,100,0,0);
+        //showMessage("Spring",300,100,0,0);
         showMessage("Pendulum",300,100,0,200);
     }
 

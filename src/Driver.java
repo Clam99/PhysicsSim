@@ -10,6 +10,5 @@ public class Driver extends JFrame {
         Driver d = new Driver();
 		Canvas c = new Canvas(d);
 		//c.setLayout(null);
-
     }
 }

@@ -6,7 +6,8 @@ import java.awt.*;
  */
 
 public class Canvas extends JPanel{
-
+    double screenHeight = 700;
+    double screenWidth = 1400;
     RampSimulator rs;
 
     public Canvas(Driver d){
@@ -14,11 +15,10 @@ public class Canvas extends JPanel{
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
-        d.setSize(1000, 500);
+        d.setSize((int)screenWidth, (int)screenHeight);
         d.add(this);
-        rs = new RampSimulator(31,500,20, 15);
+        rs = new RampSimulator(31,500,20, 15, screenWidth, screenHeight);
         d.add(rs);
-        this.setBackground(Color.blue);
         //rs.setLocation(0,0);
         //rs.setSize(this.getWidth(),this.getHeight());
         //showChooseScreen();

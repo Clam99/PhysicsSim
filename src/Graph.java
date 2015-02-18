@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -10,9 +11,17 @@ public class Graph extends JPanel {
     int x;
     int y;
 
-    public void Graph(ArrayList<int[]> a){
-        points = a;
+    public void Graph(){
+        Paint p = new Paint();
+
+        showAxes(p);
     }
+
+    private void showAxes(Paint p){
+        p.drawRect(0,0,10,100);
+    }
+
+
 
     public void reGraph(){
 

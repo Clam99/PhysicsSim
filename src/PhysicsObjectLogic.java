@@ -1,6 +1,7 @@
 /**
  * Created by Sam Noyes and Lucas Webb on 2/10/15.
  */
+
 public abstract class PhysicsObjectLogic {
     private float vel;//velocity
     private float dir;//direction of travel in degrees counterclockwise from the horizontal

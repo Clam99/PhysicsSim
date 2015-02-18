@@ -15,6 +15,8 @@ public class Simulator extends JPanel {
     JButton record;
     boolean recording = false;
     ArrayList<int[]> data;
+    int fps = 30;
+
     public Simulator(){
         super();
         //this.setSize(500,500);
@@ -31,6 +33,7 @@ public class Simulator extends JPanel {
     public void startRecording() {
         toggleButtons();
         recording = true;
+        gameLoop();
     }
     public void toggleButtons() {
 
@@ -38,11 +41,11 @@ public class Simulator extends JPanel {
     public void gameLoop()
     {
         Timer timer = new Timer();
-        timer.schedule(new SimTask(), 0, 1000 / 60); //new timer at 60 fps, the timing mechanism
+        timer.schedule(new SimTask(), 0,1000 / fps); //new timer at 60 fps, the timing mechanism
     }
 
     public void updateGUI() {
-
+        System.out.println("Updating GUI");
     }
 
     class SimTask extends TimerTask {

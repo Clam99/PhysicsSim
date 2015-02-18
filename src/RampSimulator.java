@@ -16,20 +16,29 @@ public class RampSimulator extends Simulator {
         simHeight = h;
         simWidth = w;
         angle = a;
-        ball = new Ball(0,360.0-angle,ballMass,ballRadius,Math.sin(angle)*rampLen+ballRadius, ballRadius, 1);
-        int[] xpoints = {(int)ball.getBallLogic().getRadius(),(int)ball.getBallLogic().getRadius(), (int)(Math.cos(angle)*rampLen)};
-        int[] ypoints = { (int)(Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
+        this.rampLen = rampLen;
+        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,0,simHeight-Math.sin(angle)*rampLen-ballRadius, ballRadius, 1);
+        int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
+        int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
         System.out.println(simWidth);
         ramp = new Ramp(xpoints, ypoints, 3, Color.red);
         System.out.println("Making the ramp sim");
-        this.setBackground(Color.black);
         repaint();
+        startRecording();
     }
 
     public void paintComponent(Graphics g) {
         g.setColor(ramp.c);
         g.fillPolygon(ramp);
-        System.out.println("Drawing ramp");
+        g.setColor(Color.blue);
+        g.fillOval((int)(ball.getBallLogic().getX()-ball.getBallLogic().getRadius()),(int)(ball.getBallLogic().getY()- ball.getBallLogic().getRadius()),(int)ball.getBallLogic().getRadius()*2,(int)ball.getBallLogic().getRadius()*2);
+    }
+
+    @Override
+    public void updateGUI() {
+        ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.cos(angle)*9.8/fps);
+        ball.getBallLogic().updatePos();
+        repaint();
     }
 
 }

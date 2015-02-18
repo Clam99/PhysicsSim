@@ -4,7 +4,7 @@
 
 public abstract class PhysicsObjectLogic {
     private double vel;//velocity
-    private double dir;//direction of travel in degrees counterclockwise from the horizontal
+    private double dir;//direction of travel in degrees counterclockwise from horizontal
     private double mass;//mass of object
     private double x;//x coordinate in Cartesian
     private double y;//y coordinate
@@ -29,9 +29,10 @@ public abstract class PhysicsObjectLogic {
     public double getX() { return x; }
     public double getY() { return y; }
     public void setY(double y) { this.y = y; }
+
     public void updatePos() {
         setX((double) (getX()+getV()*Math.cos(getDir())));
-        setY((double) (getY()+getV()*Math.sin(getDir())));
+        setY((double) (getY()-getV()*Math.sin(getDir())));
     }
 
 }

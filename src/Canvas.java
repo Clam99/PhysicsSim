@@ -17,7 +17,7 @@ public class Canvas extends JPanel{
         d.setVisible(true);
         d.setSize((int)screenWidth, (int)screenHeight);
         d.add(this);
-        rs = new RampSimulator(31,500,20, 15, screenWidth, screenHeight);
+        rs = new RampSimulator(Math.toRadians(31),500,20, 15, screenWidth, screenHeight);
         d.add(rs);
         //rs.setLocation(0,0);
         //rs.setSize(this.getWidth(),this.getHeight());

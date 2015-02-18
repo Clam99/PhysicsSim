@@ -17,7 +17,7 @@ public class RampSimulator extends Simulator {
         simWidth = w;
         angle = a;
         this.rampLen = rampLen;
-        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,0,simHeight-Math.sin(angle)*rampLen-ballRadius, ballRadius, 1);
+        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,ballRadius*Math.cos(Math.toRadians(90)-angle),simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle), ballRadius, 1);
         int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
         int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
         System.out.println(simWidth);
@@ -36,7 +36,7 @@ public class RampSimulator extends Simulator {
 
     @Override
     public void updateGUI() {
-        ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.cos(angle)*9.8/fps);
+        ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.sin(angle)*9.8/fps);
         ball.getBallLogic().updatePos();
         repaint();
     }

@@ -6,8 +6,12 @@ public abstract class PhysicsObjectLogic {
     private double vel;//velocity
     private double dir;//direction of travel in degrees counterclockwise from horizontal
     private double mass;//mass of object
-    private double x;//x coordinate in Cartesian
+    private double x;//x coordinate of center of object in Cartesian
     private double y;//y coordinate
+    private double height;
+    private double KE;
+    private double PE;
+
 
     public PhysicsObjectLogic() {
         super();

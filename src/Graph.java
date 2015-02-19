@@ -26,10 +26,11 @@ public class Graph extends JPanel {
 
         for(int i = 0; i<data.size(); i++){
             int[] point = data.get(i);
-            g.fillOval((graphWidth/2*(point[0]/xMax)), graphHeight/2*(point[1]/yMax), 20, 20);
-            System.out.println("Filling " + (graphWidth/2*(point[0]/xMax)));
+            g.fillOval(graphWidth/2+(int)(graphWidth/2*(double)((double)point[0]/(double)xMax)), graphHeight/2+graphHeight/2-(int)(((double)graphHeight)/2.0*((double)point[1]/(double)yMax)), 5, 5);
+            //g.fillOval((graphWidth/2+point[0]), graphHeight/2-(point[1]), 5, 5);
+            //System.out.println("Filling " + (graphWidth/2*(point[0]/xMax)));
         }
-        System.out.println(data.get(0)[0]);
+        //System.out.println(data.get(0)[0]);
 
     }
 

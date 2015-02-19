@@ -16,7 +16,7 @@ public class RampSimulator extends Simulator {
     double initialBallY;
     double ballDistance = 0;
 
-    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g) {
+    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF) {
         super();
         graph = g;
         simHeight = h;
@@ -25,7 +25,7 @@ public class RampSimulator extends Simulator {
         this.rampLen = rampLen;
         initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);
         initialBallY = simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle);
-        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1);
+        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1, gF);
         int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
         int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
         System.out.println(simWidth);
@@ -60,7 +60,8 @@ public class RampSimulator extends Simulator {
         updateCount++;
         //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
         //int[] toadd = {updateCount, (int)ballDistance };
-        int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
+        //int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
+        int[] toadd = {updateCount, (int)ball.getBallLogic().getKE() };
         graph.addPoint(toadd);
         //System.out.println("In updateGUI: " + toadd[0]);
     }

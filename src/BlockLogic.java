@@ -3,5 +3,5 @@
  */
 
 public class BlockLogic extends PhysicsObjectLogic {
-    public BlockLogic(float v, float d, float m, float x, float y) {super(v,d,m,x,y);}
+    public BlockLogic(float v, float d, float m, float x, float y, double g) {super(v,d,m,x,y, g);}
 }

@@ -59,13 +59,13 @@ public abstract class PhysicsObjectLogic {
     }
 
     public void updateCartesianVelocities() {
-        setVx(getV()*Math.cos(getDir()));
-        setVy(getV()*Math.sin(getDir()));
+        vx = getV()*Math.cos(getDir());
+        vy = getV()*Math.sin(getDir());
     }
 
     public void updatePolarVelocities() {
-        setDir(Math.tan(getVx() / getVy()));
-        setV(Math.sqrt(getVx()*getVx() + getVy()*getVy()));
+        dir = Math.tan(getVx() / getVy());
+        vel = Math.sqrt(getVx()*getVx() + getVy()*getVy());
     }
 
     public double getKE() {
@@ -83,7 +83,7 @@ public abstract class PhysicsObjectLogic {
     public double getG() {
         return g;
     }
-    public double setG(double newG) {
+    public void setG(double newG) {
         g = newG;
     }
 

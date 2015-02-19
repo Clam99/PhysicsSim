@@ -9,7 +9,7 @@ public class Ball extends PhysicsObject {
         super();
         bl = new BallLogic(r, rb);
     }
-    public Ball(double v, double d, double m, double x, double y, double r, double rb) { super(); bl = new BallLogic(v,d,m,x,y,r,rb); }
+    public Ball(double v, double d, double m, double x, double y, double r, double rb, double g) { super(); bl = new BallLogic(v,d,m,x,y,r,rb,g); }
 
     public void paintComponent(Graphics g) {
         g.drawOval((int)(bl.getX()-bl.getRadius()), (int)(bl.getY()-bl.getRadius()), (int)(bl.getRadius()), (int)(bl.getRadius()));

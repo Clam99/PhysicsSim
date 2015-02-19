@@ -25,7 +25,7 @@ public class Canvas extends JPanel{
         d.setSize((int) screenWidth, (int) screenHeight);
         d.add(container);
         graph = new Graph(screenWidth/2, screenHeight/2);
-        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph);
+        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph, 9.8);
         container.add(rs);
         container.add(graph);
         container.setBorder(BorderFactory.createCompoundBorder(

@@ -59,8 +59,8 @@ public class RampSimulator extends Simulator {
         repaint();
         updateCount++;
         //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
-        int[] toadd = {updateCount, (int)ballDistance };
-        //int[] toadd = {updateCount, (int)simHeight-(int)ball.getBallLogic().getV() };
+        //int[] toadd = {updateCount, (int)ballDistance };
+        int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
         graph.addPoint(toadd);
         //System.out.println("In updateGUI: " + toadd[0]);
     }

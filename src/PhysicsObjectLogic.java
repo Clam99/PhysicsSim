@@ -26,15 +26,28 @@ public abstract class PhysicsObjectLogic {
     }
 
     public void setVx(double v) {
-
+        vx = v;
+        updatePolarVelocities();
     }
     public double getVx() {
         return vx;
     }
-    //pu
-    public void setV(double v) { vel = v; }
+    public void setVy(double v) {
+        vy = v;
+        updatePolarVelocities();
+    }
+    public double getVy() {
+        return vy;
+    }
+    public void setV(double v) {
+        vel = v;
+        updateCartesianVelocities();
+    }
     public double getV() { return vel; }
-    public void setDir(double d) { dir = d; }
+    public void setDir(double d) {
+        dir = d;
+        updateCartesianVelocities();
+    }
     public double getDir() { return dir; }
     public void setMass(double m) { mass = m; }
     public double getMass() { return mass; }
@@ -44,8 +57,18 @@ public abstract class PhysicsObjectLogic {
     public void setY(double y) { this.y = y; }
 
     public void updatePos() {
-        setX((double) (getX()+getV()*Math.cos(getDir())));
-        setY((double) (getY()-getV()*Math.sin(getDir())));
+        setX((double) (getX() + getV() * Math.cos(getDir())));
+        setY((double) (getY() - getV() * Math.sin(getDir())));
+    }
+
+    public void updateCartesianVelocities() {
+        setVx(getV()*Math.cos(getDir()));
+        setVy(getV()*Math.sin(getDir()));
+    }
+
+    public void updatePolarVelocities() {
+        setDir(Math.tan(getVx() / getVy()));
+        setV(Math.sqrt(getVx()*getVx() + getVy()*getVy()));
     }
 
 }

@@ -10,19 +10,16 @@ public abstract class PhysicsObjectLogic {
     private double y;//y coordinate
     private double vx;
     private double vy;
-    private double height;
-    private double KE;
-    private double PE;
-
+    private double g;
 
     public PhysicsObjectLogic() {
         super();
         vel = 0; dir = 0; mass = 0; x = 0; y = 0;
     }
 
-    public PhysicsObjectLogic(double v, double d, double m, double xPos, double yPos) {
+    public PhysicsObjectLogic(double v, double d, double m, double xPos, double yPos, double g) {
         super();
-        vel = v; dir = d; mass = m; x = xPos; y = yPos;
+        vel = v; dir = d; mass = m; x = xPos; y = yPos; this.g = g;
     }
 
     public void setVx(double v) {
@@ -69,6 +66,25 @@ public abstract class PhysicsObjectLogic {
     public void updatePolarVelocities() {
         setDir(Math.tan(getVx() / getVy()));
         setV(Math.sqrt(getVx()*getVx() + getVy()*getVy()));
+    }
+
+    public double getKE() {
+        return .5*getMass()*getV()*getV();
+    }
+
+    public double getPE() {
+        return getHeight()*getMass()*getG();
+    }
+
+    public double getHeight() {
+        return 0;//to be added to
+    }
+
+    public double getG() {
+        return g;
+    }
+    public double setG(double newG) {
+        g = newG;
     }
 
 }

@@ -9,6 +9,8 @@ public class Driver extends JFrame {
     public static void main(String[] args) {
         Driver d = new Driver();
 		Canvas c = new Canvas(d);
+
+
 		//c.setLayout(null);
     }
 }

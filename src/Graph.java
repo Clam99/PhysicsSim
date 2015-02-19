@@ -7,18 +7,26 @@ import java.util.ArrayList;
  */
 
 public class Graph extends JPanel {
-   /* private ArrayList<int[]> points;
-    int x;
-    int y;
+    private ArrayList<int[]> points;
+    int xMax;
+    int yMax;
+    int graphWidth;
+    int graphHeight;
 
-    public void Graph(){
-        Paint p = new Paint();
 
-        showAxes(p);
+    public Graph(double w, double h){
+        graphWidth = (int)w;
+        graphHeight = (int)h;
+
     }
 
-    //private void showAxes(Paint p){
-        p.drawRect(0,0,10,100);
+    public void paintComponent(Graphics g){
+        g.drawRect(graphWidth/2,0,2,graphHeight);
+        g.drawRect(0,graphHeight/2,graphWidth,2);
+    }
+
+    private void showAxes(){
+        //p.drawRect(0,0,10,100);
     }
 
 
@@ -34,15 +42,13 @@ public class Graph extends JPanel {
 
     public void updateSize(){
         for(int i = 0; i < points.size();i++){
-            if(points.get(i)[0] > x){
-                x = points.get(i)[0];
+            if(points.get(i)[0] > xMax){
+                xMax = points.get(i)[0];
             }
-            if(points.get(i)[1] > y){
-                y = points.get(i)[1];
+            if(points.get(i)[1] > yMax){
+                yMax = points.get(i)[1];
             }
         }
         reGraph();
     }
-
-*/
 }

@@ -9,19 +9,28 @@ public class Canvas extends JPanel{
     double screenHeight = 700;
     double screenWidth = 1400;
     RampSimulator rs;
+    Graph g;
 
     public Canvas(Driver d){
         super();
+
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
         d.setSize((int)screenWidth, (int)screenHeight);
-        d.add(this);
-        rs = new RampSimulator(Math.toRadians(70),500,20, 15, screenWidth, screenHeight);
-        d.add(rs);
+        d.add(container);
+        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight);
+        container.add(rs);
+        //d.add(rs);
         //rs.setLocation(0,0);
         //rs.setSize(this.getWidth(),this.getHeight());
         //showChooseScreen();
+
+        g = new Graph(screenWidth/2, screenHeight/2);
+        container.add(g);
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator

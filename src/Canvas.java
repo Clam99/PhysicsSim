@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,6 +28,9 @@ public class Canvas extends JPanel{
         rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph);
         container.add(rs);
         container.add(graph);
+        container.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5,5,5,5),
+                container.getBorder()));
         //d.add(rs);
         //rs.setLocation(0,0);
         //rs.setSize(this.getWidth(),this.getHeight());

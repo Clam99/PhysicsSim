@@ -8,6 +8,8 @@ public abstract class PhysicsObjectLogic {
     private double mass;//mass of object
     private double x;//x coordinate of center of object in Cartesian
     private double y;//y coordinate
+    private double vx;
+    private double vy;
     private double height;
     private double KE;
     private double PE;
@@ -23,6 +25,13 @@ public abstract class PhysicsObjectLogic {
         vel = v; dir = d; mass = m; x = xPos; y = yPos;
     }
 
+    public void setVx(double v) {
+
+    }
+    public double getVx() {
+        return vx;
+    }
+    //pu
     public void setV(double v) { vel = v; }
     public double getV() { return vel; }
     public void setDir(double d) { dir = d; }

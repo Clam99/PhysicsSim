@@ -9,7 +9,7 @@ public class Canvas extends JPanel{
     double screenHeight = 700;
     double screenWidth = 1400;
     RampSimulator rs;
-    Graph g;
+    public Graph graph;
 
     public Canvas(Driver d){
         super();
@@ -29,8 +29,8 @@ public class Canvas extends JPanel{
         //rs.setSize(this.getWidth(),this.getHeight());
         //showChooseScreen();
 
-        g = new Graph(screenWidth/2, screenHeight/2);
-        container.add(g);
+        graph = new Graph(screenWidth/2, screenHeight/2);
+        container.add(graph);
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator
@@ -44,5 +44,4 @@ public class Canvas extends JPanel{
         label.setLocation(x,y);
         this.add(label);
     }
-
 }

@@ -25,6 +25,7 @@ public class RampSimulator extends Simulator {
         System.out.println("Making the ramp sim");
         repaint();
         startRecording();
+        int[] toadd = {ball.getX(), ball.getY()};
     }
 
     public void paintComponent(Graphics g) {
@@ -40,5 +41,4 @@ public class RampSimulator extends Simulator {
         ball.getBallLogic().updatePos();
         repaint();
     }
-
 }

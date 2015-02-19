@@ -7,7 +7,8 @@ import java.util.ArrayList;
  */
 
 public class Graph extends JPanel {
-    private ArrayList<int[]> points;
+    private ArrayList<int[]> data = new ArrayList<int[]>();
+    //private ArrayList<> points
     int xMax;
     int yMax;
     int graphWidth;
@@ -23,30 +24,31 @@ public class Graph extends JPanel {
     public void paintComponent(Graphics g){
         g.drawRect(graphWidth/2,0,2,graphHeight);
         g.drawRect(0,graphHeight/2,graphWidth,2);
-    }
 
-    private void showAxes(){
-        //p.drawRect(0,0,10,100);
-    }
+        for(int[] point : data){
+            g.drawOval(point[0], point[1], 1, 1);
+        }
 
+    }
 
 
     public void reGraph(){
-
+        updateSize();
+        repaint();
     }
 
     public void addPoint(int[] toadd){
-        points.add(toadd);
+        data.add(toadd);
         reGraph();
     }
 
     public void updateSize(){
-        for(int i = 0; i < points.size();i++){
-            if(points.get(i)[0] > xMax){
-                xMax = points.get(i)[0];
+        for(int i = 0; i < data.size();i++){
+            if(data.get(i)[0] > xMax){
+                xMax = data.get(i)[0];
             }
-            if(points.get(i)[1] > yMax){
-                yMax = points.get(i)[1];
+            if(data.get(i)[1] > yMax){
+                yMax = data.get(i)[1];
             }
         }
         reGraph();

@@ -43,8 +43,10 @@ public class RampSimulator extends Simulator {
     public void updateGUI() {
         ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.sin(angle)*9.8/fps);
         ball.getBallLogic().updatePos();
+        repaint();
+
         int[] toadd = {ball.getX(), ball.getY()};
         graph.addPoint(toadd);
-        repaint();
+        //System.out.println(ball.getX());
     }
 }

@@ -34,9 +34,9 @@ public class Canvas extends JPanel{
         
 
         ArrayList<int[]> tester = new ArrayList<int[]>();
-        tester.add(new int[]{5, 6});
-        tester.add(new int[]{10, 7});
-        graph.setData(tester);
+        //tester.add(new int[]{5, 6});
+        //tester.add(new int[]{10, 7});
+        //graph.setData(tester);
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator

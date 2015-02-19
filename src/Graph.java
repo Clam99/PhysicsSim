@@ -24,8 +24,9 @@ public class Graph extends JPanel {
         g.drawRect(graphWidth/2,0,2,graphHeight);
         g.drawRect(0,graphHeight/2,graphWidth,2);
 
-        for(int[] point : data){
-            g.drawOval((graphWidth/2 + point[0]), graphHeight/2 - point[1], 2, 2);
+        for(int i = 0; i<data.size(); i++){
+            int[] point = data.get(i);
+            g.fillOval((graphWidth/2 + point[0]), graphHeight/2 - point[1], 2, 2);
         }
 
     }

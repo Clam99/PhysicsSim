@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Canvas extends JPanel{
     double screenHeight = 700;
-    double screenWidth = 1400;
+    double screenWidth = 1250;
     RampSimulator rs;
     public Graph graph;
 

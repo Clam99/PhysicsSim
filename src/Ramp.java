@@ -1,12 +1,12 @@
 import java.awt.*;
 
 /**
- * Created by smurphy on 2/18/15.
+ * Created by Sam Noyes on 2/18/15.
  */
 public class Ramp extends Polygon {
     Color c;
-    public Ramp(int[] xpoints, int[] ypoints, int npoints, Color color) {
-        super(xpoints,ypoints,npoints);
+    public Ramp(int[] xPoints, int[] yPoints, int nPoints, Color color) {
+        super(xPoints,yPoints,nPoints);
         c = color;
     }
 }

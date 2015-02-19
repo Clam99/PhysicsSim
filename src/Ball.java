@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Created by smurphy on 2/10/15.
+ * Created by Sam Noyes on 2/10/15.
  */
 public class Ball extends PhysicsObject {
     private BallLogic bl;
@@ -11,15 +11,11 @@ public class Ball extends PhysicsObject {
     }
     public Ball(double v, double d, double m, double x, double y, double r, double rb, double g) { super(); bl = new BallLogic(v,d,m,x,y,r,rb,g); }
 
-    public void paintComponent(Graphics g) {
-        g.drawOval((int)(bl.getX()-bl.getRadius()), (int)(bl.getY()-bl.getRadius()), (int)(bl.getRadius()), (int)(bl.getRadius()));
-    }
-
     public BallLogic getBallLogic() {
         return bl;
     }
 
-    public static double getDistance(double xi, double yi, double xf, double yf) {
+    public static double getDistance(double xi, double yi, double xf, double yf) {//Use the distance formula to calculate the distance between (xi,yi) and (xf,yf)
         return Math.sqrt((xi-xf)*(xi-xf)+(yi-yf)*(yi-yf));
     }
 

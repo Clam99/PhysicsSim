@@ -1,5 +1,5 @@
 /**
- * Created by smurphy on 2/10/15.
+ * Created by Sam Noyes on 2/10/15.
  */
 public class BallLogic extends PhysicsObjectLogic {
     private double rebound;//Percentage of energy conversion on rebound from zero to one

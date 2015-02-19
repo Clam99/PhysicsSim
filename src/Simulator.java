@@ -9,7 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by smurphy on 2/17/15.
+ * Created by Sam Noyes on 2/17/15.
  */
 public class Simulator extends JPanel {
     JButton record;

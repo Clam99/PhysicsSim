@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Sam Noyes and Lucas Webb on 2/10/15.
@@ -20,7 +21,7 @@ public class Canvas extends JPanel{
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
-        d.setSize((int)screenWidth, (int)screenHeight);
+        d.setSize((int) screenWidth, (int) screenHeight);
         d.add(container);
         rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight);
         container.add(rs);
@@ -31,6 +32,11 @@ public class Canvas extends JPanel{
 
         graph = new Graph(screenWidth/2, screenHeight/2);
         container.add(graph);
+
+        ArrayList<int[]> tester = new ArrayList<int[]>();
+        tester.add(new int[]{5, 6});
+        tester.add(new int[]{10, 7});
+        graph.setData(tester);
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator

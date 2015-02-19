@@ -18,7 +18,6 @@ public class Graph extends JPanel {
     public Graph(double w, double h){
         graphWidth = (int)w;
         graphHeight = (int)h;
-
     }
 
     public void paintComponent(Graphics g){
@@ -26,7 +25,8 @@ public class Graph extends JPanel {
         g.drawRect(0,graphHeight/2,graphWidth,2);
 
         for(int[] point : data){
-            g.drawOval(point[0], point[1], 1, 1);
+            g.drawOval((graphWidth/2 + point[0]), graphHeight/2 + point[1], 2, 2);
+            //g.fillOval(point[0], point[1],);
         }
 
     }
@@ -51,6 +51,9 @@ public class Graph extends JPanel {
                 yMax = data.get(i)[1];
             }
         }
-        reGraph();
+    }
+    
+    public void setData(ArrayList<int[]> p){
+        data = p;
     }
 }

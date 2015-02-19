@@ -9,8 +9,10 @@ import java.util.ArrayList;
 public class Graph extends JPanel {
     private ArrayList<int[]> data = new ArrayList<int[]>();
     //private ArrayList<> points
-    int xMax;
-    int yMax;
+    int xMax = 0;
+    int yMax = 0;
+    int xMin = 0;
+    int yMin = 0;
     int graphWidth;
     int graphHeight;
 
@@ -26,7 +28,7 @@ public class Graph extends JPanel {
 
         for(int i = 0; i<data.size(); i++){
             int[] point = data.get(i);
-            g.fillOval(graphWidth/2+(int)(graphWidth/2*(double)((double)point[0]/(double)xMax)), graphHeight/2+graphHeight/2-(int)(((double)graphHeight)/2.0*((double)point[1]/(double)yMax)), 5, 5);
+            g.fillOval((int)(graphWidth*(double)((double)point[0]/((double)xMax-(double)xMin))), graphHeight/2-(int)(((double)graphHeight)/2.0*((double)point[1]/((double)yMax-(double)yMin))), 5, 5);
             //g.fillOval((graphWidth/2+point[0]), graphHeight/2-(point[1]), 5, 5);
             //System.out.println("Filling " + (graphWidth/2*(point[0]/xMax)));
         }
@@ -49,9 +51,19 @@ public class Graph extends JPanel {
         for(int i = 0; i < data.size();i++){
             if(data.get(i)[0] > xMax){
                 xMax = data.get(i)[0];
+                //System.out.println("updating x max");
             }
             if(data.get(i)[1] > yMax){
                 yMax = data.get(i)[1];
+                //System.out.println("updating y max to " +yMax);
+            }
+            if(data.get(i)[0] < xMin){
+                xMin = data.get(i)[0];
+                //System.out.println("updating x max");
+            }
+            if(data.get(i)[1] < yMin){
+                yMin = data.get(i)[1];
+                //System.out.println("updating y min to " +yMin);
             }
         }
     }

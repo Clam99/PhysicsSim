@@ -11,6 +11,10 @@ public class RampSimulator extends Simulator {
     double simHeight;
     double simWidth;
     Graph graph;
+    int updateCount = 0;
+    double initialBallX;
+    double initialBallY;
+    double ballDistance = 0;
 
     public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g) {
         super();
@@ -19,7 +23,9 @@ public class RampSimulator extends Simulator {
         simWidth = w;
         angle = a;
         this.rampLen = rampLen;
-        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,ballRadius*Math.cos(Math.toRadians(90)-angle),simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle), ballRadius, 1);
+        initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);
+        initialBallY = simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle);
+        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1);
         int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
         int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
         System.out.println(simWidth);
@@ -39,14 +45,24 @@ public class RampSimulator extends Simulator {
         //System.out.println("it works");
     }
 
+    public void updateDistance(double xi, double yi){
+        ballDistance += Ball.getDistance(ball.getBallLogic().getX(), ball.getBallLogic().getY(), xi, yi);
+    }
+
     @Override
     public void updateGUI() {
+        double xi = ball.getBallLogic().getX();
+        double yi = ball.getBallLogic().getY();
         ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.sin(angle)*9.8/fps);
         ball.getBallLogic().updatePos();
+        updateDistance(xi,yi);
         repaint();
-
-        int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
+        updateCount++;
+        //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
+        int[] toadd = {updateCount, (int)ballDistance };
         graph.addPoint(toadd);
         //System.out.println("In updateGUI: " + toadd[0]);
     }
+
+
 }

@@ -19,4 +19,8 @@ public class Ball extends PhysicsObject {
         return bl;
     }
 
+    public static double getDistance(double xi, double yi, double xf, double yf) {
+        return Math.sqrt((xi-xf)*(xi-xf)+(yi-yf)*(yi-yf));
+    }
+
 }

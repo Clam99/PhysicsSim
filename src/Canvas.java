@@ -23,15 +23,15 @@ public class Canvas extends JPanel{
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
         d.add(container);
-        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight);
+        graph = new Graph(screenWidth/2, screenHeight/2);
+        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph);
         container.add(rs);
+        container.add(graph);
         //d.add(rs);
         //rs.setLocation(0,0);
         //rs.setSize(this.getWidth(),this.getHeight());
         //showChooseScreen();
-
-        graph = new Graph(screenWidth/2, screenHeight/2);
-        container.add(graph);
+        
 
         ArrayList<int[]> tester = new ArrayList<int[]>();
         tester.add(new int[]{5, 6});
@@ -40,8 +40,8 @@ public class Canvas extends JPanel{
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator
-        showMessage("Spring",300,100,0,0);
-        showMessage("Pendulum",300,100,0,200);
+        showMessage("Spring", 300, 100, 0, 0);
+        showMessage("Pendulum", 300, 100, 0, 200);
     }
 
     public void showMessage(String str, int width, int height, int x, int y){//show onscreen message

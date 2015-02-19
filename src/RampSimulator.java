@@ -10,9 +10,11 @@ public class RampSimulator extends Simulator {
     Ramp ramp;
     double simHeight;
     double simWidth;
+    Graph graph;
 
-    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h) {
+    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g) {
         super();
+        graph = g;
         simHeight = h;
         simWidth = w;
         angle = a;
@@ -25,7 +27,6 @@ public class RampSimulator extends Simulator {
         System.out.println("Making the ramp sim");
         repaint();
         startRecording();
-        int[] toadd = {ball.getX(), ball.getY()};
     }
 
     public void paintComponent(Graphics g) {
@@ -33,12 +34,17 @@ public class RampSimulator extends Simulator {
         g.fillPolygon(ramp);
         g.setColor(Color.blue);
         g.fillOval((int)(ball.getBallLogic().getX()-ball.getBallLogic().getRadius()),(int)(ball.getBallLogic().getY()- ball.getBallLogic().getRadius()),(int)ball.getBallLogic().getRadius()*2,(int)ball.getBallLogic().getRadius()*2);
+
+
+        //System.out.println("it works");
     }
 
     @Override
     public void updateGUI() {
         ball.getBallLogic().setV(ball.getBallLogic().getV()+Math.sin(angle)*9.8/fps);
         ball.getBallLogic().updatePos();
+        int[] toadd = {ball.getX(), ball.getY()};
+        graph.addPoint(toadd);
         repaint();
     }
 }

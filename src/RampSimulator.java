@@ -3,6 +3,7 @@ import java.awt.*;
 /**
  * Created by Sam Noyes on 2/17/15.
  */
+
 public class RampSimulator extends Simulator {
     double angle;
     double rampLen;

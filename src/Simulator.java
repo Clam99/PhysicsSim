@@ -11,6 +11,7 @@ import java.util.TimerTask;
 /**
  * Created by Sam Noyes on 2/17/15.
  */
+
 public class Simulator extends JPanel {
     JButton record;
     boolean recording = false;

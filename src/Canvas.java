@@ -12,35 +12,30 @@ public class Canvas extends JPanel{
     double screenWidth = 1250;
     RampSimulator rs;
     public Graph graph;
+    Menu m;
 
     public Canvas(Driver d){
         super();
-
-        JPanel container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
-
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
-        d.add(container);
+
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+
+
+        //d.add(container);
+        m = new Menu();
+        d.add(m);
+
         graph = new Graph(screenWidth/2, screenHeight/2);
         rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph, 9.8);
         container.add(rs);
         container.add(graph);
         container.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(5,5,5,5),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5),
                 container.getBorder()));
-        //d.add(rs);
-        //rs.setLocation(0,0);
-        //rs.setSize(this.getWidth(),this.getHeight());
-        //showChooseScreen();
-        
-
-        ArrayList<int[]> tester = new ArrayList<int[]>();
-        //tester.add(new int[]{5, 6});
-        //tester.add(new int[]{10, 7});
-        //graph.setData(tester);
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Created by Sam Noyes and Lucas Webb on 2/16/15.
+ * Created by Lucas Webb on 2/16/15.
  */
 
 public class Graph extends JPanel {
@@ -29,7 +29,8 @@ public class Graph extends JPanel {
 
         for(int i = 0; i<data.size(); i++){
             int[] point = data.get(i);
-            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*(double)((double)point[0]/((double)xMax-(double)xMin))), graphHeight/2-(int)(((double)graphHeight/2)*((double)point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
+            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*(double)((double)point[0]/((double)xMax-(double)xMin))),
+                    graphHeight/2-(int)(((double)graphHeight/2)*((double)point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
         }
 
     }

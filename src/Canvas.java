@@ -25,9 +25,9 @@ public class Canvas extends JPanel{
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
 
-        //d.add(container);
+        d.add(container);
         m = new Menu();
-        d.add(m);
+       // d.add(m);
 
         graph = new Graph(screenWidth/2, screenHeight/2);
         rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph, 9.8);

@@ -17,6 +17,7 @@ public class Simulator extends JPanel {
     boolean recording = false;
     ArrayList<int[]> data;
     int fps = 30;
+    SimLogic logic;
 
     public Simulator(){
         super();
@@ -53,6 +54,7 @@ public class Simulator extends JPanel {
         @Override
         public void run() {
             updateGUI();
+
         }
     }
 

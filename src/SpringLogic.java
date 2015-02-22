@@ -1,25 +1,30 @@
 /**
  * Created by Sam Noyes and Lucas Webb on 2/16/15.
  */
+
 public class SpringLogic {
-    private float stiffness;
-    private float compression;
+    private double constant;
+    private double length;
+    private double compression;
 
-    public SpringLogic(float s, float c){
-        stiffness = c;
+    public SpringLogic(double k, double l){
+        constant = k;
+        length = l;
+        //compression = c;
+    }
+
+    public void setConstant(double s){
+        constant = s;
+    }
+    public double getConstant(){
+        return constant;
+    }
+    public void setLength(double l) {length = l;}
+    public double getLength(){return length;}
+    public void setCompression(double c){
         compression = c;
     }
-
-    public void setStiffness(float s){
-        stiffness = s;
-    }
-    public float getStiffness(){
-        return stiffness;
-    }
-    public void setCompression(float c){
-        compression = c;
-    }
-    public float getCompression(){
+    public double getCompression(){
         return compression;
     }
 }

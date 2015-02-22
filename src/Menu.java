@@ -10,9 +10,13 @@ import java.awt.event.WindowListener;
 
 public class Menu extends JPanel {
     JComboBox drop;
+    Simulator[] simObjects = { new RampSimulator(30,500,50,10,100,100,new Graph(100,100),9.8) };
+    Canvas parent;
 
-    public Menu(){
+    public Menu(Canvas p){
         super();
+
+        parent = p;
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -30,8 +34,7 @@ public class Menu extends JPanel {
         this.add(drop);
 
         selected.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 //Execute when button is pressed
                 //System.out.println("You clicked the button");
                 startSim();
@@ -42,5 +45,8 @@ public class Menu extends JPanel {
     private void startSim(){
         int k = drop.getSelectedIndex();
         System.out.println(k);
+        parent.remove(this);
+        parent.add(simObjects[k]);
+        parent.add(((RampSimulator)simObjects[k]).graph);
     }
 }

@@ -8,6 +8,6 @@ import java.awt.*;
 public class Driver extends JFrame {
     public static void main(String[] args) {
         Driver d = new Driver();
-		Canvas c = new Canvas(d);
+		new Canvas(d);
     }
 }

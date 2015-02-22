@@ -19,6 +19,8 @@ public class RampSimLogic extends SimLogic {
     Surface rightWall;
     Surface leftWall;
     ArrayList<Surface> surfaces;
+    double simHeight;
+    double simWidth;
 
     public RampSimLogic(Ball b, Ramp r, Graph g, double a, double l,double simWidth, double simHeight, int fps) {
         ball = b;
@@ -31,13 +33,14 @@ public class RampSimLogic extends SimLogic {
         initialBallY = simHeight-Math.sin(angle)*rampLen-b.getBallLogic().getRadius()*Math.sin(Math.toRadians(90)-angle);
         floor = new Surface(0,simWidth,simHeight-35,simHeight-35);
         rightWall = new Surface(simWidth/2-10, simWidth/2-10,0,simHeight);
-        leftWall = new Surface(0,0,0,simHeight);
+        //leftWall = new Surface(0,0,0,simHeight);
         surfaces = new ArrayList<Surface>();
         surfaces.add(ramp.getSurface());
         surfaces.add(floor);
-        surfaces.add(leftWall);
+        //surfaces.add(leftWall);
         surfaces.add(rightWall);
-
+        this.simWidth = simWidth;
+        this.simHeight = simHeight;
     }
 
     public void updateDistance(double xi, double yi){

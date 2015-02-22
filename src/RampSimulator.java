@@ -9,7 +9,7 @@ public class RampSimulator extends Simulator {
     Ramp ramp;
     double simHeight;
     double simWidth;
-    Graph graph;
+    public Graph graph;
     double initialBallX;
     double initialBallY;
     RampSimLogic logic;

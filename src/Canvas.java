@@ -20,22 +20,29 @@ public class Canvas extends JPanel{
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
+        d.add(this);
 
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
+        //showMessage("Test",300,100,0,0);
+        //showChooseScreen();
+        //d.add(container);
+        m = new Menu(this);
+        m.setVisible(true);
+        this.add(m);
 
-        d.add(container);
-        m = new Menu();
-       // d.add(m);
 
         graph = new Graph(screenWidth/2, screenHeight/2);
-        rs = new RampSimulator(Math.toRadians(40),500,20, 15, screenWidth, screenHeight, graph, 9.8);
+        rs = new RampSimulator(Math.toRadians(50),700,20, 15, screenWidth, screenHeight, graph, 9.8);
         container.add(rs);
         container.add(graph);
         container.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 5, 5, 5),
                 container.getBorder()));
+
+        revalidate();
+        repaint();
     }
 
     public void showChooseScreen(){//Show the screen to choose the specific simulator

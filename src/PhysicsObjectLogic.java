@@ -54,8 +54,8 @@ public abstract class PhysicsObjectLogic {
     public void setY(double y) { this.y = y; }
 
     public void updatePos() {
-        setX((double) (getX() + getV() * Math.cos(getDir())));
-        setY((double) (getY() - getV() * Math.sin(getDir())));
+        setX((double) (getX() + getVx()));
+        setY((double) (getY() + getVy()));
     }
 
     public void updateCartesianVelocities() {

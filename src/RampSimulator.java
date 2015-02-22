@@ -35,7 +35,10 @@ public class RampSimulator extends Simulator {
         g.setColor(ramp.c);
         g.fillPolygon(ramp);
         g.setColor(Color.blue);
-        g.fillOval((int)(ball.getBallLogic().getX()-ball.getBallLogic().getRadius()),(int)(ball.getBallLogic().getY()- ball.getBallLogic().getRadius()),(int)ball.getBallLogic().getRadius()*2,(int)ball.getBallLogic().getRadius()*2);
+        g.fillOval((int) (ball.getBallLogic().getX() - ball.getBallLogic().getRadius()), (int) (ball.getBallLogic().getY() - ball.getBallLogic().getRadius()), (int) ball.getBallLogic().getRadius() * 2, (int) ball.getBallLogic().getRadius() * 2);
+        g.setColor(Color.black);
+        g.fillRect((int) logic.floor.getX1(), (int) logic.floor.getY1(), (int) logic.floor.getX2() - (int) logic.floor.getX1(), 200);
+        g.fillRect((int)logic.rightWall.getX1(),(int)logic.rightWall.getY1(),200,(int)logic.rightWall.getY2()-(int)logic.rightWall.getY1());
     }
 
 

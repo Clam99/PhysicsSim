@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by Sam Noyes on 2/17/15.
  */
@@ -14,6 +16,9 @@ public class RampSimLogic extends SimLogic {
     double initialBallY;
     int fps;
     Surface floor;
+    Surface rightWall;
+    Surface leftWall;
+    ArrayList<Surface> surfaces;
 
     public RampSimLogic(Ball b, Ramp r, Graph g, double a, double l,double simWidth, double simHeight, int fps) {
         ball = b;
@@ -24,7 +29,15 @@ public class RampSimLogic extends SimLogic {
         this.fps = fps;
         initialBallX = b.getBallLogic().getRadius()*Math.cos(Math.toRadians(90)-angle);
         initialBallY = simHeight-Math.sin(angle)*rampLen-b.getBallLogic().getRadius()*Math.sin(Math.toRadians(90)-angle);
-        floor = new Surface(0,simWidth,simHeight,simHeight);
+        floor = new Surface(0,simWidth,simHeight-35,simHeight-35);
+        rightWall = new Surface(simWidth/2-10, simWidth/2-10,0,simHeight);
+        leftWall = new Surface(0,0,0,simHeight);
+        surfaces = new ArrayList<Surface>();
+        surfaces.add(ramp.getSurface());
+        surfaces.add(floor);
+        surfaces.add(leftWall);
+        surfaces.add(rightWall);
+
     }
 
     public void updateDistance(double xi, double yi){
@@ -35,20 +48,17 @@ public class RampSimLogic extends SimLogic {
         double xi = ball.getBallLogic().getX();
         double yi = ball.getBallLogic().getY();
 
-        if (ramp.getSurface().intersectsBall(ball))
-            bounce(ramp.getSurface());
-
-        if (floor.intersectsBall(ball))
-            bounce(floor);
-
+        ball.getBallLogic().updatePos();
+        for (Surface f:surfaces) {
+            if (f.intersectsBall(ball)) {
+                bounce(f);
+                collide(f);
+            }
+        }
         updateBallV();
-        ball.getBallLogic().updatePos();
-        checkCollisions();
-        ball.getBallLogic().updatePos();
+
         updateDistance(xi, yi);
         updateCount++;
-        System.out.println("X: " + ball.getBallLogic().getVx());
-        System.out.println("Y: " + ball.getBallLogic().getVy());
         //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
         //int[] toadd = {updateCount, (int)ballDistance };
         //int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
@@ -62,8 +72,20 @@ public class RampSimLogic extends SimLogic {
         bl.setVy(bl.getVy() + 9.8/((double)fps));
     }
 
-    public void checkCollisions() {
-
+    public void collide(Surface s) {
+        Vector collisionPoint = s.getCoordsCorrespondingToXAndYWithAngle(ball.getBallLogic().getX(),ball.getBallLogic().getY());
+        if (ball.getBallLogic().getX()-collisionPoint.getX()>=0) {
+            ball.getBallLogic().setX(collisionPoint.getX() + ball.getBallLogic().getRadius() * Math.cos(Math.toRadians(90)-s.angleFromPositiveHor()));
+        }
+        else {
+            ball.getBallLogic().setX(collisionPoint.getX() - ball.getBallLogic().getRadius() * Math.cos(Math.toRadians(90)-s.angleFromPositiveHor()));
+        }
+        if (ball.getBallLogic().getY()-collisionPoint.getY()>=0) {
+            ball.getBallLogic().setY(collisionPoint.getY() + ball.getBallLogic().getRadius() * Math.sin(Math.toRadians(90) - s.angleFromPositiveHor()));
+        }
+        else {
+            ball.getBallLogic().setY(collisionPoint.getY() - ball.getBallLogic().getRadius() * Math.sin(Math.toRadians(90) - s.angleFromPositiveHor()));
+        }
     }
 
     public void bounce(Surface s) {

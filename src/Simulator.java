@@ -16,7 +16,7 @@ public class Simulator extends JPanel {
     JButton record;
     boolean recording = false;
     ArrayList<int[]> data;
-    int fps = 60;
+    int fps = 30;
     SimLogic logic;
 
     public Simulator(){

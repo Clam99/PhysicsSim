@@ -35,9 +35,7 @@ public class Vector {
     }
 
     public Vector scale(double scalar) {
-        setX(getX()*scalar);
-        setY(getY() * scalar);
-        return this;
+        return new Vector(getX()*scalar,getY() * scalar);
     }
 
     public Vector projectOnto(Vector v) {

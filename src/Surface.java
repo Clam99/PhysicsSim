@@ -56,4 +56,8 @@ public class Surface {
         Vector proj = toProj.projectOnto(getSurfaceVector());
         return new Vector(getX1(), getY1()).addVector(proj);
     }
+
+    public double angleFromPositiveHor() {
+        return  Math.atan((getY2()-getY1())/(getX2()-getX1()));
+    }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Menu extends JPanel {
     JComboBox drop;
     Canvas parent;
-    ArrayList<Simulator> simObjects;
+    ArrayList<Simulator> simObjects = new ArrayList<Simulator>();
 
     public Menu(Canvas p){
 

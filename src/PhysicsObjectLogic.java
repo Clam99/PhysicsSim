@@ -72,12 +72,12 @@ public abstract class PhysicsObjectLogic {
         return .5*getMass()*getV()*getV();
     }
 
-    public double getPE() {
-        return getHeight()*getMass()*getG();
+    public double getPE(double simHeight) {
+        return getHeight(simHeight)*getMass()*getG();
     }
 
-    public double getHeight() {
-        return 0;//to be added to
+    public double getHeight(double simHeight) {
+        return simHeight-getY();//to be added to
     }
 
     public double getG() {

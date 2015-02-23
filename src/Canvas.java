@@ -1,6 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -12,14 +15,18 @@ public class Canvas extends JPanel{
     double screenWidth = 1250;
     Menu m;
     JPanel container;
-    Driver dd;
+    Driver d;
     Graph graph;
 
     public Canvas(Driver d){
         super();
-        dd = d;
+        this.d = d;
+        ImageIcon icon = new ImageIcon ( "physics.jpg");
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        d.setIconImage(icon.getImage());
+
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
         d.add(this);
@@ -44,7 +51,7 @@ public class Canvas extends JPanel{
 
     public void startSim(int k){
         m.setVisible(false);
-        dd.add(container);
+        d.add(container);
         container.setVisible(true);
         graph.setVisible(true);
 

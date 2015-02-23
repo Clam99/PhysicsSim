@@ -33,7 +33,6 @@ public class Canvas extends JPanel{
 
 
         graph = new Graph(screenWidth/2, screenHeight/2);
-        container.add(graph);
 
         container.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 5, 5, 5),
@@ -54,6 +53,7 @@ public class Canvas extends JPanel{
                     break;
             default: break;
         }
+        container.add(graph);
         this.repaint();
     }
 

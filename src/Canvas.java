@@ -13,6 +13,7 @@ public class Canvas extends JPanel{
     Menu m;
     JPanel container;
     Driver dd;
+    Graph graph;
 
     public Canvas(Driver d){
         super();
@@ -31,7 +32,7 @@ public class Canvas extends JPanel{
         this.add(m);
 
 
-        //rsgraph = new Graph(screenWidth/2, screenHeight/2);
+        graph = new Graph(screenWidth/2, screenHeight/2);
         //rs = new RampSimulator(Math.toRadians(50),700,20, 15, screenWidth, screenHeight, rsgraph, 9.8);
 
         container.setBorder(BorderFactory.createCompoundBorder(
@@ -49,6 +50,8 @@ public class Canvas extends JPanel{
 
         switch (k){
             case 0: container.add(sim);
+                    container.add(graph);
+                    graph.setVisible(true);
                     break;
             default: break;
         }

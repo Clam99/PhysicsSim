@@ -1,23 +1,23 @@
 /**
- * Created by Sam Noyes and Lucas Webb on 2/16/15.
+ * Created by Lucas Webb on 2/16/15.
  */
 
 public class SpringLogic {
-    private double constant;
+    private double k;
     private double length;
     private double compression;
 
     public SpringLogic(double k, double l){
-        constant = k;
+        this.k = k;
         length = l;
         //compression = c;
     }
 
     public void setConstant(double s){
-        constant = s;
+        k = s;
     }
     public double getConstant(){
-        return constant;
+        return k;
     }
     public void setLength(double l) {length = l;}
     public double getLength(){return length;}

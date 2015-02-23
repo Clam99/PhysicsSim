@@ -11,32 +11,31 @@ public class Canvas extends JPanel{
     double screenHeight = 700;
     double screenWidth = 1250;
     RampSimulator rs;
-    public Graph graph;
+    public Graph rsgraph;
     Menu m;
+    JPanel container;
+    Driver dd;
 
     public Canvas(Driver d){
         super();
+        dd = d;
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
         d.add(this);
 
-        JPanel container = new JPanel();
+        container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
-        //showMessage("Test",300,100,0,0);
-        //showChooseScreen();
-        //d.add(container);
         m = new Menu(this);
         m.setVisible(true);
         this.add(m);
 
 
-        graph = new Graph(screenWidth/2, screenHeight/2);
-        rs = new RampSimulator(Math.toRadians(50),700,20, 15, screenWidth, screenHeight, graph, 9.8);
-        container.add(rs);
-        container.add(graph);
+        rsgraph = new Graph(screenWidth/2, screenHeight/2);
+        rs = new RampSimulator(Math.toRadians(50),700,20, 15, screenWidth, screenHeight, rsgraph, 9.8);
+
         container.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(5, 5, 5, 5),
                 container.getBorder()));
@@ -45,15 +44,18 @@ public class Canvas extends JPanel{
         repaint();
     }
 
-    public void showChooseScreen(){//Show the screen to choose the specific simulator
-        showMessage("Spring", 300, 100, 0, 0);
-        showMessage("Pendulum", 300, 100, 0, 200);
+    public void startSim(int k){
+        m.setVisible(false);
+        dd.add(container);
+        container.setVisible(true);
+
+        switch (k){
+            case 0: container.add(rs);
+                    container.add(rsgraph);
+                    break;
+            default: break;
+        }
+        this.repaint();
     }
 
-    public void showMessage(String str, int width, int height, int x, int y){//show onscreen message
-        JLabel label = new JLabel(str);
-        label.setSize(new Dimension(width, height));
-        label.setLocation(x,y);
-        this.add(label);
-    }
 }

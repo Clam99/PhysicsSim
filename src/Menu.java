@@ -14,7 +14,6 @@ public class Menu extends JPanel {
     Canvas parent;
 
     public Menu(Canvas p){
-        super();
 
         parent = p;
 
@@ -45,8 +44,6 @@ public class Menu extends JPanel {
     private void startSim(){
         int k = drop.getSelectedIndex();
         System.out.println(k);
-        parent.remove(this);
-        parent.add(simObjects[k]);
-        parent.add(((RampSimulator)simObjects[k]).graph);
+        parent.startSim(k);
     }
 }

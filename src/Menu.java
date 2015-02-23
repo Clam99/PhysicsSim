@@ -12,13 +12,10 @@ import java.util.ArrayList;
 public class Menu extends JPanel {
     JComboBox drop;
     Canvas parent;
-    ArrayList<Simulator> simObjects = new ArrayList<Simulator>();
 
     public Menu(Canvas p){
 
         parent = p;
-
-        simObjects.add( new RampSimulator(Math.toRadians(50),700,20,15,p.getScreenWidth(),p.getScreenHeight(),new Graph(p.getScreenWidth()/2,p.getScreenHeight()/2),9.8) );
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -47,6 +44,6 @@ public class Menu extends JPanel {
     private void startSim(){
         int k = drop.getSelectedIndex();
         //System.out.println(k);
-        parent.startSim(k, simObjects.get(k));
+        parent.startSim(k);
     }
 }

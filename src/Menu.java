@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 /**
  * Created by lucaswebb on 2/20/15.
@@ -10,12 +11,14 @@ import java.awt.event.WindowListener;
 
 public class Menu extends JPanel {
     JComboBox drop;
-    Simulator[] simObjects = { new RampSimulator(30,500,50,10,100,100,new Graph(100,100),9.8) };
     Canvas parent;
+    ArrayList<Simulator> simObjects;
 
     public Menu(Canvas p){
 
         parent = p;
+
+        simObjects.add( new RampSimulator(Math.toRadians(50),700,20,15,p.getScreenWidth(),p.getScreenHeight(),new Graph(p.getScreenWidth()/2,p.getScreenHeight()/2),9.8) );
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -43,7 +46,7 @@ public class Menu extends JPanel {
 
     private void startSim(){
         int k = drop.getSelectedIndex();
-        System.out.println(k);
-        parent.startSim(k);
+        //System.out.println(k);
+        parent.startSim(k, simObjects.get(k));
     }
 }

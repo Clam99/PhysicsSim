@@ -37,7 +37,8 @@ public class SpringSimulator extends Simulator {
 
     @Override
     public void updateGUI(){
-
+        //block.setLocation();
+        spring.updateLength();
         repaint();
     }
 }

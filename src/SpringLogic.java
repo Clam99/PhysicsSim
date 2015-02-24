@@ -18,6 +18,7 @@ public class SpringLogic {
     }
 
     public double getLength(){
+        updateLength();
         return length;
     }
 }

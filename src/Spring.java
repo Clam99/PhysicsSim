@@ -5,10 +5,23 @@ import java.awt.*;
  */
 
 public class Spring extends Rectangle {
+    SpringLogic sl;
+    double length;
+    double height;
+
     public Spring(double w, double h, double l, double hh, double k, double d) {
         super((int)w, (int)h, (int)l, (int)hh);
-        SpringLogic sl = new SpringLogic(l, k, d);
+        length = l;
+        height = hh;
+        sl = new SpringLogic(l, k, d);
+    }
 
+    public void updateLength(){
+        length = sl.getLength();
+        super.setSize((int)length, (int)height);
+    }
 
+    public double getLength(){
+        return length;
     }
 }

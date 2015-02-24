@@ -3,28 +3,21 @@
  */
 
 public class SpringLogic {
-    private double k;
     private double length;
-    private double compression;
+    private double k;
+    private double dampening;
 
-    public SpringLogic(double k, double l){
-        this.k = k;
+    public SpringLogic(double l, double k, double d){
         length = l;
-        //compression = c;
+        this.k = k;
+        dampening = d;
     }
 
-    public void setConstant(double s){
-        k = s;
+    public void updateLength(){
+
     }
-    public double getConstant(){
-        return k;
-    }
-    public void setLength(double l) {length = l;}
-    public double getLength(){return length;}
-    public void setCompression(double c){
-        compression = c;
-    }
-    public double getCompression(){
-        return compression;
+
+    public double getLength(){
+        return length;
     }
 }

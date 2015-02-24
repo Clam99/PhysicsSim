@@ -75,7 +75,7 @@ public class Canvas extends JPanel{
 
         switch (k){
             case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(90),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                RampSimulator rs = new RampSimulator(Math.toRadians(45),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
                 container.add(rs, c);
 
                 c.anchor = GridBagConstraints.LAST_LINE_END;
@@ -92,7 +92,7 @@ public class Canvas extends JPanel{
 
                 break;
             case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,15,1.12,screenWidth/2);
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,15,1.12, 1, screenWidth/4);
                 container.add(ss, c);
                 break;
             default: break;

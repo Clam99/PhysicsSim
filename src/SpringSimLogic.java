@@ -11,6 +11,7 @@ public class SpringSimLogic extends SimLogic {
     int fps;
 
     public SpringSimLogic(double width, double height, double m, double k, double l, int fps){
+
         mass = m;
         this.k = k;
         length = l;

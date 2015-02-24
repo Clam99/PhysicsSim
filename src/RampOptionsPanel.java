@@ -38,9 +38,3 @@ public class RampOptionsPanel extends OptionsPanel {
         });
     }
 
-    private void startSim(){
-        int k = drop.getSelectedIndex();
-        System.out.println(k);
-        //rs.startRecording(drop.get); To implement
-    }
-}

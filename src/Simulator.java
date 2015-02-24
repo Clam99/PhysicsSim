@@ -18,21 +18,15 @@ public class Simulator extends JPanel {
     ArrayList<int[]> data;
     int fps = 60;
     SimLogic logic;
+    OptionsPanel op;
+    String toGraph;
 
     public Simulator(){
         super();
         //this.setSize(500,500);
-        record = new JButton();
-        record.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getID() == MouseEvent.MOUSE_RELEASED) {
-                    startRecording();
-                }
-            }
-        });
     }
-    public void startRecording() {
+    public void startRecording(String str) {
+        toGraph = str;
         toggleButtons();
         recording = true;
         gameLoop();

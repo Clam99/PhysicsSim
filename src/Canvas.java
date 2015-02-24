@@ -32,7 +32,6 @@ public class Canvas extends JPanel{
         d.add(this);
 
         container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 
         m = new Menu(this);
         m.setVisible(true);
@@ -41,9 +40,7 @@ public class Canvas extends JPanel{
 
         graph = new Graph(screenWidth/2, screenHeight/2);
 
-        container.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(5, 5, 5, 5),
-                container.getBorder()));
+        //container.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),container.getBorder()));
 
         revalidate();
         repaint();
@@ -51,17 +48,47 @@ public class Canvas extends JPanel{
 
     public void startSim(int k){
         m.setVisible(false);
-        d.add(container);
-        container.setVisible(true);
+        container.setLayout(new GridBagLayout());
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridheight=1;
+        //container.add(new JButton("Button 5"),c);
+        //System.out.println("works");
+        c.weightx = .5;
+        c.weighty = .25;
+        container.add(graph, c);
         graph.setVisible(true);
 
+        c.fill = GridBagConstraints.BOTH;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        c.gridx = 0;
+        c.gridwidth = 1;   //1 columns wide
+        c.gridheight = 2;   //2 rows tall
+        c.gridy = 0;       //first row
+
         switch (k){
-            case 0: container.add(new RampSimulator(Math.toRadians(85),700,.1,15,screenWidth,screenHeight,graph,9.8*70));
-                    break;
+            case 0:
+                RampSimulator rs = new RampSimulator(Math.toRadians(90),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                container.add(rs, c);
+
+                break;
+            case 1:
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,15,1.12,screenWidth/2);
+                container.add(ss, c);
+                ss.requestFocusInWindow();
+                break;
             default: break;
         }
-        container.add(graph);
-        this.repaint();
+        //container.add(graph);
+        d.add(container);
+        container.setVisible(true);
     }
 
     public double getScreenWidth(){

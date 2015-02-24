@@ -57,7 +57,6 @@ public abstract class PhysicsObjectLogic {
     public void updatePos() {
         setX((double) (getX() + getVx()/fps));
         setY((double) (getY() + getVy()/fps));
-        System.out.println("updatePos " + getTotalE(700-35));
     }
 
     public void updateCartesianVelocities() {
@@ -71,12 +70,10 @@ public abstract class PhysicsObjectLogic {
     }
 
     public double getKE() {
-        System.out.println("KE: " + .5*getMass()*getV()*getV());
         return .5*getMass()*getV()*getV();
     }
 
     public double getPE(double simHeight) {
-        System.out.println("PE: " + getHeight(simHeight)*getMass()*getG());
         return getHeight(simHeight)*getMass()*getG();
     }
 

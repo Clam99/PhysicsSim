@@ -11,7 +11,7 @@ public class SpringSimulator extends Simulator {
     Polygon mass;
 
 
-    public SpringSimulator(double w, double h, double m, double k, double l, int fps){
+    public SpringSimulator(double w, double h, double m, double k, double l){
         super();
 
         simWidth = w;
@@ -19,6 +19,8 @@ public class SpringSimulator extends Simulator {
 
         logic = new SpringSimLogic(w, h, m, k, l, fps);
         mass = new Polygon();
+        setBackground(Color.black);
+        System.out.println("made the spring");
     }
 
     public void paintComponent(Graphics g){

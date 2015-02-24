@@ -27,7 +27,7 @@ public class Menu extends JPanel {
         selected.setVisible(true);
         this.add(selected);
 
-        String[] sims = {"RampSimulator"};
+        String[] sims = {"RampSimulator", "SpringSimulator"};
         drop = new JComboBox<String>(sims);
         drop.setVisible(true);
         this.add(drop);
@@ -43,7 +43,7 @@ public class Menu extends JPanel {
 
     private void startSim(){
         int k = drop.getSelectedIndex();
-        //System.out.println(k);
+        System.out.println(k);
         parent.startSim(k);
     }
 }

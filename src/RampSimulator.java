@@ -13,6 +13,7 @@ public class RampSimulator extends Simulator {
     double initialBallX;
     double initialBallY;
     RampSimLogic logic;
+    OptionsPanel op;
 
     public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF) {
         super();
@@ -29,6 +30,7 @@ public class RampSimulator extends Simulator {
         logic = new RampSimLogic(ball, ramp, graph, a, rampLen, simWidth, simHeight, fps);
         repaint();
         startRecording();
+        op = new OptionsPanel();
     }
 
     public void paintComponent(Graphics g) {

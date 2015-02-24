@@ -53,23 +53,23 @@ public class Canvas extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
-        c.anchor = GridBagConstraints.NORTHWEST;
+        //c.anchor = GridBagConstraints.NORTHWEST;
         c.gridx = 1;
         c.gridy = 0;
         c.gridheight=1;
-        //container.add(new JButton("Button 5"),c);
-        //System.out.println("works");
         c.weightx = .5;
-        c.weighty = .25;
+        c.weighty = .5;
         container.add(graph, c);
         graph.setVisible(true);
+
+
 
         c.fill = GridBagConstraints.BOTH;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.weightx = 0.5;
         c.weighty = 0.5;
         c.gridx = 0;
-        c.gridwidth = 1;   //1 columns wide
+        c.gridwidth = 1;   //1 column wide
         c.gridheight = 2;   //2 rows tall
         c.gridy = 0;       //first row
 
@@ -78,11 +78,22 @@ public class Canvas extends JPanel{
                 RampSimulator rs = new RampSimulator(Math.toRadians(90),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
                 container.add(rs, c);
 
+                c.anchor = GridBagConstraints.LAST_LINE_END;
+                c.gridx = 1;
+                c.gridy = 1;
+                c.gridheight=1;
+                c.weightx = .5;
+                c.weighty = .5;
+                container.add(graph, c);
+                graph.setVisible(true);
+
+                container.add(rs.op, c);
+                rs.op.setVisible(true);
+
                 break;
             case 1:
                 SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,15,1.12,screenWidth/2);
                 container.add(ss, c);
-                ss.requestFocusInWindow();
                 break;
             default: break;
         }

@@ -22,6 +22,7 @@ public class Graph extends JPanel {
     public Graph(double w, double h){
         graphWidth = (int)w;
         graphHeight = (int)h;
+        setBackground(Color.blue);
     }
 
     public void paintComponent(Graphics g){

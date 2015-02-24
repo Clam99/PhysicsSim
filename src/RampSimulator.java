@@ -12,11 +12,10 @@ public class RampSimulator extends Simulator {
     public Graph graph;
     double initialBallX;
     double initialBallY;
-    RampSimLogic logic;
+   // RampSimLogic logic;
 
     public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF) {
-        super();
-
+        //super();
         graph = g;
         simHeight = h;
         simWidth = w;
@@ -37,8 +36,8 @@ public class RampSimulator extends Simulator {
         g.setColor(Color.blue);
         g.fillOval((int) (ball.getBallLogic().getX() - ball.getBallLogic().getRadius()), (int) (ball.getBallLogic().getY() - ball.getBallLogic().getRadius()), (int) ball.getBallLogic().getRadius() * 2, (int) ball.getBallLogic().getRadius() * 2);
         g.setColor(Color.black);
-        g.fillRect((int) logic.floor.getX1(), (int) logic.floor.getY1(), (int) logic.floor.getX2() - (int) logic.floor.getX1(), 200);
-        g.fillRect((int) logic.rightWall.getX1(), (int) logic.rightWall.getY1(), 200, (int) logic.rightWall.getY2() - (int) logic.rightWall.getY1());
+        g.fillRect((int) ((RampSimLogic)logic).floor.getX1(), (int) ((RampSimLogic)logic).floor.getY1(), (int) ((RampSimLogic)logic).floor.getX2() - (int) ((RampSimLogic)logic).floor.getX1(), 200);
+        g.fillRect((int) ((RampSimLogic)logic).rightWall.getX1(), (int) ((RampSimLogic)logic).rightWall.getY1(), 200, (int) ((RampSimLogic)logic).rightWall.getY2() - (int) ((RampSimLogic)logic).rightWall.getY1());
     }
 
 
@@ -46,7 +45,7 @@ public class RampSimulator extends Simulator {
     @Override
     public void updateGUI() {
         repaint();
-        logic.update();
+        ((RampSimLogic)logic).update();
     }
 
 

@@ -60,7 +60,7 @@ public class Canvas extends JPanel{
 
         switch (k){
             case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(85),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                RampSimulator rs = new RampSimulator(Math.toRadians(70),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
                 add(rs);
                 container.add(graph);
                 container.add(rs.op);

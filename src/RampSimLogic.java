@@ -70,7 +70,7 @@ public class RampSimLogic extends SimLogic {
 
 
         //String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
-        int[] toAdd = {};
+        int[] toAdd = {0,0};
         try {
             if (getToGraphX().equals("Potential Energy")) {
                 toAdd[0] = (int) (ball.getBallLogic().getPE(simHeight));

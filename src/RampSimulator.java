@@ -22,7 +22,7 @@ public class RampSimulator extends Simulator {
         simWidth = w;
         initialBallX = ballRadius*Math.cos(Math.toRadians(90)-a);
         initialBallY = simHeight-Math.sin(a)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-a);
-        ball = new Ball(0,Math.toRadians(360)-a,ballMass,initialBallX,initialBallY, ballRadius, 1, gF);
+        ball = new Ball(0,Math.toRadians(360)-a,ballMass,initialBallX,initialBallY, ballRadius, 1, gF, fps);
         int[] xpoints = {0,0, (int)(Math.cos(a)*rampLen)};
         int[] ypoints = { (int)(-Math.sin(a)*rampLen+simHeight), (int)simHeight, (int)simHeight};//In order from top left, bottom left, bottom right
         ramp = new Ramp(xpoints, ypoints, 3, Color.red);

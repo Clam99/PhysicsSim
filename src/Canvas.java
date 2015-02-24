@@ -56,10 +56,7 @@ public class Canvas extends JPanel{
         graph.setVisible(true);
 
         switch (k){
-            case 0: container.add(new RampSimulator(Math.toRadians(30),700,20,15,screenWidth,screenHeight,graph,9.8));
-                    break;
-            case 1:
-                    container.add(new SpringSimulator(screenWidth, screenHeight, 10, 10, 10, 10));
+            case 0: container.add(new RampSimulator(Math.toRadians(85),700,.1,15,screenWidth,screenHeight,graph,9.8*70));
                     break;
             default: break;
         }

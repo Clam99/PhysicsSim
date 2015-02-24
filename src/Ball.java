@@ -9,7 +9,7 @@ public class Ball extends PhysicsObject {
         super();
         bl = new BallLogic(r, rb);
     }
-    public Ball(double v, double d, double m, double x, double y, double r, double rb, double g) { super(); bl = new BallLogic(v,d,m,x,y,r,rb,g); }
+    public Ball(double v, double d, double m, double x, double y, double r, double rb, double g, int fps) { super(); bl = new BallLogic(v,d,m,x,y,r,rb,g, fps); }
 
     public BallLogic getBallLogic() {
         return bl;

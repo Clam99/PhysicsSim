@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 /**
  * Created by Sam Noyes on 2/17/15.
@@ -18,6 +19,7 @@ public class RampSimLogic extends SimLogic {
     Surface floor;
     Surface rightWall;
     Surface leftWall;
+    Surface ceiling;
     ArrayList<Surface> surfaces;
     double simHeight;
     double simWidth;
@@ -34,11 +36,13 @@ public class RampSimLogic extends SimLogic {
         floor = new Surface(0,simWidth,simHeight-35,simHeight-35);
         rightWall = new Surface(simWidth/2-10, simWidth/2-10,0,simHeight);
         leftWall = new Surface(0,0,0,simHeight);
+        ceiling = new Surface(0,simWidth,0,0);
         surfaces = new ArrayList<Surface>();
         surfaces.add(ramp.getSurface());
         surfaces.add(floor);
-        surfaces.add(leftWall);
+        //surfaces.add(leftWall);
         surfaces.add(rightWall);
+        //surfaces.add(ceiling);
         this.simWidth = simWidth;
         this.simHeight = simHeight;
     }
@@ -51,30 +55,29 @@ public class RampSimLogic extends SimLogic {
         double xi = ball.getBallLogic().getX();
         double yi = ball.getBallLogic().getY();
 
-        ball.getBallLogic().updatePos();
+        //
         for (Surface f:surfaces) {
             if (f.intersectsBall(ball)) {
-                bounce(f);
                 collide(f);
+                bounce(f);
             }
         }
         updateBallV();
-
+        ball.getBallLogic().updatePos();
         updateDistance(xi, yi);
         updateCount++;
         //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
         //int[] toadd = {updateCount, (int)ballDistance };
         //int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
-        int[] toAdd = {updateCount, (int)(ball.getBallLogic().getPE(simHeight)) };
-        int[] toAdd2 = {updateCount, (int)(ball.getBallLogic().getKE()) };
-       // graph.addPoint(toAdd);
-        graph.addPoint(toAdd2);
+        int[] toAdd = {updateCount, (int)ball.getBallLogic().getTotalE(simHeight-35) };
+        graph.addPoint(toAdd);
+        //graph.addPoint(toAdd2);
         //System.out.println("In updateGUI: " + toadd[0]);
     }
 
     public void updateBallV() {
         BallLogic bl = ball.getBallLogic();
-        bl.setVy(bl.getVy() + 9.8/((double)fps));
+        bl.setVy(bl.getVy() + ball.getBallLogic().getG()/((double)fps));
     }
 
     public void collide(Surface s) {
@@ -96,8 +99,11 @@ public class RampSimLogic extends SimLogic {
     public void bounce(Surface s) {
         //Taken from here:http: //stackoverflow.com/questions/14885693/how-do-you-reflect-a-vector-over-another-vector
 
+        //ball.getBallLogic().updatePos();
         Vector vec1 = new Vector(ball.getBallLogic().getVx(), ball.getBallLogic().getVy());
         Vector vec2 = s.getSurfaceVector();
+
+        //System.out.println("Line 101 total E: " + ball.getBallLogic().getTotalE(simHeight-35));
 
         // 1. Find the dot product of vec1 and vec2
         // Note: dx and dy are vx and vy divided over the length of the vector (magnitude)
@@ -124,6 +130,9 @@ public class RampSimLogic extends SimLogic {
 
         ball.getBallLogic().setVx(new_vx);
         ball.getBallLogic().setVy(new_vy);
+        //System.out.println("Line 128: " + ball.getBallLogic().getTotalE(simHeight - 35));
+       // ball.getBallLogic().updatePos();
+        //System.out.println("Line 130: " + ball.getBallLogic().getTotalE(simHeight - 35) + "\n\n");
     }
 
 }

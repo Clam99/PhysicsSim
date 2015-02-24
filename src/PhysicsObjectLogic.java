@@ -11,15 +11,16 @@ public abstract class PhysicsObjectLogic {
     private double vx;
     private double vy;
     private double g;
+    private int fps;
 
     public PhysicsObjectLogic() {
         super();
         vel = 0; dir = 0; mass = 0; x = 0; y = 0;
     }
 
-    public PhysicsObjectLogic(double v, double d, double m, double xPos, double yPos, double g) {
+    public PhysicsObjectLogic(double v, double d, double m, double xPos, double yPos, double g, int f) {
         super();
-        vel = v; dir = d; mass = m; x = xPos; y = yPos; this.g = g;
+        vel = v; dir = d; mass = m; x = xPos; y = yPos; this.g = g; fps = f;
     }
 
     public void setVx(double v) {
@@ -54,8 +55,9 @@ public abstract class PhysicsObjectLogic {
     public void setY(double y) { this.y = y; }
 
     public void updatePos() {
-        setX((double) (getX() + getVx()));
-        setY((double) (getY() + getVy()));
+        setX((double) (getX() + getVx()/fps));
+        setY((double) (getY() + getVy()/fps));
+        System.out.println("updatePos " + getTotalE(700-35));
     }
 
     public void updateCartesianVelocities() {
@@ -69,15 +71,17 @@ public abstract class PhysicsObjectLogic {
     }
 
     public double getKE() {
+        System.out.println("KE: " + .5*getMass()*getV()*getV());
         return .5*getMass()*getV()*getV();
     }
 
     public double getPE(double simHeight) {
+        System.out.println("PE: " + getHeight(simHeight)*getMass()*getG());
         return getHeight(simHeight)*getMass()*getG();
     }
 
     public double getHeight(double simHeight) {
-        return simHeight-getY();//to be added to
+        return simHeight-getY();
     }
 
     public double getG() {
@@ -85,6 +89,10 @@ public abstract class PhysicsObjectLogic {
     }
     public void setG(double newG) {
         g = newG;
+    }
+
+    public double getTotalE(double simHeight) {
+        return getPE(simHeight) + getKE();
     }
 
 }

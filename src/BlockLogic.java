@@ -1,7 +1,9 @@
+import java.math.BigDecimal;
+
 /**
  * Created by Sam Noyes and Lucas Webb on 2/10/15.
  */
 
 public class BlockLogic extends PhysicsObjectLogic {
-    public BlockLogic(float v, float d, float m, float x, float y, double g) {super(v,d,m,x,y, g);}
+    public BlockLogic(double v, double d, double m, double x, double y, double g,int fps) {super(v,d,m,x,y, g, fps);}
 }

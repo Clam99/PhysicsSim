@@ -15,24 +15,19 @@ import java.util.TimerTask;
 public class Simulator extends JPanel {
     JButton record;
     boolean recording = false;
-    ArrayList<int[]> data;
-    int fps = 60;
+    int fps = 200;
     SimLogic logic;
     OptionsPanel op;
-    String toGraph;
 
     public Simulator(){
         super();
-        //this.setSize(500,500);
+        logic = new SimLogic();
     }
-    public void startRecording(String str) {
-        toGraph = str;
-        toggleButtons();
+    public void startRecording(String str, String str2) {
+        logic.start(str, str2);
+        System.out.println("Starting in Simulator");
         recording = true;
         gameLoop();
-    }
-    public void toggleButtons() {
-
     }
     public void gameLoop()
     {

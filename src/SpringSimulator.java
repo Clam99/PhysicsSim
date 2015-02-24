@@ -27,6 +27,8 @@ public class SpringSimulator extends Simulator {
         block.setBounds((int)mx, (int)my, 20, 20);
 
         spring = new Spring(0, (int)simHeight/2, l, 4, 1, 1);
+
+        op = new SpringOptionsPanel();
     }
 
     public void paintComponent(Graphics g){

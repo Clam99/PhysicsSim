@@ -24,7 +24,10 @@ public class RampSimLogic extends SimLogic {
     double simHeight;
     double simWidth;
 
-    public RampSimLogic(Ball b, Ramp r, Graph g, double a, double l,double simWidth, double simHeight, int fps) {
+    public RampSimLogic(Ball b, Ramp r, Graph g, double a, double l,double sw, double sh, int fps) {
+        super();
+        this.simWidth = sw;
+        this.simHeight = sh-35;
         ball = b;
         ramp = r;
         angle = a;
@@ -33,7 +36,7 @@ public class RampSimLogic extends SimLogic {
         this.fps = fps;
         initialBallX = b.getBallLogic().getRadius()*Math.cos(Math.toRadians(90)-angle);
         initialBallY = simHeight-Math.sin(angle)*rampLen-b.getBallLogic().getRadius()*Math.sin(Math.toRadians(90)-angle);
-        floor = new Surface(0,simWidth,simHeight-35,simHeight-35);
+        floor = new Surface(0,simWidth,simHeight,simHeight);
         rightWall = new Surface(simWidth/2-10, simWidth/2-10,0,simHeight);
         leftWall = new Surface(0,0,0,simHeight);
         ceiling = new Surface(0,simWidth,0,0);
@@ -43,8 +46,6 @@ public class RampSimLogic extends SimLogic {
         //surfaces.add(leftWall);
         surfaces.add(rightWall);
         //surfaces.add(ceiling);
-        this.simWidth = simWidth;
-        this.simHeight = simHeight;
     }
 
     public void updateDistance(double xi, double yi){
@@ -66,13 +67,49 @@ public class RampSimLogic extends SimLogic {
         ball.getBallLogic().updatePos();
         updateDistance(xi, yi);
         updateCount++;
-        //int[] toadd = {(int)ball.getBallLogic().getX(), (int)simHeight-(int)ball.getBallLogic().getY()};
-        //int[] toadd = {updateCount, (int)ballDistance };
-        //int[] toadd = {updateCount, (int)ball.getBallLogic().getV() };
-        int[] toAdd = {updateCount, (int)ball.getBallLogic().getTotalE(simHeight-35) };
-        graph.addPoint(toAdd);
-        //graph.addPoint(toAdd2);
-        //System.out.println("In updateGUI: " + toadd[0]);
+
+
+        //String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
+        int[] toAdd = {};
+        try {
+            if (getToGraphX().equals("Potential Energy")) {
+                toAdd[0] = (int) (ball.getBallLogic().getPE(simHeight));
+            }
+            if (getToGraphX().equals("Kinetic Energy")) {
+                toAdd[0] = (int) (ball.getBallLogic().getKE());
+            }
+            if (getToGraphX().equals("Distance Travelled")) {
+                toAdd[0] = (int) (ballDistance);
+            }
+            if (getToGraphX().equals("Time")) {
+                toAdd[0] = updateCount;
+            }
+            if (getToGraphX().equals("Velocity")) {
+                toAdd[0] = (int) (ball.getBallLogic().getV());
+            }
+
+            if (getToGraphY().equals("Potential Energy")) {
+                toAdd[1] = (int) (ball.getBallLogic().getPE(simHeight));
+            }
+            if (getToGraphY().equals("Kinetic Energy")) {
+                toAdd[1] = (int) (ball.getBallLogic().getKE());
+            }
+            if (getToGraphY().equals("Distance Travelled")) {
+                toAdd[1] = (int) (ballDistance);
+            }
+            if (getToGraphY().equals("Time")) {
+                toAdd[1] = updateCount;
+            }
+            if (getToGraphY().equals("Velocity")) {
+                toAdd[1] = (int) (ball.getBallLogic().getV());
+            }
+
+            graph.addPoint(toAdd);
+        }
+        catch(NullPointerException npe) {
+            System.out.println("Crashed. graphX: " + toGraphX);
+        }
+
     }
 
     public void updateBallV() {

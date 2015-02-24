@@ -29,18 +29,24 @@ public class Canvas extends JPanel{
 
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);
-        d.add(this);
+
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
+
 
         container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
         m = new Menu(this);
         m.setVisible(true);
         this.add(m);
-
+        d.add(this);
 
         graph = new Graph(screenWidth/2, screenHeight/2);
 
-        //container.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),container.getBorder()));
+        container.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(5, 5, 5, 5),
+                container.getBorder()));
 
         revalidate();
         repaint();
@@ -48,58 +54,28 @@ public class Canvas extends JPanel{
 
     public void startSim(int k){
         m.setVisible(false);
-        container.setLayout(new GridBagLayout());
-
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.fill = GridBagConstraints.BOTH;
-        //c.anchor = GridBagConstraints.NORTHWEST;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridheight=1;
-        c.weightx = .5;
-        c.weighty = .5;
-        container.add(graph, c);
+        remove(m);
+        container.setVisible(true);
         graph.setVisible(true);
-
-
-
-        c.fill = GridBagConstraints.BOTH;
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.weightx = 0.5;
-        c.weighty = 0.5;
-        c.gridx = 0;
-        c.gridwidth = 1;   //1 column wide
-        c.gridheight = 2;   //2 rows tall
-        c.gridy = 0;       //first row
 
         switch (k){
             case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(45),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
-                container.add(rs, c);
-
-                c.anchor = GridBagConstraints.LAST_LINE_END;
-                c.gridx = 1;
-                c.gridy = 1;
-                c.gridheight=1;
-                c.weightx = .5;
-                c.weighty = .5;
-                container.add(graph, c);
-                graph.setVisible(true);
-
-                container.add(rs.op, c);
-                rs.op.setVisible(true);
-
+                RampSimulator rs = new RampSimulator(Math.toRadians(85),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                add(rs);
+                container.add(graph);
+                container.add(rs.op);
                 break;
             case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,15,1.12, 1, screenWidth/4);
-                container.add(ss, c);
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,300,10,screenWidth/4);
+                add(ss);
+                container.add(graph);
+                container.add(ss.op);
                 break;
+
             default: break;
         }
-        //container.add(graph);
-        d.add(container);
-        container.setVisible(true);
+        add(container);
+        this.repaint();
     }
 
     public double getScreenWidth(){

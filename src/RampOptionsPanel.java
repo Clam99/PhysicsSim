@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
  * Created by smurphy on 2/24/15.
  */
 public class RampOptionsPanel extends OptionsPanel {
-    JComboBox drop;
+    JComboBox ydrop;
+    JComboBox xdrop;
     RampSimulator rs;
+    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
 
     public RampOptionsPanel(RampSimulator rs){
 
@@ -15,14 +17,21 @@ public class RampOptionsPanel extends OptionsPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Select a variable to graph:");
+        JLabel title = new JLabel("Select a variable to graph on the y axis:");
         title.setVisible(true);
         this.add(title);
 
-        String[] sims = {"Kinetic Energy", "Potential Energy"};
-        drop = new JComboBox<String>(sims);
-        drop.setVisible(true);
-        this.add(drop);
+        ydrop = new JComboBox<String>(variables);
+        ydrop.setVisible(true);
+        this.add(ydrop);
+
+        JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
+        title2.setVisible(true);
+        this.add(title2);
+
+        xdrop = new JComboBox<String>(variables);
+        xdrop.setVisible(true);
+        this.add(xdrop);
 
         JButton selected = new JButton("Submit");
         selected.setVisible(true);
@@ -39,9 +48,9 @@ public class RampOptionsPanel extends OptionsPanel {
     }
 
     private void startSim(){
-        int k = drop.getSelectedIndex();
-        System.out.println(k);
-        //rs.startRecording(drop.get); To implement
+        int k = xdrop.getSelectedIndex();
+        int k2 = ydrop.getSelectedIndex();
+        rs.startRecording(variables[k], variables[k2]);
     }
 }
 

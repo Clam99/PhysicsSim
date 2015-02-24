@@ -28,7 +28,7 @@ public class RampSimulator extends Simulator {
         ramp = new Ramp(xpoints, ypoints, 3, Color.red);
         logic = new RampSimLogic(ball, ramp, graph, a, rampLen, simWidth, simHeight, fps);
         repaint();
-        op = new OptionsPanel();
+        op = new RampOptionsPanel(this);
     }
 
     public void paintComponent(Graphics g) {

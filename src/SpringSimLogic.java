@@ -8,14 +8,16 @@ public class SpringSimLogic extends SimLogic {
     double mass;
     double k;
     double length;
-    int fps;
+    Spring spring;
+    double velocity;
+    double acceleration;
 
-    public SpringSimLogic(double width, double height, double m, double k, double l, int fps){
+    public SpringSimLogic(double width, double height, double m, double k, double l, Spring s){
         super();
         mass = m;
         this.k = k;
         length = l;
-        this.fps = fps;
+        spring = s;
 
     }
 

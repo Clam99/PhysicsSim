@@ -7,12 +7,12 @@ import java.util.ArrayList;
  */
 
 public class Graph extends JPanel {
-    private ArrayList<int[]> data = new ArrayList<int[]>();
+    private ArrayList<double[]> data = new ArrayList<double[]>();
     //private ArrayList<> points
-    int xMax = 0;
-    int yMax = 0;
-    int xMin = 0;
-    int yMin = 0;
+    double xMax = 0;
+    double yMax = 0;
+    double xMin = 0;
+    double yMin = 0;
     int graphWidth;
     int graphHeight;
     double dotRadius = 2;
@@ -31,10 +31,10 @@ public class Graph extends JPanel {
         freq = data.size()/MAX_POINTS;
        // System.out.println(freq);
         for(int i = 0; i<data.size(); i+=1+freq){
-            int[] point = data.get(i);
+            double[] point = data.get(i);
 
-            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*((double)point[0]/((double)xMax-(double)xMin))),
-                    graphHeight/2-(int)(((double)graphHeight/2)*((double)point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
+            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*(point[0]/((double)xMax-(double)xMin))),
+                    graphHeight/2-(int)(((double)graphHeight/2)*(point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
         }
 
     }
@@ -45,7 +45,7 @@ public class Graph extends JPanel {
         repaint();
     }
 
-    public void addPoint(int[] toadd){
+    public void addPoint(double[] toadd){
         data.add(toadd);
         reGraph();
     }
@@ -67,7 +67,16 @@ public class Graph extends JPanel {
         }
     }
     
-    public void setData(ArrayList<int[]> p){
+    public void setData(ArrayList<double[]> p){
         data = p;
+    }
+
+    public void resetData() {
+        data = new ArrayList<double[]>();
+         xMax = 0;
+         yMax = 0;
+         xMin = 0;
+         yMin = 0;
+        freq = 0;
     }
 }

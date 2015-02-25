@@ -70,56 +70,56 @@ public class RampSimLogic extends SimLogic {
 
 
         //String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
-        int[] toAdd = {0,0};
+        double[] toAdd = {0,0};
         try {
             if (getToGraphX().equals("Potential Energy")) {
-                toAdd[0] = (int) (ball.getBallLogic().getPE(simHeight));
+                toAdd[0] = (ball.getBallLogic().getPE(simHeight));
             }
             if (getToGraphX().equals("Kinetic Energy")) {
-                toAdd[0] = (int) (ball.getBallLogic().getKE());
+                toAdd[0] =  (ball.getBallLogic().getKE());
             }
             if (getToGraphX().equals("Distance Travelled")) {
-                toAdd[0] = (int) (ballDistance);
+                toAdd[0] =  (ballDistance);
             }
             if (getToGraphX().equals("Time")) {
-                toAdd[0] = updateCount/fps;
+                toAdd[0] = ((double)updateCount/(double)fps);
             }
             if (getToGraphX().equals("Velocity")) {
-                toAdd[0] = (int) (ball.getBallLogic().getV());
+                toAdd[0] =  (ball.getBallLogic().getV());
             }
             if (getToGraphX().equals("X Position")) {
-                toAdd[0] = (int) (ball.getBallLogic().getX());
+                toAdd[0] = (ball.getBallLogic().getX());
             }
             if (getToGraphX().equals("Y Position")) {
-                toAdd[0] = (int) (simHeight-ball.getBallLogic().getY());
+                toAdd[0] = (simHeight-ball.getBallLogic().getY());
             }
             if (getToGraphX().equals("Total Energy")) {
-                toAdd[0] = (int) (ball.getBallLogic().getTotalE(simHeight));
+                toAdd[0] = (ball.getBallLogic().getTotalE(simHeight));
             }
 
             if (getToGraphY().equals("Potential Energy")) {
-                toAdd[1] = (int) (ball.getBallLogic().getPE(simHeight));
+                toAdd[1] = (ball.getBallLogic().getPE(simHeight));
             }
             if (getToGraphY().equals("Kinetic Energy")) {
-                toAdd[1] = (int) (ball.getBallLogic().getKE());
+                toAdd[1] =  (ball.getBallLogic().getKE());
             }
             if (getToGraphY().equals("Distance Travelled")) {
-                toAdd[1] = (int) (ballDistance);
+                toAdd[1] =  (ballDistance);
             }
             if (getToGraphY().equals("Time")) {
-                toAdd[1] = updateCount/fps;
+                toAdd[1] = ((double)updateCount/(double)fps);
             }
             if (getToGraphY().equals("Velocity")) {
-                toAdd[1] = (int) (ball.getBallLogic().getV());
+                toAdd[1] = (ball.getBallLogic().getV());
             }
             if (getToGraphY().equals("X Position")) {
-                toAdd[1] = (int) (ball.getBallLogic().getX());
+                toAdd[1] = (ball.getBallLogic().getX());
             }
             if (getToGraphY().equals("Y Position")) {
-                toAdd[1] = (int) (simHeight-ball.getBallLogic().getY());
+                toAdd[1] =  (simHeight-ball.getBallLogic().getY());
             }
             if (getToGraphY().equals("Total Energy")) {
-                toAdd[1] = (int) (ball.getBallLogic().getTotalE(simHeight));
+                toAdd[1] = (ball.getBallLogic().getTotalE(simHeight));
             }
 
             graph.addPoint(toAdd);

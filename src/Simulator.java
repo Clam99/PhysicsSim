@@ -18,6 +18,7 @@ public class Simulator extends JPanel {
     int fps = 200;
     SimLogic logic;
     OptionsPanel op;
+    Timer timer;
 
     public Simulator(){
         super();
@@ -33,7 +34,7 @@ public class Simulator extends JPanel {
     }
     public void gameLoop()
     {
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new SimTask(), 0,1000 / fps); //new timer at 60 fps, the timing mechanism
     }
 
@@ -49,5 +50,9 @@ public class Simulator extends JPanel {
         }
     }
 
+    public void stop() {
+        timer.cancel();
+        timer.purge();
+    }
 }
 

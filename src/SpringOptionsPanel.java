@@ -63,7 +63,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         });
     }
 
-    private void startSim(){
+    public void startSim(){
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();

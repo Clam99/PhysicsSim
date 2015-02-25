@@ -67,7 +67,7 @@ public class Canvas extends JPanel{
                 container.add(rs.op);
                 break;
             case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,300,.1,screenWidth/4, graph);
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph);
                 ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(ss);
                 container.add(graph);
@@ -81,13 +81,23 @@ public class Canvas extends JPanel{
         this.repaint();
     }
 
-    public void resetSim() {
+    public void resetSim(OptionsPanel sender) {
         container.removeAll();
-        this.removeAll();
+        this.remove(sender.rs);
         RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
         rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
         add(rs);
-    }//
+        container.add(graph);
+        graph.resetData();
+        graph.validate();
+        graph.repaint();
+        container.add(rs.op);
+        container.validate();
+        container.repaint();
+        add(container);
+        validate();
+        repaint();
+    }
 
     public void enterFullscreenGraph() {
 

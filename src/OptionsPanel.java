@@ -11,6 +11,7 @@ public class OptionsPanel extends JPanel {
     String[] variables;
     JButton submit;
     ActionListener al;
+    Simulator rs;
 
     public OptionsPanel() {
         submit = new JButton("Test");

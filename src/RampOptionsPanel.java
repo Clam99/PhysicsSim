@@ -10,7 +10,6 @@ public class RampOptionsPanel extends OptionsPanel {
     JComboBox ydrop;
     JComboBox xdrop;
     JSlider sl;
-    RampSimulator rs;
 
 
     public RampOptionsPanel(RampSimulator rs, Canvas p){
@@ -53,6 +52,12 @@ public class RampOptionsPanel extends OptionsPanel {
         submit = new JButton("Submit");
         submit.setVisible(true);
         this.add(submit);
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startSim();
+            }
+        });
 
 
     }
@@ -62,7 +67,7 @@ public class RampOptionsPanel extends OptionsPanel {
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double angle = sl.getValue();
-        rs.startRecording(variables[k], variables[k2], angle);
+        ((RampSimulator)rs).startRecording(variables[k], variables[k2], angle);
         super.startSim();
         submit.removeActionListener(al);
         submit.addActionListener(new ActionListener() {
@@ -75,7 +80,9 @@ public class RampOptionsPanel extends OptionsPanel {
 
     public void resetSim() {
         super.resetSim();
-        parent.resetSim();
+        rs.stop();
+        parent.resetSim(this);
+        System.out.println("Resetting");
     }
 }
 

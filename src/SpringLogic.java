@@ -3,24 +3,39 @@
  */
 
 public class SpringLogic {
-    private double length;
+    private double equiLength;//length at equilibrium
+    private double currentLength;
     private double k;
     private double dampening;
     private double mass;
+    private double velocity;
+    private int fps;
 
-    public SpringLogic(double l, double k, double d, double m){
-        length = l;
+
+    public SpringLogic(double l, double k, double d, double m, int fps){
+        equiLength = l;
+        currentLength = l+100;
         this.k = k;
         dampening = d;
         mass = m;
+        this.fps = fps;
     }
 
     public void updateLength(){
-
+        velocity+=getAcceleration()/(double)fps;
+        currentLength+=velocity;
     }
 
     public double getLength(){
         updateLength();
-        return length;
+        return currentLength;
+    }
+
+    public double getForce() {
+        return k*(equiLength-currentLength);
+    }
+
+    public double getAcceleration() {
+        return getForce()/mass;
     }
 }

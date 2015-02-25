@@ -9,11 +9,11 @@ public class Spring extends Rectangle {
     double length;
     double height;
 
-    public Spring(double x, double y, double l, double h, double k, double d, double m) {
+    public Spring(double x, double y, double l, double h, double k, double d, double m, int fps) {
         super((int)x, (int)y, (int)l, (int)h);
         length = l;
         height = h;
-        sl = new SpringLogic(l, k, d, m);
+        sl = new SpringLogic(l, k, d, m, fps);
     }
 
     public void updateLength(double v){

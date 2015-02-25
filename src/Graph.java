@@ -17,7 +17,7 @@ public class Graph extends JPanel {
     int graphHeight;
     double dotRadius = 2;
     int freq = 0;
-    int MAX_POINTS = 2000;
+    int MAX_POINTS = 1000;
 
     public Graph(double w, double h){
         graphWidth = (int)w;

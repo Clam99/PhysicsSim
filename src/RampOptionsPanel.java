@@ -55,12 +55,6 @@ public class RampOptionsPanel extends OptionsPanel {
         this.add(submit);
 
 
-        submit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //Execute when button is pressed
-                startSim();
-            }
-        });
     }
 
     public void startSim(){
@@ -70,6 +64,18 @@ public class RampOptionsPanel extends OptionsPanel {
         double angle = sl.getValue();
         rs.startRecording(variables[k], variables[k2], angle);
         super.startSim();
+        submit.removeActionListener(al);
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetSim();
+            }
+        });
+    }
+
+    public void resetSim() {
+        super.resetSim();
+        parent.resetSim();
     }
 }
 

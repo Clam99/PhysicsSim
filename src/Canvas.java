@@ -60,7 +60,7 @@ public class Canvas extends JPanel{
 
         switch (k){
             case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
                 rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(rs);
                 container.add(graph);
@@ -79,6 +79,14 @@ public class Canvas extends JPanel{
         container.setMaximumSize(new Dimension((int) (screenWidth/2), (int) screenHeight));
         add(container);
         this.repaint();
+    }
+
+    public void resetSim() {
+        container.removeAll();
+        this.removeAll();
+        RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
+        rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+        add(rs);
     }
 
     public void enterFullscreenGraph() {

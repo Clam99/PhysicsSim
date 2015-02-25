@@ -19,14 +19,14 @@ public class RampSimulator extends Simulator {
     double ballMass;
    // RampSimLogic logic;
 
-    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF) {
+    public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF, Canvas p) {
         //super();
         graph = g;
         simHeight = h;
         simWidth = w;
         angle = a;
         this.rampLen = rampLen;
-        op = new RampOptionsPanel(this);
+        op = new RampOptionsPanel(this, p);
         this.gF = gF;
         this.ballRadius = ballRadius;
         this.ballMass = ballMass;

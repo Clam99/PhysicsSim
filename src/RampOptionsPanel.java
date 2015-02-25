@@ -11,12 +11,12 @@ public class RampOptionsPanel extends OptionsPanel {
     JComboBox xdrop;
     JSlider sl;
     RampSimulator rs;
-    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"};
 
-    public RampOptionsPanel(RampSimulator rs){
 
+    public RampOptionsPanel(RampSimulator rs, Canvas p){
+        variables = new String[] {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"};
+        parent = p;
         this.rs = rs;
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel title = new JLabel("Select a variable to graph on the y axis:");
@@ -50,12 +50,12 @@ public class RampOptionsPanel extends OptionsPanel {
         sl.setMaximumSize(new Dimension(((int)rs.simWidth/2), 50));
         this.add(sl);
 
-        JButton selected = new JButton("Submit");
-        selected.setVisible(true);
-        this.add(selected);
+        submit = new JButton("Submit");
+        submit.setVisible(true);
+        this.add(submit);
 
 
-        selected.addActionListener(new ActionListener() {
+        submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Execute when button is pressed
                 startSim();
@@ -63,12 +63,13 @@ public class RampOptionsPanel extends OptionsPanel {
         });
     }
 
-    private void startSim(){
+    public void startSim(){
+
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double angle = sl.getValue();
         rs.startRecording(variables[k], variables[k2], angle);
-        System.out.println("Angle: " + angle);
+        super.startSim();
     }
 }
 

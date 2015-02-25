@@ -20,7 +20,7 @@ public class SpringSimulator extends Simulator {
         simWidth = w;
         simHeight = h;
 
-        spring = new Spring(0, (int)simHeight/2, l, 4, 1, 1, 10, fps);
+        spring = new Spring(0, (int)simHeight/2, l, 4, 1, 3, 10, fps);
         mx = spring.getLength();
         my = (int)simHeight/2-23;
         block = new Rectangle();

@@ -12,22 +12,19 @@ public class SpringSimLogic extends SimLogic {
     double velocity;
     double acceleration;
     double d;
+    Graph graph;
 
-    public SpringSimLogic(double width, double height, double m, double k, double l, double d, Spring s, double v){
+    public SpringSimLogic(double width, double height, double m, double k, double l, double d, Spring s, double v, Graph g){
         super();
         mass = m;
         this.k = k;
         length = l;
         spring = s;
         this.d = d;
+        graph = g;
     }
 
-    public double updateL(){
-        acceleration = ((-k*length)-(d*velocity))/mass;
-        velocity = velocity + acceleration;
-        System.out.println(velocity);
-        return length;
+    public void update(){
+
     }
-
-
 }

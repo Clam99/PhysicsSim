@@ -60,14 +60,14 @@ public class Canvas extends JPanel{
 
         switch (k){
             case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.9,15,screenWidth,screenHeight,graph,9.8*70);
                 rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(rs);
                 container.add(graph);
                 container.add(rs.op);
                 break;
             case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,300,.1,screenWidth/4);
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,300,.1,screenWidth/4, graph);
                 ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(ss);
                 container.add(graph);

@@ -9,8 +9,9 @@ import java.awt.event.ActionListener;
 public class RampOptionsPanel extends OptionsPanel {
     JComboBox ydrop;
     JComboBox xdrop;
+    JSlider sl;
     RampSimulator rs;
-    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position"};
+    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"};
 
     public RampOptionsPanel(RampSimulator rs){
 
@@ -36,6 +37,19 @@ public class RampOptionsPanel extends OptionsPanel {
         xdrop.setMaximumSize(new Dimension((int) rs.simWidth / 2, 50));
         this.add(xdrop);
 
+        JLabel title3 = new JLabel("Choose steepness of ramp in degrees:");
+        title3.setVisible(true);
+        this.add(title3);
+
+        sl = new JSlider(10,80);
+        sl.setMajorTickSpacing(10);
+        sl.setMinorTickSpacing(1);
+        sl.setPaintTicks(true);
+        sl.setPaintLabels(true);
+        sl.setVisible(true);
+        sl.setMaximumSize(new Dimension(((int)rs.simWidth/2), 50));
+        this.add(sl);
+
         JButton selected = new JButton("Submit");
         selected.setVisible(true);
         this.add(selected);
@@ -44,7 +58,6 @@ public class RampOptionsPanel extends OptionsPanel {
         selected.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Execute when button is pressed
-                //System.out.println("You clicked the button");
                 startSim();
             }
         });
@@ -53,7 +66,9 @@ public class RampOptionsPanel extends OptionsPanel {
     private void startSim(){
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
-        rs.startRecording(variables[k], variables[k2]);
+        double angle = sl.getValue();
+        rs.startRecording(variables[k], variables[k2], angle);
+        System.out.println("Angle: " + angle);
     }
 }
 

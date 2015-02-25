@@ -17,7 +17,7 @@ public class Graph extends JPanel {
     int graphHeight;
     double dotRadius = 2;
     int freq = 0;
-
+    int MAX_POINTS = 2000;
 
     public Graph(double w, double h){
         graphWidth = (int)w;
@@ -28,12 +28,12 @@ public class Graph extends JPanel {
         g.drawRect(graphWidth/2,0,2,graphHeight);
         g.drawRect(0,graphHeight/2,graphWidth,2);
 
-        freq = data.size()/2000;
+        freq = data.size()/MAX_POINTS;
        // System.out.println(freq);
         for(int i = 0; i<data.size(); i+=1+freq){
             int[] point = data.get(i);
 
-            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*(double)((double)point[0]/((double)xMax-(double)xMin))),
+            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*((double)point[0]/((double)xMax-(double)xMin))),
                     graphHeight/2-(int)(((double)graphHeight/2)*((double)point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
         }
 

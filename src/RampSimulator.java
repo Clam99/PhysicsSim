@@ -12,6 +12,11 @@ public class RampSimulator extends Simulator {
     public Graph graph;
     double initialBallX;
     double initialBallY;
+    double angle;
+    double rampLen;
+    double gF;//gravitational field
+    double ballRadius;
+    double ballMass;
    // RampSimLogic logic;
 
     public RampSimulator(double a, double rampLen, double ballMass, double ballRadius, double w, double h, Graph g, double gF) {
@@ -19,25 +24,24 @@ public class RampSimulator extends Simulator {
         graph = g;
         simHeight = h;
         simWidth = w;
-        initialBallX = ballRadius*Math.cos(Math.toRadians(90)-a);
-        initialBallY = simHeight-Math.sin(a)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-a);
-        ball = new Ball(0,Math.toRadians(360)-a,ballMass,initialBallX,initialBallY, ballRadius, 1, gF, fps);
-        int[] xpoints = {0,0, (int)(Math.cos(a)*rampLen)};
-        int[] ypoints = { (int)(-Math.sin(a)*rampLen+simHeight), (int)simHeight, (int)simHeight};//In order from top left, bottom left, bottom right
-        ramp = new Ramp(xpoints, ypoints, 3, Color.red);
-        logic = new RampSimLogic(ball, ramp, graph, a, rampLen, simWidth, simHeight, fps);
-        repaint();
+        angle = a;
+        this.rampLen = rampLen;
         op = new RampOptionsPanel(this);
+        this.gF = gF;
+        this.ballRadius = ballRadius;
+        this.ballMass = ballMass;
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(ramp.c);
-        g.fillPolygon(ramp);
-        g.setColor(Color.blue);
-        g.fillOval((int) (ball.getBallLogic().getX() - ball.getBallLogic().getRadius()), (int) (ball.getBallLogic().getY() - ball.getBallLogic().getRadius()), (int) ball.getBallLogic().getRadius() * 2, (int) ball.getBallLogic().getRadius() * 2);
-        g.setColor(Color.black);
-        g.fillRect((int) ((RampSimLogic)logic).floor.getX1(), (int) ((RampSimLogic)logic).floor.getY1(), (int) ((RampSimLogic)logic).floor.getX2() - (int) ((RampSimLogic)logic).floor.getX1(), 200);
-        g.fillRect((int) ((RampSimLogic)logic).rightWall.getX1(), (int) ((RampSimLogic)logic).rightWall.getY1(), 200, (int) ((RampSimLogic)logic).rightWall.getY2() - (int) ((RampSimLogic)logic).rightWall.getY1());
+        if (recording) {
+            g.setColor(ramp.c);
+            g.fillPolygon(ramp);
+            g.setColor(Color.blue);
+            g.fillOval((int) (ball.getBallLogic().getX() - ball.getBallLogic().getRadius()), (int) (ball.getBallLogic().getY() - ball.getBallLogic().getRadius()), (int) ball.getBallLogic().getRadius() * 2, (int) ball.getBallLogic().getRadius() * 2);
+            g.setColor(Color.black);
+            g.fillRect((int) ((RampSimLogic) logic).floor.getX1(), (int) ((RampSimLogic) logic).floor.getY1(), (int) ((RampSimLogic) logic).floor.getX2() - (int) ((RampSimLogic) logic).floor.getX1(), 200);
+            g.fillRect((int) ((RampSimLogic) logic).rightWall.getX1(), (int) ((RampSimLogic) logic).rightWall.getY1(), 200, (int) ((RampSimLogic) logic).rightWall.getY2() - (int) ((RampSimLogic) logic).rightWall.getY1());
+        }
     }
 
 
@@ -48,5 +52,30 @@ public class RampSimulator extends Simulator {
         ((RampSimLogic)logic).update();
     }
 
+
+    public void makeRamp() {
+        System.out.println("Angle2: " + angle);
+        System.out.println("RampLen: " + rampLen);
+        System.out.println("SimHeight: " + simHeight);
+        int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
+        int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};//In order from top left, bottom left, bottom right
+        System.out.println(-Math.sin(angle)*rampLen+simHeight);
+
+        ramp = new Ramp(xpoints, ypoints, 3, Color.red);
+        initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);
+        initialBallY = simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle);
+        ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1, gF, fps);
+        System.out.println("xPoints: " + xpoints[0] + ", " + xpoints[1] + ", " + xpoints[2]);
+        System.out.println("yPoints: " + ypoints[0] + ", " + ypoints[1] + ", " + ypoints[2]);
+    }
+
+    public void startRecording(String str, String str2, double angle) {
+        this.angle = Math.toRadians(angle);
+        makeRamp();
+        logic = new RampSimLogic(ball, ramp, graph, angle, rampLen, simWidth, simHeight, fps);
+
+        repaint();
+        super.startRecording(str, str2);
+    }
 
 }

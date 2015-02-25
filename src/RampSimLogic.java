@@ -82,7 +82,7 @@ public class RampSimLogic extends SimLogic {
                 toAdd[0] = (int) (ballDistance);
             }
             if (getToGraphX().equals("Time")) {
-                toAdd[0] = updateCount;
+                toAdd[0] = updateCount/fps;
             }
             if (getToGraphX().equals("Velocity")) {
                 toAdd[0] = (int) (ball.getBallLogic().getV());
@@ -107,7 +107,7 @@ public class RampSimLogic extends SimLogic {
                 toAdd[1] = (int) (ballDistance);
             }
             if (getToGraphY().equals("Time")) {
-                toAdd[1] = updateCount;
+                toAdd[1] = updateCount/fps;
             }
             if (getToGraphY().equals("Velocity")) {
                 toAdd[1] = (int) (ball.getBallLogic().getV());

@@ -81,6 +81,10 @@ public class Canvas extends JPanel{
         this.repaint();
     }
 
+    public void enterFullscreenGraph() {
+
+    }
+
     public double getScreenWidth(){
         return screenWidth;
     }

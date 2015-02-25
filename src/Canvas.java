@@ -89,14 +89,23 @@ public class Canvas extends JPanel{
         graph.resizeGraph((int)screenWidth-60,(int)screenHeight-60, true);
         add(graph);
         final JButton newSim = new JButton("Create new simulator");
+        final JButton menu = new JButton("Go back to the Main Menu");
         newSim.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newSim.getParent().remove(newSim);
+                newSim.getParent().remove(menu);
                 addNewSim();
             }
         });
+        menu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showMenu();
+            }
+        });
         graph.add(newSim);
+        graph.add(menu);
         revalidate();
         repaint();
     }
@@ -120,8 +129,11 @@ public class Canvas extends JPanel{
         repaint();
     }
 
-    public void enterFullscreenGraph() {
-
+    public void showMenu() {
+        removeAll();
+        add(m);
+        m.setVisible(true);
+        graph.resetData();
     }
 
     public double getScreenWidth(){

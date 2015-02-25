@@ -74,6 +74,7 @@ public class Canvas extends JPanel{
 
             default: break;
         }
+        container.setMaximumSize(new Dimension((int)(15000), (int)screenHeight));//Not sure why we have to do this, but we have to put a very high number for the max x value or it doesn't look big enough
         add(container);
         this.repaint();
     }

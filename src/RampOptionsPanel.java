@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,7 +10,7 @@ public class RampOptionsPanel extends OptionsPanel {
     JComboBox ydrop;
     JComboBox xdrop;
     RampSimulator rs;
-    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
+    String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position"};
 
     public RampOptionsPanel(RampSimulator rs){
 
@@ -23,6 +24,7 @@ public class RampOptionsPanel extends OptionsPanel {
 
         ydrop = new JComboBox<String>(variables);
         ydrop.setVisible(true);
+        ydrop.setMaximumSize(new Dimension((int)rs.simWidth/2, 50));
         this.add(ydrop);
 
         JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
@@ -31,6 +33,7 @@ public class RampOptionsPanel extends OptionsPanel {
 
         xdrop = new JComboBox<String>(variables);
         xdrop.setVisible(true);
+        xdrop.setMaximumSize(new Dimension((int) rs.simWidth / 2, 50));
         this.add(xdrop);
 
         JButton selected = new JButton("Submit");

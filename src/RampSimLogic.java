@@ -87,6 +87,12 @@ public class RampSimLogic extends SimLogic {
             if (getToGraphX().equals("Velocity")) {
                 toAdd[0] = (int) (ball.getBallLogic().getV());
             }
+            if (getToGraphX().equals("X Position")) {
+                toAdd[0] = (int) (ball.getBallLogic().getX());
+            }
+            if (getToGraphX().equals("Y Position")) {
+                toAdd[0] = (int) (simHeight-ball.getBallLogic().getY());
+            }
 
             if (getToGraphY().equals("Potential Energy")) {
                 toAdd[1] = (int) (ball.getBallLogic().getPE(simHeight));
@@ -102,6 +108,12 @@ public class RampSimLogic extends SimLogic {
             }
             if (getToGraphY().equals("Velocity")) {
                 toAdd[1] = (int) (ball.getBallLogic().getV());
+            }
+            if (getToGraphY().equals("X Position")) {
+                toAdd[1] = (int) (ball.getBallLogic().getX());
+            }
+            if (getToGraphY().equals("Y Position")) {
+                toAdd[1] = (int) (simHeight-ball.getBallLogic().getY());
             }
 
             graph.addPoint(toAdd);

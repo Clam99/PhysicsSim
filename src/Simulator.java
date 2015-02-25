@@ -24,10 +24,12 @@ public class Simulator extends JPanel {
         logic = new SimLogic();
     }
     public void startRecording(String str, String str2) {
-        logic.start(str, str2);
-        System.out.println("Starting in Simulator");
-        recording = true;
-        gameLoop();
+        if (!recording) {
+            logic.start(str, str2);
+            System.out.println("Starting in Simulator");
+            recording = true;
+            gameLoop();
+        }
     }
     public void gameLoop()
     {

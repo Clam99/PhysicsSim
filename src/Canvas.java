@@ -87,7 +87,7 @@ public class Canvas extends JPanel{
         RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
         rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
         add(rs);
-    }
+    }//
 
     public void enterFullscreenGraph() {
 

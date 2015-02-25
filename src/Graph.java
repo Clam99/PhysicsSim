@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Graph extends JPanel {
     private ArrayList<double[]> data = new ArrayList<double[]>();
     //private ArrayList<> points
-    double xMax = 0;
-    double yMax = 0;
+    double xMax = 1;
+    double yMax = 1;
     double xMin = 0;
     double yMin = 0;
     int graphWidth;
@@ -18,6 +18,7 @@ public class Graph extends JPanel {
     double dotRadius = 2;
     int freq = 0;
     int MAX_POINTS = 1000;
+    boolean shouldDisplayAllData = false;
 
     public Graph(double w, double h){
         graphWidth = (int)w;
@@ -25,16 +26,27 @@ public class Graph extends JPanel {
     }
 
     public void paintComponent(Graphics g){
-        g.drawRect(graphWidth/2,0,2,graphHeight);
-        g.drawRect(0,graphHeight/2,graphWidth,2);
+        Vector origin = new Vector(((0-xMin)/(xMax-xMin))*graphWidth,graphHeight-((0-yMin)/(yMax-yMin)));
+        g.drawRect((int)origin.getX(),0,2,graphHeight);
+        g.drawRect(0,(int)origin.getY(),graphWidth,2);
 
-        freq = data.size()/MAX_POINTS;
+        if (!shouldDisplayAllData) freq = data.size()/MAX_POINTS;
        // System.out.println(freq);
-        for(int i = 0; i<data.size(); i+=1+freq){
-            double[] point = data.get(i);
+        if (!shouldDisplayAllData) {
+            for (int i = 0; i < data.size(); i += 1 + freq) {
+                double[] point = data.get(i);
 
-            g.fillOval(graphWidth/2+(int)((graphWidth/2-dotRadius*2-5)*(point[0]/((double)xMax-(double)xMin))),
-                    graphHeight/2-(int)(((double)graphHeight/2)*(point[1]/((double)yMax-(double)yMin))), (int)(dotRadius*2), (int)(dotRadius*2));
+                g.fillOval((int)(((point[0]-xMin) /(xMax - xMin ))*(graphWidth-dotRadius*2*2*2)),
+                        (int)(graphHeight-((point[1]-yMin) /(yMax - yMin ))*graphHeight), (int) (dotRadius * 2), (int) (dotRadius * 2));
+            }
+        }
+        else {
+            for (int i = 0; i < data.size(); i ++) {
+                double[] point = data.get(i);
+
+                g.fillOval((int)(((point[0]-xMin) /(xMax - xMin ))*graphWidth),
+                        (int)(graphHeight-((point[1]-yMin) /(yMax - yMin ))*graphHeight), (int) (dotRadius * 2), (int) (dotRadius * 2));
+            }
         }
 
     }
@@ -78,5 +90,12 @@ public class Graph extends JPanel {
          xMin = 0;
          yMin = 0;
         freq = 0;
+    }
+
+    public void resizeGraph(int w, int h, boolean b) {
+        shouldDisplayAllData = b;
+        graphWidth = w;
+        graphHeight = h;
+        reGraph();
     }
 }

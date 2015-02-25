@@ -32,7 +32,7 @@ public class SpringLogic {
     }
 
     public double getForce() {
-        return k*(equiLength-currentLength);
+        return k*(equiLength-currentLength) - dampening*velocity;
     }
 
     public double getAcceleration() {

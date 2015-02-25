@@ -22,9 +22,11 @@ public class SpringSimLogic extends SimLogic {
         this.d = d;
     }
 
-    public double updateV(){
-        velocity = ((-k/mass)*length)-((d/mass)*velocity);
-        return velocity;
+    public double updateL(){
+        acceleration = ((-k*length)-(d*velocity))/mass;
+        velocity = velocity + acceleration;
+        System.out.println(velocity);
+        return length;
     }
 
 

@@ -13,12 +13,14 @@ public class SpringSimulator extends Simulator {
     double mx;
     double my;
     double velocity;
+    double k;
 
 
-    public SpringSimulator(double w, double h, double m, double k, double d, double l){
+    public SpringSimulator(double w, double h, double m, double k, double d, double l, Graph g){
         //super();
         simWidth = w;
         simHeight = h;
+        this.k = k;
 
         spring = new Spring(0, (int)simHeight/2, l, 4, 1, 3, 10, fps);
         mx = spring.getLength();
@@ -28,9 +30,9 @@ public class SpringSimulator extends Simulator {
 
         velocity = 10;
 
-        logic = new SpringSimLogic(w, h, m, k, l, d, spring, velocity);
+        logic = new SpringSimLogic(w, h, m, k, l, d, spring, velocity, g);
 
-        op = new SpringOptionsPanel();
+        op = new SpringOptionsPanel(this);
 
         String str = new String();
         String str2 = new String();
@@ -46,10 +48,14 @@ public class SpringSimulator extends Simulator {
 
     @Override
     public void updateGUI(){
-        //velocity = logic.updateV();
-        //System.out.println(velocity);
-        spring.updateLength(velocity);
+        spring.updateLength();
         block.setLocation((int)spring.getLength(), (int)simHeight/2-23);
+        logic.update();
         repaint();
+    }
+
+    public void startRecording(String str, String str2, double k){
+        this.k = k;
+        super.startRecording(str, str2);
     }
 }

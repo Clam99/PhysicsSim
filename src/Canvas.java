@@ -61,6 +61,7 @@ public class Canvas extends JPanel{
         switch (k){
             case 0:
                 RampSimulator rs = new RampSimulator(Math.toRadians(70),700,.1,15,screenWidth,screenHeight,graph,9.8*70);
+                rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(rs);
                 container.add(graph);
                 container.add(rs.op);
@@ -74,7 +75,7 @@ public class Canvas extends JPanel{
 
             default: break;
         }
-        container.setMaximumSize(new Dimension((int)(15000), (int)screenHeight));//Not sure why we have to do this, but we have to put a very high number for the max x value or it doesn't look big enough
+        container.setMaximumSize(new Dimension((int) (screenWidth/2), (int) screenHeight));
         add(container);
         this.repaint();
     }

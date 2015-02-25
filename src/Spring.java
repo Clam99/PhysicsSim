@@ -16,7 +16,7 @@ public class Spring extends Rectangle {
         sl = new SpringLogic(l, k, d, m);
     }
 
-    public void updateLength(){
+    public void updateLength(double v){
         length = sl.getLength();
         super.setSize((int)length, (int)height);
     }

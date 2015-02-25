@@ -28,7 +28,7 @@ public class Graph extends JPanel {
         g.drawRect(graphWidth/2,0,2,graphHeight);
         g.drawRect(0,graphHeight/2,graphWidth,2);
 
-        freq = data.size()/500;
+        freq = data.size()/2000;
        // System.out.println(freq);
         for(int i = 0; i<data.size(); i+=1+freq){
             int[] point = data.get(i);

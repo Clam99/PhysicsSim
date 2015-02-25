@@ -6,11 +6,13 @@ public class SpringLogic {
     private double length;
     private double k;
     private double dampening;
+    private double mass;
 
-    public SpringLogic(double l, double k, double d){
+    public SpringLogic(double l, double k, double d, double m){
         length = l;
         this.k = k;
         dampening = d;
+        mass = m;
     }
 
     public void updateLength(){

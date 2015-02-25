@@ -93,6 +93,9 @@ public class RampSimLogic extends SimLogic {
             if (getToGraphX().equals("Y Position")) {
                 toAdd[0] = (int) (simHeight-ball.getBallLogic().getY());
             }
+            if (getToGraphX().equals("Total Energy")) {
+                toAdd[0] = (int) (ball.getBallLogic().getTotalE(simHeight));
+            }
 
             if (getToGraphY().equals("Potential Energy")) {
                 toAdd[1] = (int) (ball.getBallLogic().getPE(simHeight));
@@ -114,6 +117,9 @@ public class RampSimLogic extends SimLogic {
             }
             if (getToGraphY().equals("Y Position")) {
                 toAdd[1] = (int) (simHeight-ball.getBallLogic().getY());
+            }
+            if (getToGraphY().equals("Total Energy")) {
+                toAdd[1] = (int) (ball.getBallLogic().getTotalE(simHeight));
             }
 
             graph.addPoint(toAdd);
@@ -156,32 +162,32 @@ public class RampSimLogic extends SimLogic {
 
         // 1. Find the dot product of vec1 and vec2
         // Note: dx and dy are vx and vy divided over the length of the vector (magnitude)
-        double dpA = vec1.getX() * vec2.dx() + vec1.getY() * vec2.dy();
+        BigDecimal dpA = new BigDecimal(vec1.getX()).setScale(40, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(vec2.dx()).setScale(40, BigDecimal.ROUND_HALF_UP)).add(new BigDecimal(vec1.getY()).setScale(40, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(vec2.dy()).setScale(40, BigDecimal.ROUND_HALF_UP))).setScale(40, BigDecimal.ROUND_HALF_UP) ;
 
         // 2. Project vec1 over vec2
-        double prA_vx = dpA * vec2.dx();
-        double prA_vy = dpA * vec2.dy();
+        BigDecimal prA_vx = dpA.multiply(new BigDecimal(vec2.dx()).setScale(40, BigDecimal.ROUND_HALF_UP));
+        BigDecimal prA_vy = dpA.multiply(new BigDecimal(vec2.dy()).setScale(40, BigDecimal.ROUND_HALF_UP));
 
         // 3. Find the dot product of vec1 and vec2's normal
         // (left or right normal depending on line's direction, let's say left)
-        double dpB = vec1.getX() * vec2.leftNormal().dx() + vec1.getY() * vec2.leftNormal().dy();
+        BigDecimal dpB = new BigDecimal(vec1.getX()).setScale(40, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(vec2.leftNormal().dx()).setScale(40, BigDecimal.ROUND_HALF_UP)).add(new BigDecimal(vec1.getY()).setScale(40, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(vec2.leftNormal().dy()).setScale(40, BigDecimal.ROUND_HALF_UP)));
 
         // 4. Project vec1 over vec2's left normal
-        double prB_vx = dpB * vec2.leftNormal().dx();
-        double prB_vy = dpB * vec2.leftNormal().dy();
+        BigDecimal prB_vx = dpB.multiply(new BigDecimal(vec2.leftNormal().dx()).setScale(40, BigDecimal.ROUND_HALF_UP));
+        BigDecimal prB_vy = dpB.multiply(new BigDecimal(vec2.leftNormal().dy()).setScale(40, BigDecimal.ROUND_HALF_UP));
 
         // 5. Add the first projection prA to the reverse of the second -prB
-        double new_vx = prA_vx - prB_vx;
-        double new_vy = prA_vy - prB_vy;
+        BigDecimal new_vx = prA_vx.subtract(prB_vx);
+        BigDecimal new_vy = prA_vy.subtract(prB_vy);
 
-        new_vx *= ball.getBallLogic().getRebound();
-        new_vy *= ball.getBallLogic().getRebound();
+      //  new_vx *= ball.getBallLogic().getRebound();
+      //  new_vy *= ball.getBallLogic().getRebound();
 
-        ball.getBallLogic().setVx(new_vx);
-        ball.getBallLogic().setVy(new_vy);
-        //System.out.println("Line 128: " + ball.getBallLogic().getTotalE(simHeight - 35));
-       // ball.getBallLogic().updatePos();
-        //System.out.println("Line 130: " + ball.getBallLogic().getTotalE(simHeight - 35) + "\n\n");
+        ball.getBallLogic().setVx(new_vx.doubleValue());
+        ball.getBallLogic().setVy(new_vy.doubleValue());
+        //System.out.println("Line 128: " + ball.getBallLogic().getTotalE(simHeight));
+        //ball.getBallLogic().updatePos();
+        //System.out.println("Line 130: " + ball.getBallLogic().getTotalE(simHeight) + "\n\n");
     }
 
 }

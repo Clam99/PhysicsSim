@@ -143,6 +143,7 @@ public class Canvas extends JPanel{
         m.setVisible(true);
         graph.resetData();
         graph.removeAll();
+        graph.resizeGraph((int)(screenWidth/2-20),(int)screenHeight/2-20, false);
         validate();
         repaint();
     }

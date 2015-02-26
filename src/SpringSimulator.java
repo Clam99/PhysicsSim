@@ -60,6 +60,7 @@ public class SpringSimulator extends Simulator {
     public void startRecording(String str, String str2, double k){
         this.k = k;
         logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g);
+        repaint();
         super.startRecording(str, str2);
     }
 }

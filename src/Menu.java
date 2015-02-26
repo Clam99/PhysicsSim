@@ -21,27 +21,31 @@ public class Menu extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel title = new JLabel("Welcome to PhysicsSim!");
-        JLabel prompt = new JLabel ("Please select a simulator.");
         title.setVisible(true);
+        add(title);
+        JLabel prompt = new JLabel ("Please select a simulator.");
         prompt.setVisible(true);
         this.add(title);
         add(prompt);
 
 
-        JPanel slider = new JPanel();
-        slider.setLayout(new BoxLayout(slider, BoxLayout.X_AXIS));
+        //JPanel slider = new JPanel();
+        //slider.setLayout(new BoxLayout(slider, BoxLayout.X_AXIS));
 
-        JButton selected = new JButton("OK");
-        selected.setVisible(true);
-        slider.add(selected);
 
         String[] sims = {"RampSimulator", "SpringSimulator"};
         drop = new JComboBox<String>(sims);
         drop.setMaximumSize(new Dimension((int)p.getScreenWidth()/2, 30));
         drop.setVisible(true);
-        slider.add(drop);
+        add(drop);
+        //slider.add(drop);
+        //slider.add(selected);
 
-        this.add(slider);
+        JButton selected = new JButton("OK");
+        selected.setVisible(true);
+        add(selected);
+
+        //this.add(slider);
 
         selected.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

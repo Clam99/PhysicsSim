@@ -41,6 +41,7 @@ public class Canvas extends JPanel{
 
         m = new Menu(this);
         m.setVisible(true);
+        m.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
         this.add(m);
         d.add(this);
 

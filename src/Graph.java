@@ -26,7 +26,7 @@ public class Graph extends JPanel {
     }
 
     public void paintComponent(Graphics g){
-        Vector origin = new Vector(((0-xMin)/(xMax-xMin))*graphWidth,graphHeight-((0-yMin)/(yMax-yMin))*graphHeight);
+        Vector origin = new Vector(((0-xMin)/(xMax-xMin))*(graphWidth - dotRadius * 2 * 2 * 2),graphHeight-((0-yMin)/(yMax-yMin))*graphHeight);
         g.drawRect((int) origin.getX(), 0, 2, graphHeight);
         g.drawRect(0,(int)origin.getY(),graphWidth,2);
 

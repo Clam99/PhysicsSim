@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,13 +10,14 @@ import java.awt.event.ActionListener;
  */
 public class SpringOptionsPanel extends OptionsPanel {
     JSlider sl;
+    private double k;
 
     public SpringOptionsPanel(SpringSimulator ss, Canvas c){
         super(ss,new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"});
 
         parent = c;
 
-        JLabel title3 = new JLabel("Choose Spring Constant of spring:");
+        final JLabel title3 = new JLabel("Choose Spring Constant:");
         title3.setVisible(true);
         this.add(title3);
 
@@ -25,6 +28,13 @@ public class SpringOptionsPanel extends OptionsPanel {
         sl.setPaintLabels(true);
         sl.setVisible(true);
         sl.setMaximumSize(new Dimension(((int)ss.simWidth/2), 50));
+        sl.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                k = sl.getValue();
+                title3.setText("Choose Spring Constant. Current = " + k);
+            }
+        });
         this.add(sl);
 
         submit = new JButton("Submit");
@@ -33,21 +43,30 @@ public class SpringOptionsPanel extends OptionsPanel {
 
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Execute when button is pressed
                 startSim();
             }
         });
     }
 
     public void startSim(){
-        super.startSim();
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
         ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3);
+        super.startSim();
+        submit.removeActionListener(al);
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetSim();
+            }
+        });
     }
 
     public void resetSim(){
-
+        super.resetSim();
+        sim.stop();
+        parent.resetSim(this);
+        System.out.println("Resetting");
     }
 }

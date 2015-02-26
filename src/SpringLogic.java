@@ -26,7 +26,7 @@ public class SpringLogic {
 
     public void updateLength(){
         velocity+=getAcceleration()/(double)fps;
-        currentLength+=velocity;
+        currentLength+=velocity/fps;
     }
 
     public double getLength(){
@@ -37,10 +37,8 @@ public class SpringLogic {
     //public double getCurrentLength
 
     public double getForce() {
-        System.out.println("equiLenth: " + equiLength);
-        System.out.println("currLength: " + currentLength);
-        System.out.println("Force: " + (k*(equiLength-currentLength) - dampening*velocity));
-        return k*(equiLength-currentLength) - dampening*velocity;
+        System.out.println("Damping: " + dampening*(velocity));
+        return k*(equiLength-currentLength) - dampening*(velocity);
     }
 
     public double getAcceleration() {
@@ -56,7 +54,7 @@ public class SpringLogic {
     }
 
     public double getPE(){
-        return .5*k*currentLength*currentLength;
+        return .5*k*(currentLength-equiLength)*(currentLength-equiLength);
     }
 
     public double getTotalE(){

@@ -54,7 +54,7 @@ public class SpringSimulator extends Simulator {
     @Override
     public void updateGUI(){
         spring.updateLength();
-        block.setLocation((int)spring.getLength(), (int)simHeight/2-23);
+        block.setLocation((int)spring.getLength(), (int)my);
         ((SpringSimLogic)logic).update();
         repaint();
     }
@@ -62,7 +62,6 @@ public class SpringSimulator extends Simulator {
     public void startRecording(String str, String str2, double k, double k2, double k3){
         this.k = k;
         dampening = k2;
-        System.out.println("In startRecording.  x = " + str + " and y = " + str2);
         spring = new Spring(0, (int)simHeight/2-springHeight/2, spring.getLength(), springHeight, k, dampening, 10, fps, k3);
         logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g, fps);
         repaint();

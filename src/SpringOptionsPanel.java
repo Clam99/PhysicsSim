@@ -53,6 +53,8 @@ public class SpringOptionsPanel extends OptionsPanel {
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
         ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3);
+        System.out.println("Graph X should be " + variables[k]);
+        System.out.println("Graph Y should be " + variables[k2]);
         super.startSim();
         submit.removeActionListener(al);
         submit.addActionListener(new ActionListener() {

@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class SpringSimulator extends Simulator {
     Spring spring;
-    SpringSimLogic logic;//
     Rectangle block;
     double mx;
     double my;
@@ -34,9 +33,7 @@ public class SpringSimulator extends Simulator {
         block = new Rectangle();
         block.setBounds((int)mx, (int)my, 50, 50);
 
-        velocity = 10;
-
-
+        velocity = 0;
 
         op = new SpringOptionsPanel(this, c);
     }
@@ -51,15 +48,16 @@ public class SpringSimulator extends Simulator {
     public void updateGUI(){
         spring.updateLength();
         block.setLocation((int)spring.getLength(), (int)simHeight/2-23);
-        logic.update();
+        ((SpringSimLogic)logic).update();
         repaint();
     }
 
     public void startRecording(String str, String str2, double k){
         this.k = k;
+        System.out.println("In startRecording.  x = " + str + " and y = " + str2);
         spring = new Spring(0, (int)simHeight/2, spring.getLength(), 4, k, 10, 10, fps);
         logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g);
-        repaint();//
+        repaint();
         super.startRecording(str, str2);
     }
 }

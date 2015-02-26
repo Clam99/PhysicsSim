@@ -81,7 +81,7 @@ public class SpringSimLogic extends SimLogic {
             graph.addPoint(toAdd);
 
         } catch (NullPointerException npe) {
-            System.out.println("Crashed. graphX: " + toGraphX);
+            System.out.println("Crashed. graphX: " + getToGraphX());
         }
     }
 }

@@ -49,7 +49,7 @@ public class OptionsPanel extends JPanel {
         submit.addActionListener(al);
     }
     public void startSim() {
-        submit.setText("Reset");
+        submit.setText("See Full Graph");
 
     }
     public void resetSim() {

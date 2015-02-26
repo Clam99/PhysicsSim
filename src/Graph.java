@@ -26,7 +26,9 @@ public class Graph extends JPanel {
     }
 
     public void paintComponent(Graphics g){
-        Vector origin = new Vector(((0-xMin)/(xMax-xMin))*(graphWidth - dotRadius * 2 * 2 * 2),graphHeight-((0-yMin)/(yMax-yMin))*graphHeight);
+        double buffer = (dotRadius * 2 * 2 * 2);
+        Vector origin = new Vector(((0-xMin)/(xMax-xMin))*(graphWidth - buffer),graphHeight-((0-yMin)/(yMax-yMin))*graphHeight);
+
         g.drawRect((int) origin.getX(), 0, 2, graphHeight);
         g.drawRect(0,(int)origin.getY(),graphWidth,2);
 
@@ -34,13 +36,13 @@ public class Graph extends JPanel {
             if (data.size() < MAX_POINTS) {
                 for (int i = 0; i < data.size(); i++) {
                     double[] point = data.get(i);
-                    g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * (graphWidth - dotRadius * 2 * 2 * 2)),
+                    g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * (graphWidth - buffer)),
                             (int) (graphHeight - ((point[1] - yMin) / (yMax - yMin)) * graphHeight), (int) (dotRadius * 2), (int) (dotRadius * 2));
                 }
             } else {
                 for (int i = data.size() - MAX_POINTS; i < data.size(); i++) {
                     double[] point = data.get(i);
-                    g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * (graphWidth - dotRadius * 2 * 2 * 2)),
+                    g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * (graphWidth - buffer)),
                             (int) (graphHeight - ((point[1] - yMin) / (yMax - yMin)) * graphHeight), (int) (dotRadius * 2), (int) (dotRadius * 2));
                 }
             }
@@ -48,7 +50,7 @@ public class Graph extends JPanel {
             for (int i = 0; i < data.size(); i++) {
                 double[] point = data.get(i);
 
-                g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * graphWidth),
+                g.fillOval((int) (((point[0] - xMin) / (xMax - xMin)) * (graphWidth-buffer)),
                         (int) (graphHeight - ((point[1] - yMin) / (yMax - yMin)) * graphHeight), (int) (dotRadius * 2), (int) (dotRadius * 2));
             }
         }

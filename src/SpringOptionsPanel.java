@@ -7,35 +7,14 @@ import java.awt.event.ActionListener;
  * Created by lucaswebb on 2/25/15.
  */
 public class SpringOptionsPanel extends OptionsPanel {
-    JComboBox ydrop;
-    JComboBox xdrop;
     JSlider sl;
-    SpringSimulator ss;
-    String[] variables = {"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"};
 
     public SpringOptionsPanel(SpringSimulator ss){
+        super(ss);
 
-        this.ss = ss;
+        variables = new String[]{"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"};
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Select a variable to graph on the y axis:");
-        title.setVisible(true);
-        this.add(title);
-
-        ydrop = new JComboBox<String>(variables);
-        ydrop.setVisible(true);
-        ydrop.setMaximumSize(new Dimension((int)ss.simWidth/2, 50));
-        this.add(ydrop);
-
-        JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
-        title2.setVisible(true);
-        this.add(title2);
-
-        xdrop = new JComboBox<String>(variables);
-        xdrop.setVisible(true);
-        xdrop.setMaximumSize(new Dimension((int) ss.simWidth / 2, 50));
-        this.add(xdrop);
 
         JLabel title3 = new JLabel("Choose Spring Constant of spring:");
         title3.setVisible(true);
@@ -50,12 +29,12 @@ public class SpringOptionsPanel extends OptionsPanel {
         sl.setMaximumSize(new Dimension(((int)ss.simWidth/2), 50));
         this.add(sl);
 
-        JButton selected = new JButton("Submit");
-        selected.setVisible(true);
-        this.add(selected);
+        submit = new JButton("Submit");
+        submit.setVisible(true);
+        this.add(submit);
 
 
-        selected.addActionListener(new ActionListener() {
+        submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Execute when button is pressed
                 startSim();
@@ -64,10 +43,11 @@ public class SpringOptionsPanel extends OptionsPanel {
     }
 
     public void startSim(){
+        super.startSim();
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
-        ss.startRecording(variables[k], variables[k2], k3);
+        ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3);
     }
 
     public void resetSim(){

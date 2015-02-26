@@ -13,12 +13,13 @@ import java.util.TimerTask;
  */
 
 public class Simulator extends JPanel {
-    JButton record;
     boolean recording = false;
     int fps = 200;
     SimLogic logic;
     OptionsPanel op;
     Timer timer;
+    double simWidth;
+    double simHeight;
 
     public Simulator(){
         super();

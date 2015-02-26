@@ -8,12 +8,35 @@ import java.awt.event.ActionListener;
  */
 public class OptionsPanel extends JPanel {
     Canvas parent;
-    String[] variables;
     JButton submit;
     ActionListener al;
-    Simulator rs;
+    Simulator sim;
+    JComboBox ydrop;
+    JComboBox xdrop;
+    String[] variables = {"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"};
 
-    public OptionsPanel() {
+    public OptionsPanel(Simulator sim) {
+        this.sim = sim;
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JLabel title = new JLabel("Select a variable to graph on the y axis:");
+        title.setVisible(true);
+        this.add(title);
+
+        ydrop = new JComboBox<String>(variables);
+        ydrop.setVisible(true);
+        ydrop.setMaximumSize(new Dimension((int)sim.simWidth/2, 50));
+        this.add(ydrop);
+
+        JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
+        title2.setVisible(true);
+        this.add(title2);
+
+        xdrop = new JComboBox<String>(variables);
+        xdrop.setVisible(true);
+        xdrop.setMaximumSize(new Dimension((int) sim.simWidth / 2, 50));
+        this.add(xdrop);
+
         submit = new JButton("Test");
         al = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -25,6 +48,7 @@ public class OptionsPanel extends JPanel {
     }
     public void startSim() {
         submit.setText("Reset");
+
     }
     public void resetSim() {
 

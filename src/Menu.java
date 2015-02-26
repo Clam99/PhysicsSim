@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -17,20 +18,30 @@ public class Menu extends JPanel {
 
         parent = p;
 
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Welcome to PhysicsSim.  Please select a simulator.");
+        JLabel title = new JLabel("Welcome to PhysicsSim!");
+        JLabel prompt = new JLabel ("Please select a simulator.");
         title.setVisible(true);
+        prompt.setVisible(true);
         this.add(title);
+        add(prompt);
+
+
+        JPanel slider = new JPanel();
+        slider.setLayout(new BoxLayout(slider, BoxLayout.X_AXIS));
 
         JButton selected = new JButton("OK");
         selected.setVisible(true);
-        this.add(selected);
+        slider.add(selected);
 
         String[] sims = {"RampSimulator", "SpringSimulator"};
         drop = new JComboBox<String>(sims);
+        drop.setMaximumSize(new Dimension((int)p.getScreenWidth()/2, 30));
         drop.setVisible(true);
-        this.add(drop);
+        slider.add(drop);
+
+        this.add(slider);
 
         selected.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

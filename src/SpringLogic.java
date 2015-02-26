@@ -42,4 +42,20 @@ public class SpringLogic {
     public double getAcceleration() {
         return getForce()/mass;
     }
+
+    public double getVelocity(){
+        return velocity;
+    }
+
+    public double getKE(){
+        return KE;
+    }
+
+    public double getPE(){
+        return PE;
+    }
+
+    public double getTotalE(){
+        return this.getKE() + this.getPE();
+    }
 }

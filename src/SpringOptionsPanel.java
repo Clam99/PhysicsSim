@@ -21,9 +21,9 @@ public class SpringOptionsPanel extends OptionsPanel {
         title3.setVisible(true);//
         this.add(title3);
 
-        sl = new JSlider(0,300);
-        sl.setMajorTickSpacing(500);
-        sl.setMinorTickSpacing(250);
+        sl = new JSlider(0,50);
+        sl.setMajorTickSpacing(10);
+        sl.setMinorTickSpacing(1);
         sl.setPaintTicks(true);
         sl.setPaintLabels(true);
         sl.setVisible(true);

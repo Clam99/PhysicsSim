@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         parent = c;
 
         final JLabel title3 = new JLabel("Choose Spring Constant:");
-        title3.setVisible(true);
+        title3.setVisible(true);//
         this.add(title3);
 
         sl = new JSlider(0,300);
@@ -25,7 +27,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         sl.setPaintTicks(true);
         sl.setPaintLabels(true);
         sl.setVisible(true);
-        sl.setMaximumSize(new Dimension(((int)ss.simWidth/2), 50));
+        sl.setMaximumSize(new Dimension(((int) ss.simWidth / 2), 50));
         sl.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {

@@ -21,7 +21,7 @@ public class SpringSimulator extends Simulator {
 
 
     public SpringSimulator(double w, double h, double m, double k, double d, double l, Graph g, Canvas c){
-        //super();
+        super();
         simWidth = w;
         simHeight = h;
         this.k = k;
@@ -59,6 +59,7 @@ public class SpringSimulator extends Simulator {
 
     public void startRecording(String str, String str2, double k){
         this.k = k;
+        spring = new Spring(0, (int)simHeight/2, spring.getLength(), 4, k, 10, 10, fps);
         logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g);
         super.startRecording(str, str2);
     }

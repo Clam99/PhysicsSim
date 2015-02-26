@@ -16,7 +16,6 @@ public class RampOptionsPanel extends OptionsPanel {
     public RampOptionsPanel(RampSimulator rs, Canvas p){
         super(rs, new String[] {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"});
         parent = p;
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         final JLabel title3 = new JLabel("Choose steepness of ramp in degrees. Current = 45.0 degrees");
         title3.setVisible(true);

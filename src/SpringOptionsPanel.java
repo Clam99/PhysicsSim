@@ -69,4 +69,8 @@ public class SpringOptionsPanel extends OptionsPanel {
         double k3 = sl.getValue();
         ss.startRecording(variables[k], variables[k2], k3);
     }
+
+    public void resetSim(){
+
+    }
 }

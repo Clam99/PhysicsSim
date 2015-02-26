@@ -10,6 +10,8 @@ public class SpringLogic {
     private double mass;
     private double velocity;
     private int fps;
+    private double KE;
+    private double PE;
 
 
     public SpringLogic(double l, double k, double d, double m, int fps){
@@ -37,5 +39,21 @@ public class SpringLogic {
 
     public double getAcceleration() {
         return getForce()/mass;
+    }
+
+    public double getPE(){
+        return PE;
+    }
+
+    public double getKE(){
+        return KE;
+    }
+
+    public double getVelocity(){
+        return velocity;
+    }
+
+    public double getTotalE(){
+        return this.getKE() + this.getPE();
     }
 }

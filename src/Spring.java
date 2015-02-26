@@ -24,4 +24,8 @@ public class Spring extends Rectangle {
     public double getLength(){
         return length;
     }
+
+    public SpringLogic getSpringLogic(){
+        return sl;
+    }
 }

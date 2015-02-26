@@ -12,7 +12,6 @@ public class SimLogic {
     public void start(String str, String str2) {
         toGraphX = str;
         toGraphY = str2;
-        System.out.println("Starting in SimLogic.  toGraphX is '" + toGraphX + "'.");
     }
 
     public String getToGraphX() {

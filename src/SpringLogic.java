@@ -12,7 +12,7 @@ public class SpringLogic {
     private int fps;
     private double KE;
     private double PE;
-    private double startingStretch = 200;
+    private double startingStretch = -300;
 
 
     public SpringLogic(double l, double k, double d, double m, int fps, double ss){
@@ -38,7 +38,6 @@ public class SpringLogic {
     //public double getCurrentLength
 
     public double getForce() {
-        System.out.println("Damping: " + dampening*(velocity));
         return k*(equiLength-currentLength) - dampening*(velocity);
     }
 

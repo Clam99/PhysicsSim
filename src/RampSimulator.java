@@ -52,19 +52,13 @@ public class RampSimulator extends Simulator {
 
 
     public void makeRamp() {
-        System.out.println("Angle2: " + angle);
-        System.out.println("RampLen: " + rampLen);
-        System.out.println("SimHeight: " + simHeight);
         int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};
         int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};//In order from top left, bottom left, bottom right
-        System.out.println(-Math.sin(angle)*rampLen+simHeight);
 
         ramp = new Ramp(xpoints, ypoints, 3, Color.red);
         initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);
         initialBallY = simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle);
         ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1, gF, fps);
-        System.out.println("xPoints: " + xpoints[0] + ", " + xpoints[1] + ", " + xpoints[2]);
-        System.out.println("yPoints: " + ypoints[0] + ", " + ypoints[1] + ", " + ypoints[2]);
     }
 
     public void startRecording(String str, String str2, double angle) {

@@ -28,7 +28,6 @@ public class Simulator extends JPanel {
     public void startRecording(String str, String str2) {
         if (!recording) {
             logic.start(str, str2);
-            System.out.println("Starting in Simulator");
             recording = true;
             gameLoop();
         }
@@ -40,7 +39,6 @@ public class Simulator extends JPanel {
     }
 
     public void updateGUI() {
-        System.out.println("Updating GUI");
         logic.update();
     }
 

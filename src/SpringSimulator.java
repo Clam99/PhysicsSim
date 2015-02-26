@@ -14,6 +14,8 @@ public class SpringSimulator extends Simulator {
     double mass;
     double length;
     double dampening = 0;
+    int blockHeight =50;
+    int springHeight = blockHeight-30;
     Graph g;
 
 
@@ -27,11 +29,11 @@ public class SpringSimulator extends Simulator {
         dampening = d;
         this.g = g;
 
-        spring = new Spring(0, (int)simHeight/2, l, 4, 1, 10, 10, fps, 0);
+        spring = new Spring(0, (int)simHeight/2-springHeight/2, l, springHeight, 1, 10, 10, fps, 0);
         mx = spring.getLength();
-        my = (int)simHeight/2-23;
+        my = (int)simHeight/2-blockHeight/2;
         block = new Rectangle();
-        block.setBounds((int)mx, (int)my, 50, 50);
+        block.setBounds((int)mx, (int)my, blockHeight, blockHeight);
 
         velocity = 0;
 
@@ -40,8 +42,13 @@ public class SpringSimulator extends Simulator {
 
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.blue);
         g2.fill(block);
-        g2.fill(spring);
+        g2.setColor(Color.black);
+        for (int i = 0; i<10; i++) {
+            g2.fill(new Rectangle((int)(i*(spring.getWidth()/10)),(int)spring.getY(),10,(int)spring.getHeight()));
+        }
+        g2.draw(spring);
     }
 
     @Override
@@ -56,7 +63,7 @@ public class SpringSimulator extends Simulator {
         this.k = k;
         dampening = k2;
         System.out.println("In startRecording.  x = " + str + " and y = " + str2);
-        spring = new Spring(0, (int)simHeight/2, spring.getLength(), 4, k, dampening, 10, fps, k3);
+        spring = new Spring(0, (int)simHeight/2-springHeight/2, spring.getLength(), springHeight, k, dampening, 10, fps, k3);
         logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g, fps);
         repaint();
         super.startRecording(str, str2);

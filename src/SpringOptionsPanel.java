@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 public class SpringOptionsPanel extends OptionsPanel {
     JSlider sl;
     private double k;
+    JSlider ds;
+    private double damping;
 
     public SpringOptionsPanel(SpringSimulator ss, Canvas c){
         super(ss,new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"});
@@ -37,6 +39,26 @@ public class SpringOptionsPanel extends OptionsPanel {
         });
         this.add(sl);
 
+        final JLabel title4 = new JLabel("Choose Damping Value: ");
+        title4.setVisible(true);
+        this.add(title4);
+
+        ds = new JSlider(0, 10);
+        ds.setMajorTickSpacing(2);
+        ds.setMinorTickSpacing(1);
+        ds.setPaintTicks(true);
+        ds.setPaintLabels(true);
+        ds.setVisible(true);
+        ds.setMaximumSize(new Dimension((int) ss.simWidth/2, 50));
+        ds.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                damping = ds.getValue();
+                title4.setText("Choose Damping Value. Current = " + damping);
+            }
+        });
+        this.add(ds);
+
         submit = new JButton("Submit");
         submit.setVisible(true);
         this.add(submit);
@@ -52,7 +74,8 @@ public class SpringOptionsPanel extends OptionsPanel {
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
-        ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3);
+        double k4 = ds.getValue();
+        ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3, k4);
         System.out.println("Graph X should be " + variables[k]);
         System.out.println("Graph Y should be " + variables[k2]);
         super.startSim();

@@ -12,7 +12,7 @@ public class SpringLogic {
     private int fps;
     private double KE;
     private double PE;
-    private double startingStretch = 300;
+    private double startingStretch = 200;
 
 
     public SpringLogic(double l, double k, double d, double m, int fps){

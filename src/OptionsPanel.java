@@ -13,9 +13,10 @@ public class OptionsPanel extends JPanel {
     Simulator sim;
     JComboBox ydrop;
     JComboBox xdrop;
-    String[] variables = {"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"};
+    String[] variables;
 
-    public OptionsPanel(Simulator sim) {
+    public OptionsPanel(Simulator sim, String[] strs) {
+        variables = strs;
         this.sim = sim;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

@@ -14,8 +14,7 @@ public class RampOptionsPanel extends OptionsPanel {
 
 
     public RampOptionsPanel(RampSimulator rs, Canvas p){
-        super(rs);
-        variables = new String[] {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"};
+        super(rs, new String[] {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"});
         parent = p;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

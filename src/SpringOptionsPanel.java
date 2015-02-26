@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 public class SpringOptionsPanel extends OptionsPanel {
     JSlider sl;
 
-    public SpringOptionsPanel(SpringSimulator ss, Canvas c){
-        super(ss);
+    public SpringOptionsPanel(SpringSimulator ss){
+        super(ss,new String[]{"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"});
 
-        variables = new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"};
 
         JLabel title3 = new JLabel("Choose Spring Constant of spring:");
         title3.setVisible(true);

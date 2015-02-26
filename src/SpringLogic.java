@@ -62,4 +62,8 @@ public class SpringLogic {
     public double getTotalE(){
         return this.getKE() + this.getPE();
     }
+
+    public double getCompression(){
+        return equiLength - currentLength;
+    }
 }

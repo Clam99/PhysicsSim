@@ -46,9 +46,9 @@ public class SpringSimLogic extends SimLogic {
             if (getToGraphX().equals("Velocity")) {
                 toAdd[0] = (spring.getSpringLogic().getVelocity());
             }
-            //if (getToGraphX().equals("Compression")) {
-            //
-            //}
+            if (getToGraphX().equals("Compression")) {
+                toAdd[0] = (spring.getSpringLogic().getCompression());
+            }
             if (getToGraphX().equals("Force")) {
                 toAdd[0] = spring.getSpringLogic().getForce();
             }
@@ -71,9 +71,9 @@ public class SpringSimLogic extends SimLogic {
             if (getToGraphY().equals("Velocity")) {
                 toAdd[1] = (spring.getSpringLogic().getVelocity());
             }
-            //if (getToGraphY().equals("Compression")) {
-            //
-            //}
+            if (getToGraphY().equals("Compression")) {
+                toAdd[1] = (spring.getSpringLogic().getCompression());
+            }
             if (getToGraphY().equals("Force")) {
                 toAdd[1] = (spring.getSpringLogic().getForce());
             }

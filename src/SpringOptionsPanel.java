@@ -69,4 +69,9 @@ public class SpringOptionsPanel extends OptionsPanel {
         parent.resetSim(this);
         System.out.println("Resetting");
     }
+
+    @Override
+    public int getID(){
+        return 1;
+    }
 }

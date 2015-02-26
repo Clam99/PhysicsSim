@@ -83,19 +83,19 @@ public class Canvas extends JPanel{
         this.repaint();
     }
 
-    public void resetSim(OptionsPanel sender) {
+    public void resetSim(final OptionsPanel sender) {
         container.removeAll();
         this.remove(sender.sim);
-        graph.resizeGraph((int)screenWidth-60,(int)screenHeight-60, true);
+        graph.resizeGraph((int) screenWidth - 60, (int) screenHeight - 60, true);
         add(graph);
-        final JButton newSim = new JButton("Create new simulator");
-        final JButton menu = new JButton("Go back to the Main Menu");
+        final JButton newSim = new JButton("Reset Current Sim");
+        final JButton menu = new JButton("Go Back to the Main Menu");
         newSim.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newSim.getParent().remove(menu);
                 newSim.getParent().remove(newSim);
-                addNewSim();
+                addNewSim(sender.getID());
             }
         });
         menu.addActionListener(new ActionListener() {
@@ -110,18 +110,26 @@ public class Canvas extends JPanel{
         repaint();
     }
 
-    public void addNewSim() {
+    public void addNewSim(int k) {
         this.remove(graph);
-        RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
-        rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
-        add(rs);
-        container.add(graph);
+        if(k == 0) {
+            RampSimulator rs = new RampSimulator(Math.toRadians(50), 700, .1, 15, screenWidth, screenHeight, graph, 9.8 * 70, this);
+            rs.setMaximumSize(new Dimension((int) (screenWidth / 2), (int) screenHeight));
+            add(rs);
+            container.add(graph);
+            container.add(rs.op);
+        } else if(k == 1){
+            SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph, this);
+            ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+            add(ss);
+            container.add(graph);
+            container.add(ss.op);
+        }
         graph.resetData();
         graph.resizeGraph((int)(screenWidth/2-20),(int)screenHeight/2-20, false);
         graph.removeAll();
         graph.validate();
         graph.repaint();
-        container.add(rs.op);
         container.validate();
         container.repaint();
         add(container);

@@ -14,6 +14,7 @@ public class OptionsPanel extends JPanel {
     JComboBox ydrop;
     JComboBox xdrop;
     String[] variables;
+    int id;
 
     public OptionsPanel(Simulator sim, String[] strs) {
         variables = strs;
@@ -53,5 +54,9 @@ public class OptionsPanel extends JPanel {
     }
     public void resetSim() {
 
+    }
+
+    public int getID(){
+        return id;
     }
 }

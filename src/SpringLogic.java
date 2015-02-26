@@ -15,8 +15,9 @@ public class SpringLogic {
     private double startingStretch = 200;
 
 
-    public SpringLogic(double l, double k, double d, double m, int fps){
+    public SpringLogic(double l, double k, double d, double m, int fps, double ss){
         equiLength = l;
+        startingStretch = ss;
         currentLength = l+startingStretch;
         this.k = k;
         dampening = d;

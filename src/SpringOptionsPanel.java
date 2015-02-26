@@ -13,6 +13,8 @@ public class SpringOptionsPanel extends OptionsPanel {
     private double k;
     JSlider ds;
     private double damping;
+    JSlider st;
+    private double startingStretch;
 
     public SpringOptionsPanel(SpringSimulator ss, Canvas c){
         super(ss,new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"});
@@ -49,7 +51,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         ds.setPaintTicks(true);
         ds.setPaintLabels(true);
         ds.setVisible(true);
-        ds.setMaximumSize(new Dimension((int) ss.simWidth/2, 50));
+        ds.setMaximumSize(new Dimension((int) ss.simWidth / 2, 50));
         ds.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -58,6 +60,26 @@ public class SpringOptionsPanel extends OptionsPanel {
             }
         });
         this.add(ds);
+
+        final JLabel title5 = new JLabel("Choose Starting Position: ");
+        title5.setVisible(true);
+        this.add(title5);
+
+        st = new JSlider(-250, 250);
+        st.setMajorTickSpacing(50);
+        st.setMinorTickSpacing(10);
+        st.setPaintTicks(true);
+        st.setPaintLabels(true);
+        st.setVisible(true);
+        st.setMaximumSize(new Dimension((int) ss.simWidth / 2, 50));
+        st.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                startingStretch = st.getValue();
+                title5.setText("Choose Starting Position. Current = " + startingStretch);
+            }
+        });
+        this.add(st);
 
         submit = new JButton("Submit");
         submit.setVisible(true);
@@ -75,7 +97,8 @@ public class SpringOptionsPanel extends OptionsPanel {
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
         double k4 = ds.getValue();
-        ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3, k4);
+        double k5 = st.getValue();
+        ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3, k4, k5);
         System.out.println("Graph X should be " + variables[k]);
         System.out.println("Graph Y should be " + variables[k2]);
         super.startSim();

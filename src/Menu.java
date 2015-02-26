@@ -18,34 +18,32 @@ public class Menu extends JPanel {
 
         parent = p;
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.setPreferredSize(new Dimension((int)parent.screenWidth/2, (int)parent.screenHeight/6));
+        container.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        container.setAlignmentY(JComponent.CENTER_ALIGNMENT);
 
         JLabel title = new JLabel("Welcome to PhysicsSim!");
         title.setVisible(true);
-        add(title);
+        container.add(title);
         JLabel prompt = new JLabel ("Please select a simulator.");
         prompt.setVisible(true);
-        this.add(title);
-        add(prompt);
-
-
-        //JPanel slider = new JPanel();
-        //slider.setLayout(new BoxLayout(slider, BoxLayout.X_AXIS));
-
+        container.add(title);
+        container.add(prompt);
 
         String[] sims = {"RampSimulator", "SpringSimulator"};
         drop = new JComboBox<String>(sims);
-        drop.setMaximumSize(new Dimension((int)p.getScreenWidth()/2, 30));
+        //drop.setMaximumSize(new Dimension((int)p.getScreenWidth()/2, 30));
         drop.setVisible(true);
-        add(drop);
-        //slider.add(drop);
-        //slider.add(selected);
+        container.add(drop);
 
         JButton selected = new JButton("OK");
         selected.setVisible(true);
-        add(selected);
+        container.add(selected);
 
-        //this.add(slider);
+        add(container);
 
         selected.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -11,7 +11,6 @@ public class RampSimLogic extends SimLogic {
     double ballDistance = 0;
     double angle;
     double rampLen;
-    int updateCount = 0;
     Graph graph;
     double initialBallX;
     double initialBallY;
@@ -53,6 +52,7 @@ public class RampSimLogic extends SimLogic {
     }
 
     public void update() {
+        super.update();
         double xi = ball.getBallLogic().getX();
         double yi = ball.getBallLogic().getY();
 
@@ -66,7 +66,6 @@ public class RampSimLogic extends SimLogic {
         updateBallV();
         ball.getBallLogic().updatePos();
         updateDistance(xi, yi);
-        updateCount++;
 
 
         //String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};

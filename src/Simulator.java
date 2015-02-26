@@ -41,13 +41,13 @@ public class Simulator extends JPanel {
 
     public void updateGUI() {
         System.out.println("Updating GUI");
+        logic.update();
     }
 
     class SimTask extends TimerTask {
         @Override
         public void run() {
             updateGUI();
-
         }
     }
 

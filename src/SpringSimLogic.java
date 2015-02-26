@@ -13,8 +13,9 @@ public class SpringSimLogic extends SimLogic {
     double acceleration;
     double d;
     Graph graph;
+    int fps;
 
-    public SpringSimLogic(double width, double height, double m, double k, double l, double d, Spring s, double v, Graph g) {
+    public SpringSimLogic(double width, double height, double m, double k, double l, double d, Spring s, double v, Graph g, int fps) {
         super();
         mass = m;
         this.k = k;
@@ -22,9 +23,11 @@ public class SpringSimLogic extends SimLogic {
         spring = s;
         this.d = d;
         graph = g;
+        this.fps = fps;
     }
 
     public void update() {
+        super.update();
         double[] toAdd = {0, 0};
 
         try {
@@ -37,9 +40,9 @@ public class SpringSimLogic extends SimLogic {
             if (getToGraphX().equals("Acceleration")) {
                 toAdd[0] = (spring.getSpringLogic().getAcceleration());
             }
-            //if (getToGraphX().equals("Time")) {
-            //
-            //}
+            if (getToGraphX().equals("Time")) {
+                toAdd[0] = ((double)updateCount/(double)fps);
+            }
             if (getToGraphX().equals("Velocity")) {
                 toAdd[0] = (spring.getSpringLogic().getVelocity());
             }
@@ -62,9 +65,9 @@ public class SpringSimLogic extends SimLogic {
             if (getToGraphY().equals("Acceleration")) {
                 toAdd[1] = (spring.getSpringLogic().getAcceleration());
             }
-            //if (getToGraphY().equals("Time")) {
-            //
-            //}
+            if (getToGraphY().equals("Time")) {
+                toAdd[1] = (int)((double)updateCount/(double)fps);
+            }
             if (getToGraphY().equals("Velocity")) {
                 toAdd[1] = (spring.getSpringLogic().getVelocity());
             }

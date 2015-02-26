@@ -56,7 +56,7 @@ public class SpringSimulator extends Simulator {
         this.k = k;
         System.out.println("In startRecording.  x = " + str + " and y = " + str2);
         spring = new Spring(0, (int)simHeight/2, spring.getLength(), 4, k, 10, 10, fps);
-        logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g);
+        logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g, fps);
         repaint();
         super.startRecording(str, str2);
     }

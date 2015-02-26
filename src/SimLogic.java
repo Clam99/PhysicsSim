@@ -4,6 +4,7 @@
 public class SimLogic {
     String toGraphX;
     String toGraphY;
+    int updateCount = 0;
 
     public SimLogic() {
     }
@@ -22,4 +23,7 @@ public class SimLogic {
         return toGraphY;
     }
 
+    public void update() {
+        updateCount++;
+    }
 }

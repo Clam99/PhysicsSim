@@ -9,12 +9,10 @@ import java.awt.event.ActionListener;
 public class SpringOptionsPanel extends OptionsPanel {
     JSlider sl;
 
-    public SpringOptionsPanel(SpringSimulator ss){
+    public SpringOptionsPanel(SpringSimulator ss, Canvas c){
         super(ss);
 
-        variables = new String[]{"Kinetic Energy", "Potential Energy", "Time", "Velocity", "X Position", "Total Energy"};
-
-
+        variables = new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"};
 
         JLabel title3 = new JLabel("Choose Spring Constant of spring:");
         title3.setVisible(true);
@@ -32,7 +30,6 @@ public class SpringOptionsPanel extends OptionsPanel {
         submit = new JButton("Submit");
         submit.setVisible(true);
         this.add(submit);
-
 
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

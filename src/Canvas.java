@@ -69,7 +69,7 @@ public class Canvas extends JPanel{
                 container.add(rs.op);
                 break;
             case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph);
+                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph, this);
                 ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
                 add(ss);
                 container.add(graph);

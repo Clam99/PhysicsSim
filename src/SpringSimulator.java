@@ -14,13 +14,21 @@ public class SpringSimulator extends Simulator {
     double my;
     double velocity;
     double k;
+    double mass;
+    double length;
+    double dampening;
+    Graph g;
 
 
-    public SpringSimulator(double w, double h, double m, double k, double d, double l, Graph g){
+    public SpringSimulator(double w, double h, double m, double k, double d, double l, Graph g, Canvas c){
         //super();
         simWidth = w;
         simHeight = h;
         this.k = k;
+        mass = m;
+        length = l;
+        dampening = d;
+        this.g = g;
 
         spring = new Spring(0, (int)simHeight/2, l, 4, 1, 10, 10, fps);
         mx = spring.getLength();
@@ -30,14 +38,9 @@ public class SpringSimulator extends Simulator {
 
         velocity = 10;
 
-        logic = new SpringSimLogic(w, h, m, k, l, d, spring, velocity, g);
 
-        op = new SpringOptionsPanel(this);
 
-        String str = new String();
-        String str2 = new String();
-
-        super.startRecording(str, str2);
+        op = new SpringOptionsPanel(this, c);
     }
 
     public void paintComponent(Graphics g){
@@ -56,6 +59,7 @@ public class SpringSimulator extends Simulator {
 
     public void startRecording(String str, String str2, double k){
         this.k = k;
+        logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g);
         super.startRecording(str, str2);
     }
 }

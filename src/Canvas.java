@@ -23,11 +23,9 @@ public class Canvas extends JPanel{
     public Canvas(Driver d){
         super();
         this.d = d;
-        ImageIcon icon = new ImageIcon ( "physics.jpg");
         d.setTitle("Physics Simulator v. 1.0.0");
         d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        d.setIconImage(icon.getImage());
 
         d.setVisible(true);
         d.setSize((int) screenWidth, (int) screenHeight);

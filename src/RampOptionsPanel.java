@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,36 +9,17 @@ import java.awt.event.ActionListener;
  * Created by smurphy on 2/24/15.
  */
 public class RampOptionsPanel extends OptionsPanel {
-    JComboBox ydrop;
-    JComboBox xdrop;
     JSlider sl;
+    double angle;
 
 
     public RampOptionsPanel(RampSimulator rs, Canvas p){
+        super(rs);
         variables = new String[] {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity", "X Position", "Y Position", "Total Energy"};
         parent = p;
-        this.rs = rs;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel title = new JLabel("Select a variable to graph on the y axis:");
-        title.setVisible(true);
-        this.add(title);
-
-        ydrop = new JComboBox<String>(variables);
-        ydrop.setVisible(true);
-        ydrop.setMaximumSize(new Dimension((int)rs.simWidth/2, 50));
-        this.add(ydrop);
-
-        JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
-        title2.setVisible(true);
-        this.add(title2);
-
-        xdrop = new JComboBox<String>(variables);
-        xdrop.setVisible(true);
-        xdrop.setMaximumSize(new Dimension((int) rs.simWidth / 2, 50));
-        this.add(xdrop);
-
-        JLabel title3 = new JLabel("Choose steepness of ramp in degrees:");
+        final JLabel title3 = new JLabel("Choose steepness of ramp in degrees. Current = 45.0 degrees");
         title3.setVisible(true);
         this.add(title3);
 
@@ -48,6 +31,13 @@ public class RampOptionsPanel extends OptionsPanel {
         sl.setVisible(true);
         sl.setMaximumSize(new Dimension(((int)rs.simWidth/2), 50));
         this.add(sl);
+        sl.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                angle = sl.getValue();
+                title3.setText("Choose steepness of ramp in degrees. Current = " + angle + " degrees");
+            }
+        });
 
         submit = new JButton("Submit");
         submit.setVisible(true);
@@ -67,7 +57,7 @@ public class RampOptionsPanel extends OptionsPanel {
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double angle = sl.getValue();
-        ((RampSimulator)rs).startRecording(variables[k], variables[k2], angle);
+        ((RampSimulator)sim).startRecording(variables[k], variables[k2], angle);
         super.startSim();
         submit.removeActionListener(al);
         submit.addActionListener(new ActionListener() {
@@ -80,7 +70,7 @@ public class RampOptionsPanel extends OptionsPanel {
 
     public void resetSim() {
         super.resetSim();
-        rs.stop();
+        sim.stop();
         parent.resetSim(this);
         System.out.println("Resetting");
     }

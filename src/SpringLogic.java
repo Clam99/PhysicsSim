@@ -10,11 +10,11 @@ public class SpringLogic {
     private double mass;
     private double velocity;
     private int fps;
-
+    private double startingStretch = 300;
 
     public SpringLogic(double l, double k, double d, double m, int fps){
         equiLength = l;
-        currentLength = l+100;
+        currentLength = l+startingStretch;
         this.k = k;
         dampening = d;
         mass = m;
@@ -32,7 +32,8 @@ public class SpringLogic {
     }
 
     public double getForce() {
-        return k*(equiLength-currentLength) - dampening*velocity;
+        int constant = 10;
+        return k*(equiLength-currentLength)*constant - dampening*velocity;
     }
 
     public double getAcceleration() {

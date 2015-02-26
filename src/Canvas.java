@@ -85,7 +85,7 @@ public class Canvas extends JPanel{
 
     public void resetSim(OptionsPanel sender) {
         container.removeAll();
-        this.remove(sender.rs);
+        this.remove(sender.sim);
         graph.resizeGraph((int)screenWidth-60,(int)screenHeight-60, true);
         add(graph);
         final JButton newSim = new JButton("Create new simulator");
@@ -93,8 +93,8 @@ public class Canvas extends JPanel{
         newSim.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newSim.getParent().remove(newSim);
                 newSim.getParent().remove(menu);
+                newSim.getParent().remove(newSim);
                 addNewSim();
             }
         });
@@ -111,7 +111,6 @@ public class Canvas extends JPanel{
     }
 
     public void addNewSim() {
-        container.removeAll();
         this.remove(graph);
         RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
         rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
@@ -119,6 +118,7 @@ public class Canvas extends JPanel{
         container.add(graph);
         graph.resetData();
         graph.resizeGraph((int)(screenWidth/2-20),(int)screenHeight/2-20, false);
+        graph.removeAll();
         graph.validate();
         graph.repaint();
         container.add(rs.op);
@@ -134,6 +134,9 @@ public class Canvas extends JPanel{
         add(m);
         m.setVisible(true);
         graph.resetData();
+        graph.removeAll();
+        validate();
+        repaint();
     }
 
     public double getScreenWidth(){

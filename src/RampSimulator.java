@@ -7,8 +7,6 @@ import java.awt.*;
 public class RampSimulator extends Simulator {
     Ball ball;
     Ramp ramp;
-    double simHeight;
-    double simWidth;
     public Graph graph;
     double initialBallX;
     double initialBallY;

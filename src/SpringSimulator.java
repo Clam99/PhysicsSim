@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class SpringSimulator extends Simulator {
     Spring spring;
-    SpringSimLogic logic;
+    SpringSimLogic logic;//
     Rectangle block;
     double mx;
     double my;

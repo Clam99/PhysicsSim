@@ -34,9 +34,9 @@ public class Surface {
         return new Vector(x2-x1, y2-y1);
     }
 
-    public boolean intersectsBall(Ball b) {
+    public boolean intersectsBall(Ball b) {//Test whether b is intersecting the surface
         Vector sToB = new Vector(b.getBallLogic().getX()-getX1(), b.getBallLogic().getY()-getY1());//top of surface to ball vector
-        double projLength = sToB.getMagnitude()*(sToB.dotP(getSurfaceVector())/(sToB.getMagnitude()*getSurfaceVector().getMagnitude()));
+        double projLength = sToB.getMagnitude()*(sToB.dotP(getSurfaceVector())/(sToB.getMagnitude()*getSurfaceVector().getMagnitude()));//length of projection of sToB onto the surface
 
         if (projLength<-b.getBallLogic().getRadius() || projLength>getSurfaceVector().getMagnitude()+b.getBallLogic().getRadius()) {//Off to the side of the ramp
             return false;

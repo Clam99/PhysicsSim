@@ -52,7 +52,6 @@ public class SpringLogic {
     public double getKE(){
         return .5*mass*velocity*velocity;
     }
-
     public double getPE(){
         return .5*k*(currentLength-equiLength)*(currentLength-equiLength);
     }

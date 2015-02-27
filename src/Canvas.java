@@ -100,7 +100,7 @@ public class Canvas extends JPanel{
         graph.repaint();
 
         if(k == 0) {
-            RampSimulator rs = new RampSimulator(Math.toRadians(50), 700, .1, 15, screenWidth, screenHeight, graph, 9.8 * 70, this);
+            RampSimulator rs = new RampSimulator(Math.toRadians(50), 700, 20, 15, screenWidth, screenHeight, graph, 9.8 * 70, this);
             rs.setMaximumSize(new Dimension((int) (screenWidth / 2), (int) screenHeight));
             add(rs);
             container.add(graph);

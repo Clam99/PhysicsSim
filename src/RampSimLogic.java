@@ -6,20 +6,20 @@ import java.math.BigDecimal;
  */
 
 public class RampSimLogic extends SimLogic {
-    Ball ball;
-    Ramp ramp;
-    double ballDistance = 0;
-    double angle;
-    double rampLen;
-    Graph graph;
-    double initialBallX;
+    Ball ball;//The ball object
+    Ramp ramp;//Ramp that the ball rolls on
+    double ballDistance = 0; //Distance the ball has traveled
+    double angle; //Angle formed by the ramp and the ground
+    double rampLen; //Length of ramp's hypotenuse
+    Graph graph; //the graph object to graph the simulator's data
+    double initialBallX; //Initial ball position
     double initialBallY;
-    int fps;
-    Surface floor;
-    Surface rightWall;
-    Surface leftWall;
-    Surface ceiling;
-    ArrayList<Surface> surfaces;
+    int fps; //frames per second of sim update
+    Surface floor;//Surface along the bottom of the screen for the ball to bounce on
+    Surface rightWall;//Doesn't let the ball bounce away - keeps it in view
+    //Surface leftWall;  Not currently in use because it is impossible for the ball to go over the top of the ramp
+    //Surface ceiling;  Also impossible to reach the ceiling - it would have to gain energy
+    ArrayList<Surface> surfaces;//list of all surfaces
     double simHeight;
     double simWidth;
 
@@ -33,43 +33,52 @@ public class RampSimLogic extends SimLogic {
         rampLen = l;
         graph = g;
         this.fps = fps;
+
+        //position ball so it is at the very top of the ramp but not above it
         initialBallX = b.getBallLogic().getRadius()*Math.cos(Math.toRadians(90)-angle);
         initialBallY = simHeight-Math.sin(angle)*rampLen-b.getBallLogic().getRadius()*Math.sin(Math.toRadians(90)-angle);
+
         floor = new Surface(0,simWidth,simHeight,simHeight);
         rightWall = new Surface(simWidth/2-10, simWidth/2-10,0,simHeight);
-        leftWall = new Surface(0,0,0,simHeight);
-        ceiling = new Surface(0,simWidth,0,0);
+        //leftWall = new Surface(0,0,0,simHeight);
+        //ceiling = new Surface(0,simWidth,0,0);
+
         surfaces = new ArrayList<Surface>();
         surfaces.add(ramp.getSurface());
         surfaces.add(floor);
-        //surfaces.add(leftWall);
         surfaces.add(rightWall);
+
+        //surfaces.add(leftWall);
         //surfaces.add(ceiling);
+
     }
 
-    public void updateDistance(double xi, double yi){
+    public void updateDistance(double xi, double yi){//updates the ballDistance variable to keep track of distance the ball has travelled
         ballDistance += Ball.getDistance(ball.getBallLogic().getX(), ball.getBallLogic().getY(), xi, yi);
     }
 
     public void update() {
         super.update();
-        double xi = ball.getBallLogic().getX();
+        double xi = ball.getBallLogic().getX();//keep track of where the ball was before to calculate the distance moved
         double yi = ball.getBallLogic().getY();
 
-        //
+        //Go through the surfaces and see if the ball is intersecting any of them: if so, move them apart and reflect the ball's velocity over the surface's vector
         for (Surface f:surfaces) {
             if (f.intersectsBall(ball)) {
                 collide(f);
                 bounce(f);
             }
         }
-        updateBallV();
-        ball.getBallLogic().updatePos();
-        updateDistance(xi, yi);
+
+        updateBallV();//Make ball accelerate down
+        ball.getBallLogic().updatePos();//update ball's position based on velocity
+
+        updateDistance(xi, yi);//keep track of distance travelled
 
 
-        //String[] variables = {"Kinetic Energy", "Potential Energy", "Distance Travelled", "Time", "Velocity"};
-        double[] toAdd = {0,0};
+        double[] toAdd = {0,0};//point to add to the graph
+
+        //Given a string of the variable to graph, set the point to add to the graph
         try {
             if (getToGraphX().equals("Potential Energy")) {
                 toAdd[0] = (ball.getBallLogic().getPE(simHeight));
@@ -123,41 +132,40 @@ public class RampSimLogic extends SimLogic {
 
             graph.addPoint(toAdd);
         }
-        catch(NullPointerException npe) {
+        catch(NullPointerException npe) {//Rarely, this method was throwing inexplicable Null Pointer Exceptions, so this is to catch that
             System.out.println("Crashed. graphX: " + toGraphX);
         }
 
     }
 
-    public void updateBallV() {
+    public void updateBallV() {//Make the ball accelerate down depending on its gravitational field
         BallLogic bl = ball.getBallLogic();
         bl.setVy(bl.getVy() + ball.getBallLogic().getG()/((double)fps));
     }
 
-    public void collide(Surface s) {
-        Vector collisionPoint = s.getCoordsCorrespondingToXAndYWithAngle(ball.getBallLogic().getX(),ball.getBallLogic().getY());
-        if (ball.getBallLogic().getX()-collisionPoint.getX()>=0) {
+    public void collide(Surface s) {//If the ball is intersecting a surface, move it so that the surface is tangent to it
+        Vector collisionPoint = s.getCoordsCorrespondingToXAndYWithAngle(ball.getBallLogic().getX(),ball.getBallLogic().getY());//Gets point on surface closest to the ball
+        if (ball.getBallLogic().getX()-collisionPoint.getX()>=0) {//if ball is on the right side of the surface, move right
             ball.getBallLogic().setX(collisionPoint.getX() + ball.getBallLogic().getRadius() * Math.cos(Math.toRadians(90)-s.angleFromPositiveHor()));
         }
-        else {
+        else {//otherwise, move left
             ball.getBallLogic().setX(collisionPoint.getX() - ball.getBallLogic().getRadius() * Math.cos(Math.toRadians(90)-s.angleFromPositiveHor()));
         }
-        if (ball.getBallLogic().getY()-collisionPoint.getY()>=0) {
+        if (ball.getBallLogic().getY()-collisionPoint.getY()>=0) {//If ball is below, move down (to a higher y value)
             ball.getBallLogic().setY(collisionPoint.getY() + ball.getBallLogic().getRadius() * Math.sin(Math.toRadians(90) - s.angleFromPositiveHor()));
         }
-        else {
+        else {//otherwise, move up
             ball.getBallLogic().setY(collisionPoint.getY() - ball.getBallLogic().getRadius() * Math.sin(Math.toRadians(90) - s.angleFromPositiveHor()));
         }
     }
 
-    public void bounce(Surface s) {
+    public void bounce(Surface s) {//Reflect ball's velocity over the vector of the surface, using BigDecimals for more precision
+
         //Taken from here:http: //stackoverflow.com/questions/14885693/how-do-you-reflect-a-vector-over-another-vector
 
-        //ball.getBallLogic().updatePos();
         Vector vec1 = new Vector(ball.getBallLogic().getVx(), ball.getBallLogic().getVy());
         Vector vec2 = s.getSurfaceVector();
 
-        //System.out.println("Line 101 total E: " + ball.getBallLogic().getTotalE(simHeight-35));
 
         // 1. Find the dot product of vec1 and vec2
         // Note: dx and dy are vx and vy divided over the length of the vector (magnitude)
@@ -179,14 +187,8 @@ public class RampSimLogic extends SimLogic {
         BigDecimal new_vx = prA_vx.subtract(prB_vx);
         BigDecimal new_vy = prA_vy.subtract(prB_vy);
 
-      //  new_vx *= ball.getBallLogic().getRebound();
-      //  new_vy *= ball.getBallLogic().getRebound();
-
-        ball.getBallLogic().setVx(new_vx.doubleValue());
+        ball.getBallLogic().setVx(new_vx.doubleValue());//set ball velocities to the results
         ball.getBallLogic().setVy(new_vy.doubleValue());
-        //System.out.println("Line 128: " + ball.getBallLogic().getTotalE(simHeight));
-        //ball.getBallLogic().updatePos();
-        //System.out.println("Line 130: " + ball.getBallLogic().getTotalE(simHeight) + "\n\n");
     }
 
 }

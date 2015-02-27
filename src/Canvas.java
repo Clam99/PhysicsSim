@@ -58,25 +58,25 @@ public class Canvas extends JPanel{
         remove(m);
         container.setVisible(true);
         graph.setVisible(true);
-
-        switch (k){
-            case 0:
-                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
-                rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
-                add(rs);
-                container.add(graph);
-                container.add(rs.op);
-                break;
-            case 1:
-                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph, this);
-                ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
-                add(ss);
-                container.add(graph);
-                container.add(ss.op);
-                break;
-
-            default: break;
-        }
+        addNewSim(k);
+//        switch (k){
+//            case 0:
+//                RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
+//                rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+//                add(rs);
+//                container.add(graph);
+//                container.add(rs.op);
+//                break;
+//            case 1:
+//                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph, this);
+//                ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+//                add(ss);
+//                container.add(graph);
+//                container.add(ss.op);
+//                break;
+//
+//            default: break;
+//        }
         container.setMaximumSize(new Dimension((int) (screenWidth/2), (int) screenHeight));
         add(container);
         this.repaint();
@@ -111,24 +111,39 @@ public class Canvas extends JPanel{
 
     public void addNewSim(int k) {
         this.remove(graph);
+        graph.resetData();
+        graph.resizeGraph((int)(screenWidth/2-20),(int)screenHeight/2-20, false);
+        graph.removeAll();
+        graph.validate();
+        graph.repaint();
+
         if(k == 0) {
             RampSimulator rs = new RampSimulator(Math.toRadians(50), 700, .1, 15, screenWidth, screenHeight, graph, 9.8 * 70, this);
             rs.setMaximumSize(new Dimension((int) (screenWidth / 2), (int) screenHeight));
             add(rs);
             container.add(graph);
             container.add(rs.op);
+
+//            RampSimulator rs = new RampSimulator(Math.toRadians(50),700,.1,15,screenWidth,screenHeight,graph,9.8*70, this);
+//                rs.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+//                add(rs);
+//                container.add(graph);
+//                container.add(rs.op);
+//                break;
+
         } else if(k == 1){
             SpringSimulator ss = new SpringSimulator(screenWidth/2,screenHeight,20,3000,.1,screenWidth/4, graph, this);
             ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
             add(ss);
             container.add(graph);
             container.add(ss.op);
+//                SpringSimulator ss = new SpringSimulator(screenWidth,screenHeight,20,3000,.1,screenWidth/4, graph, this);
+//                ss.setMaximumSize(new Dimension((int)(screenWidth/2), (int)screenHeight));
+//                add(ss);
+//                container.add(graph);
+//                container.add(ss.op);
         }
-        graph.resetData();
-        graph.resizeGraph((int)(screenWidth/2-20),(int)screenHeight/2-20, false);
-        graph.removeAll();
-        graph.validate();
-        graph.repaint();
+
         container.validate();
         container.repaint();
         add(container);

@@ -27,7 +27,7 @@ public class OptionsPanel extends JPanel {
 
         ydrop = new JComboBox<String>(variables);
         ydrop.setVisible(true);
-        ydrop.setMaximumSize(new Dimension((int)sim.simWidth/2, 50));
+        ydrop.setMaximumSize(new Dimension((int)sim.simWidth, 50));
         this.add(ydrop);
 
         JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
@@ -36,7 +36,7 @@ public class OptionsPanel extends JPanel {
 
         xdrop = new JComboBox<String>(variables);
         xdrop.setVisible(true);
-        xdrop.setMaximumSize(new Dimension((int) sim.simWidth / 2, 50));
+        xdrop.setMaximumSize(new Dimension((int) sim.simWidth , 50));
         this.add(xdrop);
 
         submit = new JButton("Test");

@@ -31,7 +31,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         sl.setPaintTicks(true);
         sl.setPaintLabels(true);
         sl.setVisible(true);
-        sl.setMaximumSize(new Dimension(((int) ss.simWidth / 2), 50));
+        sl.setMaximumSize(new Dimension(((int) ss.simWidth), 50));
         sl.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -51,7 +51,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         ds.setPaintTicks(true);
         ds.setPaintLabels(true);
         ds.setVisible(true);
-        ds.setMaximumSize(new Dimension((int) ss.simWidth / 2, 50));
+        ds.setMaximumSize(new Dimension((int) ss.simWidth, 50));
         ds.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -71,7 +71,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         st.setPaintTicks(true);
         st.setPaintLabels(true);
         st.setVisible(true);
-        st.setMaximumSize(new Dimension((int) ss.simWidth / 2, 50));
+        st.setMaximumSize(new Dimension((int) ss.simWidth, 50));
         st.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -110,9 +110,9 @@ public class SpringOptionsPanel extends OptionsPanel {
     }
 
     public void resetSim(){
-        super.resetSim();
         sim.stop();
         parent.resetSim(this);
+        super.resetSim();
     }
 
     @Override

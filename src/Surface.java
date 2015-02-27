@@ -46,8 +46,10 @@ public class Surface {
             Vector vectorToSurface = new Vector(surfacePoint.getX()-b.getBallLogic().getX(), surfacePoint.getY()-b.getBallLogic().getY());
             return vectorToSurface.getMagnitude()<b.getBallLogic().getRadius();
         }
-        else {//Not directly above the ramp, but still might be within reach - to be implemented
-            return false;//should be changed
+        else {//Not directly above the ramp, but still might be within reach
+            System.out.println("It worked");
+            return (Ball.getDistance(getX2(),getY2(),b.getBallLogic().getX(), b.getBallLogic().getY()))<b.getBallLogic().getRadius() || (Ball.getDistance(getX1(),getY1(),b.getBallLogic().getX(), b.getBallLogic().getY()))<b.getBallLogic().getRadius();
+
         }
     }
     

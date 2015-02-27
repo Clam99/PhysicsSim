@@ -17,7 +17,7 @@ public class SpringOptionsPanel extends OptionsPanel {
     private double startingStretch;
 
     public SpringOptionsPanel(SpringSimulator ss, Canvas c){
-        super(ss,new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force", "Total Energy"});
+        super(ss,new String[]{"Potential Energy", "Kinetic Energy", "Acceleration", "Time", "Velocity", "Compression", "Force"});
 
         parent = c;
 
@@ -99,8 +99,6 @@ public class SpringOptionsPanel extends OptionsPanel {
         double k4 = ds.getValue();
         double k5 = st.getValue();
         ((SpringSimulator)sim).startRecording(variables[k], variables[k2], k3, k4, k5);
-        System.out.println("Graph X should be " + variables[k]);
-        System.out.println("Graph Y should be " + variables[k2]);
         super.startSim();
         submit.removeActionListener(al);
         submit.addActionListener(new ActionListener() {
@@ -115,7 +113,6 @@ public class SpringOptionsPanel extends OptionsPanel {
         super.resetSim();
         sim.stop();
         parent.resetSim(this);
-        System.out.println("Resetting");
     }
 
     @Override

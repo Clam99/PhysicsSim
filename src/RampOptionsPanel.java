@@ -70,7 +70,6 @@ public class RampOptionsPanel extends OptionsPanel {
         super.resetSim();
         sim.stop();
         parent.resetSim(this);
-        System.out.println("Resetting");
     }
     @Override
     public int getID(){

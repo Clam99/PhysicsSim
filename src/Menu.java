@@ -35,7 +35,6 @@ public class Menu extends JPanel {
 
         String[] sims = {"RampSimulator", "SpringSimulator"};
         drop = new JComboBox<String>(sims);
-        //drop.setMaximumSize(new Dimension((int)p.getScreenWidth()/2, 30));
         drop.setVisible(true);
         container.add(drop);
 
@@ -56,7 +55,6 @@ public class Menu extends JPanel {
 
     private void startSim(){
         int k = drop.getSelectedIndex();
-        System.out.println(k);
         parent.startSim(k);
     }
 }

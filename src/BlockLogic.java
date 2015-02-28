@@ -5,5 +5,7 @@ import java.math.BigDecimal;
  */
 
 public class BlockLogic extends PhysicsObjectLogic {
-    public BlockLogic(double v, double d, double m, double x, double y, double g,int fps) {super(v,d,m,x,y, g, fps);}
+    public BlockLogic(double v, double d, double m, double x, double y, double g,int fps) {
+        super(v,d,m,x,y, g, fps);//Creates physics object logic
+    }
 }

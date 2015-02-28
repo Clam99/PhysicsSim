@@ -52,12 +52,12 @@ public class RampSimulator extends Simulator {
     }
 
 
-    public void makeRamp() {//draw the ramp
+    public void makeRamp() {//create the ramp
         int[] xpoints = {0,0, (int)(Math.cos(angle)*rampLen)};//Vertices in order from top left, bottom left, bottom right
         int[] ypoints = { (int)(-Math.sin(angle)*rampLen+simHeight), (int)simHeight, (int)simHeight};
 
         ramp = new Ramp(xpoints, ypoints, 3, Color.red);
-        initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);
+        initialBallX = ballRadius*Math.cos(Math.toRadians(90)-angle);//set the initial position of the ball based on the angle of the ramp
         initialBallY = simHeight-Math.sin(angle)*rampLen-ballRadius*Math.sin(Math.toRadians(90)-angle);
         ball = new Ball(0,Math.toRadians(360)-angle,ballMass,initialBallX,initialBallY, ballRadius, 1, gF, fps);//create the ball
     }
@@ -65,10 +65,10 @@ public class RampSimulator extends Simulator {
     public void startRecording(String str, String str2, double angle) {//Start the sim and begin graphing - takes the variables to graph and the angle of the ramp as parameters
         this.angle = Math.toRadians(angle);
         makeRamp();
-        logic = new RampSimLogic(ball, ramp, graph, angle, rampLen, simWidth, simHeight, fps);
+        logic = new RampSimLogic(ball, ramp, graph, angle, rampLen, simWidth, simHeight, fps);//create the logic based on the angle and graphing variables that we now know
 
         repaint();
-        super.startRecording(str, str2);//call the parent startRecording method
+        super.startRecording(str, str2);//call the parent startRecording method and pass in the variables to graph
     }
 
 }

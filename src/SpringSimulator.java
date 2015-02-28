@@ -5,16 +5,16 @@ import java.awt.*;
  */
 
 public class SpringSimulator extends Simulator {
-    Spring spring;
-    Rectangle block;
+    Spring spring;//The spring object
+    Rectangle block;//the mass on the end of the spring
     double mx;
     double my;
     double velocity;
     double k;
     double mass;
     double length;
-    double dampening = 0;
-    int blockHeight =50;
+    double damping = 0;
+    int blockHeight = 50;
     int springHeight = blockHeight-30;
     Graph g;
 
@@ -26,7 +26,7 @@ public class SpringSimulator extends Simulator {
         this.k = k;
         mass = m;
         length = l;
-        dampening = d;
+        damping = d;
         this.g = g;
 
         spring = new Spring(0, (int)simHeight/2-springHeight/2, l, springHeight, 1, 10, 10, fps, 0);
@@ -61,9 +61,9 @@ public class SpringSimulator extends Simulator {
 
     public void startRecording(String str, String str2, double k, double k2, double k3){
         this.k = k;
-        dampening = k2;
-        spring = new Spring(0, (int)simHeight/2-springHeight/2, spring.getLength(), springHeight, k, dampening, 10, fps, k3);
-        logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, dampening, spring, velocity, g, fps);
+        damping = k2;
+        spring = new Spring(0, (int)simHeight/2-springHeight/2, spring.getLength(), springHeight, k, damping, 10, fps, k3);
+        logic = new SpringSimLogic(simWidth, simHeight, mass, k, length, damping, spring, velocity, g, fps);
         repaint();
         super.startRecording(str, str2);
     }

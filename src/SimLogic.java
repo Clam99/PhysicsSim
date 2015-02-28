@@ -9,7 +9,7 @@ public class SimLogic {
     public SimLogic() {
     }
 
-    public void start(String str, String str2) {
+    public void start(String str, String str2) {//Sets what to graph on axis
         toGraphX = str;
         toGraphY = str2;
     }

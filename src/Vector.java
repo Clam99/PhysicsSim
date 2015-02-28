@@ -1,6 +1,7 @@
 /**
- * Created by smurphy on 2/22/15.
+ * Created by Sam Noyes and Lucas Webb on 2/22/15.
  */
+
 public class Vector {
     double x;
     double y;
@@ -30,27 +31,27 @@ public class Vector {
         return v.getX()*getX()+v.getY()*getY();
     }
 
-    public double getMagnitude() {
+    public double getMagnitude() {//Returns magnitude of vector
         return Math.sqrt(getX()*getX()+getY()*getY());
     }
 
-    public Vector scale(double scalar) {
+    public Vector scale(double scalar) {//Scales vector based on a scalar
         return new Vector(getX()*scalar,getY() * scalar);
     }
 
-    public Vector projectOnto(Vector v) {
+    public Vector projectOnto(Vector v) {//Projects vector onto vector v
         return v.scale(v.dotP(this)/(v.getMagnitude()*v.getMagnitude()));
     }
 
-    public Vector addVector(Vector v) {
+    public Vector addVector(Vector v) {//Adds vector to v
         return new Vector(getX()+v.getX(), getY()+v.getY());
     }
 
-    public Vector leftNormal() {
+    public Vector leftNormal() {//return normal left
         return new Vector(getY(), -getX());
     }
 
-    public Vector rightNormal() {
+    public Vector rightNormal() {//Return normal right
         return new Vector(-getY(), getX());
     }
 

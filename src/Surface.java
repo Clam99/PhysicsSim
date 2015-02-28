@@ -1,5 +1,5 @@
 /**
- * Created by smurphy on 2/22/15.
+ * Created by Sam Noyes and Lucas Webb on 2/22/15.
  */
 public class Surface {
     private double x1;
@@ -57,7 +57,7 @@ public class Surface {
         return new Vector(getX1(), getY1()).addVector(proj);
     }
 
-    public double angleFromPositiveHor() {
+    public double angleFromPositiveHor() {//Returns angle from horizontal
         return  Math.atan((getY2()-getY1())/(getX2()-getX1()));
     }
 }

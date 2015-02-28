@@ -13,9 +13,10 @@ public class Spring extends Rectangle {
         super((int)x, (int)y, (int)l, (int)h);
         length = l;
         height = h;
-        sl = new SpringLogic(l, k, d, m, fps, ss);
+        sl = new SpringLogic(l, k, d, m, fps, ss);//Creates springlogic object for calculations
     }
 
+    //Visually updates length of spring
     public void updateLength(){
         length = sl.getLength();
         this.setSize((int)length, (int)height);

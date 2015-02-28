@@ -11,9 +11,9 @@ public class OptionsPanel extends JPanel {
     JButton submit;
     ActionListener al;
     Simulator sim;
-    JComboBox ydrop;
+    JComboBox ydrop;//Dropboxes for what to graph
     JComboBox xdrop;
-    String[] variables;
+    String[] variables;//String array of different variables
     int id;
 
     public OptionsPanel(Simulator sim, String[] strs) {
@@ -21,6 +21,7 @@ public class OptionsPanel extends JPanel {
         this.sim = sim;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        //Drop for y axis
         JLabel title = new JLabel("Select a variable to graph on the y axis:");
         title.setVisible(true);
         this.add(title);
@@ -30,6 +31,7 @@ public class OptionsPanel extends JPanel {
         ydrop.setMaximumSize(new Dimension((int)sim.simWidth, 50));
         this.add(ydrop);
 
+        //Drop for x axis
         JLabel title2 = new JLabel("Select a variable to graph in the x axis:");
         title2.setVisible(true);
         this.add(title2);
@@ -50,8 +52,8 @@ public class OptionsPanel extends JPanel {
     }
     public void startSim() {
         submit.setText("See Full Graph");
-
     }
+
     public void resetSim() {
 
     }

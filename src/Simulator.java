@@ -1,15 +1,9 @@
 import javax.swing.*;
-import javax.swing.event.MouseInputListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by Sam Noyes on 2/17/15.
+ * Created by Sam Noyes and Lucas Webb on 2/17/15.
  */
 
 public class Simulator extends JPanel {
@@ -25,6 +19,7 @@ public class Simulator extends JPanel {
         super();
         logic = new SimLogic();
     }
+
     public void startRecording(String str, String str2) {
         if (!recording) {
             logic.start(str, str2);
@@ -32,24 +27,25 @@ public class Simulator extends JPanel {
             gameLoop();
         }
     }
-    public void gameLoop()
+
+    public void gameLoop()//Creates game loop
     {
         timer = new Timer();
         timer.schedule(new SimTask(), 0,1000 / fps); //new timer at 60 fps, the timing mechanism
     }
 
-    public void updateGUI() {
+    public void updateGUI() {//updates SimLogic object
         logic.update();
     }
 
-    class SimTask extends TimerTask {
+    class SimTask extends TimerTask {//updates GUI
         @Override
         public void run() {
             updateGUI();
         }
     }
 
-    public void stop() {
+    public void stop() {//Stops the timer
         timer.cancel();
         timer.purge();
     }

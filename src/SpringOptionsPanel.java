@@ -25,6 +25,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         title3.setVisible(true);//
         this.add(title3);
 
+        //Slider for spring constant
         sl = new JSlider(0,3000);
         sl.setMajorTickSpacing(500);
         sl.setMinorTickSpacing(250);
@@ -45,6 +46,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         title4.setVisible(true);
         this.add(title4);
 
+        //Slider for damping value
         ds = new JSlider(0, 10);
         ds.setMajorTickSpacing(2);
         ds.setMinorTickSpacing(1);
@@ -65,6 +67,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         title5.setVisible(true);
         this.add(title5);
 
+        //Slider for starting position
         st = new JSlider(-250, 250);
         st.setMajorTickSpacing(50);
         st.setMinorTickSpacing(10);
@@ -85,6 +88,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         submit.setVisible(true);
         this.add(submit);
 
+        //Starts the sim when submit button is pressed
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 startSim();
@@ -92,7 +96,7 @@ public class SpringOptionsPanel extends OptionsPanel {
         });
     }
 
-    public void startSim(){
+    public void startSim(){//Starts the sim based on the value of the sliders and the dropboxes
         int k = xdrop.getSelectedIndex();
         int k2 = ydrop.getSelectedIndex();
         double k3 = sl.getValue();
@@ -109,14 +113,14 @@ public class SpringOptionsPanel extends OptionsPanel {
         });
     }
 
-    public void resetSim(){
+    public void resetSim(){//stops the sim calls parent resetSim
         sim.stop();
         parent.resetSim(this);
         super.resetSim();
     }
 
     @Override
-    public int getID(){
+    public int getID(){//Returns ID
         return 1;
     }
 }

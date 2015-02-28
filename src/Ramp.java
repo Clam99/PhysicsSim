@@ -5,8 +5,8 @@ import java.awt.*;
  */
 public class Ramp extends Polygon {
     public Color c;
-    private int[] xp;
-    private int[] yp;
+    private int[] xp;//Array of x points
+    private int[] yp;//Array of y points
     private int np;
     private Surface surface;
 
@@ -19,6 +19,7 @@ public class Ramp extends Polygon {
         surface = new Surface(xp[0], xp[2], yp[0], yp[2]);
     }
 
+    //Getters and setter for point arrays
     public int[] getXPoints() {
         return xp;
     }
@@ -30,7 +31,7 @@ public class Ramp extends Polygon {
     }
 
 
-    public double getRampLen() {
+    public double getRampLen() {//calculates and returns length of ramp
         return Math.sqrt(((double)xp[0]-(double)xp[2])*((double)xp[0]-(double)xp[2])+ ((double)yp[0]-(double)yp[2])*((double)yp[0]-(double)yp[2]));
     }
     public Surface getSurface() {

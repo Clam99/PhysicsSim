@@ -21,6 +21,7 @@ public class RampOptionsPanel extends OptionsPanel {
         title3.setVisible(true);
         this.add(title3);
 
+        //Slider for ramp angle
         sl = new JSlider(10,80);
         sl.setMajorTickSpacing(10);
         sl.setMinorTickSpacing(1);
@@ -37,6 +38,7 @@ public class RampOptionsPanel extends OptionsPanel {
             }
         });
 
+        //Submit button
         submit = new JButton("Submit");
         submit.setVisible(true);
         this.add(submit);
@@ -50,11 +52,10 @@ public class RampOptionsPanel extends OptionsPanel {
 
     }
 
-    public void startSim(){
-
-        int k = xdrop.getSelectedIndex();
-        int k2 = ydrop.getSelectedIndex();
-        double angle = sl.getValue();
+    public void startSim(){//Starts ramp sim with selected values
+        int k = xdrop.getSelectedIndex();//What to graph on x axis
+        int k2 = ydrop.getSelectedIndex();//y axis
+        double angle = sl.getValue();//Gets current value of slider
         ((RampSimulator)sim).startRecording(variables[k], variables[k2], angle);
         super.startSim();
         submit.removeActionListener(al);
@@ -66,13 +67,14 @@ public class RampOptionsPanel extends OptionsPanel {
         });
     }
 
-    public void resetSim() {
+    public void resetSim() {//Calls reset method of options panel and canvas and stops sim
         super.resetSim();
         sim.stop();
         parent.resetSim(this);
     }
+
     @Override
-    public int getID(){
+    public int getID(){//Returns ID
        return 0;
     }
 }

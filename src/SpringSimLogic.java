@@ -26,11 +26,11 @@ public class SpringSimLogic extends SimLogic {
         this.fps = fps;
     }
 
-    public void update() {
+    public void update() {//Called every tick
         super.update();
-        double[] toAdd = {0, 0};
+        double[] toAdd = {0, 0};//Point to add to data array in graph
 
-        try {
+        try {//Sends points to graph
             if (getToGraphX().equals("Potential Energy")) {
                 toAdd[0] = (spring.getSpringLogic().getPE());
             }
@@ -81,9 +81,9 @@ public class SpringSimLogic extends SimLogic {
                 toAdd[1] = (spring.getSpringLogic().getTotalE());
             }
 
-            graph.addPoint(toAdd);
+            graph.addPoint(toAdd);//Adds the point to the graph
 
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException npe) {//Catches rare exceptions
             System.out.println("Crashed. graphX: " + getToGraphX());
         }
     }

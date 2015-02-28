@@ -1,6 +1,7 @@
 /**
- * Created by Sam Noyes on 2/17/15.
+ * Created by Sam Noyes and Lucas Webb on 2/17/15.
  */
+
 public class SimLogic {
     String toGraphX;
     String toGraphY;

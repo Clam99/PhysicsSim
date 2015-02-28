@@ -1,8 +1,7 @@
-import java.awt.*;
-
 /**
- * Created by Sam Noyes on 2/10/15.
+ * Created by Sam Noyes and Lucas Webb on 2/10/15.
  */
+
 public class Ball extends PhysicsObject {
     private BallLogic bl;
     public Ball(double r, double rb) {
@@ -18,5 +17,4 @@ public class Ball extends PhysicsObject {
     public static double getDistance(double xi, double yi, double xf, double yf) {//Use the distance formula to calculate the distance between (xi,yi) and (xf,yf)
         return Math.sqrt((xi-xf)*(xi-xf)+(yi-yf)*(yi-yf));
     }
-
 }

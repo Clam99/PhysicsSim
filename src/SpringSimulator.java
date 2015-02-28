@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Created by lucaswebb on 2/22/15.
+ * Created by Lucas Webb on 2/22/15.
  */
 
 public class SpringSimulator extends Simulator {

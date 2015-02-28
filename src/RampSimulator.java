@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Created by Sam Noyes on 2/17/15.
+ * Created by Sam Noyes and Lucas Webb on 2/17/15.
  */
 
 public class RampSimulator extends Simulator {
@@ -70,5 +70,4 @@ public class RampSimulator extends Simulator {
         repaint();
         super.startRecording(str, str2);//call the parent startRecording method and pass in the variables to graph
     }
-
 }

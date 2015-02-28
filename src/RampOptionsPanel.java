@@ -6,8 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by smurphy on 2/24/15.
+ * Created by Sam Noyes and Lucas Webb on 2/24/15.
  */
+
 public class RampOptionsPanel extends OptionsPanel {
     JSlider sl;
     double angle;
@@ -48,8 +49,6 @@ public class RampOptionsPanel extends OptionsPanel {
                 startSim();
             }
         });
-
-
     }
 
     public void startSim(){//Starts ramp sim with selected values

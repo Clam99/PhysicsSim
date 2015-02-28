@@ -1,6 +1,7 @@
 /**
- * Created by Sam Noyes and Lucas Webb on 2/22/15.
+ * Created by Sam Noyes on 2/22/15.
  */
+
 public class Surface {
     private double x1;
     private double x2;

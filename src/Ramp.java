@@ -1,8 +1,9 @@
 import java.awt.*;
 
 /**
- * Created by Sam Noyes on 2/18/15.
+ * Created by Sam Noyes and Lucas Webb on 2/18/15.
  */
+
 public class Ramp extends Polygon {
     public Color c;
     private int[] xp;//Array of x points

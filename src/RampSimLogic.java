@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.math.BigDecimal;
 
 /**
- * Created by Sam Noyes on 2/17/15.
+ * Created by Sam Noyes and Lucas Webb on 2/17/15.
  */
 
 public class RampSimLogic extends SimLogic {

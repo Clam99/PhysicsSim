@@ -1,5 +1,5 @@
 /**
- * Created by lucaswebb on 2/23/15.
+ * Created by Lucas Webb on 2/23/15.
  */
 
 public class SpringSimLogic extends SimLogic {

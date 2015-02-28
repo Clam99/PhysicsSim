@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by smurphy on 2/24/15.
+ * Created by Sam Noyes and Lucas Webb on 2/24/15.
  */
+
 public class OptionsPanel extends JPanel {
     Canvas parent;
     JButton submit;

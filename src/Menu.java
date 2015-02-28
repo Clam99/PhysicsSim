@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by lucaswebb on 2/20/15.
+ * Created by Lucas Webb on 2/20/15.
  */
 
 public class Menu extends JPanel {//Panel which serves as the menu screen

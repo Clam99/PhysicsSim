@@ -14,7 +14,6 @@ public class SpringLogic {
     private double PE;
     private double startingStretch = -300;//Starting length of spring
 
-
     public SpringLogic(double l, double k, double d, double m, int fps, double ss){
         equiLength = l;
         startingStretch = ss;
@@ -34,7 +33,6 @@ public class SpringLogic {
         updateLength();
         return currentLength;
     }
-
 
     public double getForce() {//Calculates force using: k*x-v*d
         return k*(equiLength-currentLength) - dampening*(velocity);

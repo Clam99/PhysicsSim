@@ -6,8 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by lucaswebb on 2/25/15.
+ * Created by Lucas Webb on 2/25/15.
  */
+
 public class SpringOptionsPanel extends OptionsPanel {
     JSlider sl;
     private double k;

@@ -6,7 +6,7 @@ import java.util.TimerTask;
  * Created by Sam Noyes and Lucas Webb on 2/17/15.
  */
 
-public class Simulator extends JPanel {
+public class Simulator extends JPanel {//superclass of Ramp and Spring Simulators
     boolean recording = false;
     int fps = 200;
     SimLogic logic;

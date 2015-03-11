@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Created by Sam Noyes and Lucas Webb on 2/17/15.
+ * Created by Sam Noyes and Lucas Webb on 2/17/15.  test
  */
 
 public class RampSimulator extends Simulator {

@@ -4,7 +4,7 @@ A physics simulator giving info about force, energy, momentum, etc. Two availabl
 ## Available Variables
 Note: all variables can be plotted on either the X or the Y axis.
 
-#### Spring:
+### Spring:
 - Potential Energy
 - Kinetic Energy
 - Acceleration
@@ -15,7 +15,7 @@ Note: all variables can be plotted on either the X or the Y axis.
 
 Spring constant, damping, and starting position of the mass can also be adjusted.
 
-#### Ramp:
+### Ramp:
 - Potential Energy
 - Kinetic Energy
 - Distance Travelled
@@ -28,11 +28,11 @@ Incline angle of the ramp can also be adjusted.
 
 ## Sample Images
 
-#### Spring:
+### Spring:
 ![Spring Sample 1](https://i.imgur.com/wsyK0Ur.png) ![Expanded Graph 1](https://i.imgur.com/FD0J68X.png)
 ![Spring Sample 2](https://i.imgur.com/T073m6kr.png) ![Expanded Graph 2](https://i.imgur.com/4cpqQKV.png)
 
-#### Ramp:
+### Ramp:
 ![Ramp Sample 1](https://i.imgur.com/iXsQiRA.png) ![Expanded Graph 1](https://i.imgur.com/Ut3ZsPY.png)
 ![Ramp Sample 2](https://i.imgur.com/XcyqEWO.png) ![Expanded Graph 2](https://i.imgur.com/4mELWja.png)
-![Ramp Sample 2](https://i.imgur.com/Wzo3gKJ.png) ![Expanded Graph 2](https://i.imgur.com/a0VIhT8.png)
+![Ramp Sample 3](https://i.imgur.com/Wzo3gKJ.png) ![Expanded Graph 3](https://i.imgur.com/a0VIhT8.png)
